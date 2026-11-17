@@ -1,0 +1,26 @@
+name: 使用中遇到问题
+description: 描述可复现的问题，请勿附真实客户或业务资料。
+title: "[问题] "
+body:
+  - type: dropdown
+    id: product
+    attributes:
+      label: 使用哪个产品
+      options: [本地开票工作台, 爱你老己]
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 做了什么、预期怎样、实际发生什么
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: 设备、浏览器和版本
+  - type: textarea
+    id: attachment
+    attributes:
+      label: 截图或补充
+      description: 请使用虚构数据，并遮住个人及业务信息。

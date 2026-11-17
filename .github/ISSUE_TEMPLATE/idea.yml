@@ -1,0 +1,23 @@
+name: 产品建议与试玩反馈
+description: 告诉我哪一步不顺手，或你希望怎样改。
+title: "[建议] "
+body:
+  - type: dropdown
+    id: product
+    attributes:
+      label: 你体验的是
+      options: [本地开票工作台, 爱你老己, 作品集]
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: 在什么情况下，希望完成什么
+    validations:
+      required: true
+  - type: textarea
+    id: feedback
+    attributes:
+      label: 现在的问题、建议或喜欢的细节
+    validations:
+      required: true

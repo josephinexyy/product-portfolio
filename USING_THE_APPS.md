@@ -32,14 +32,15 @@ CSV 不能替代完整备份。不要把真实账本、客户证件、银行资�
 
 ## 爱你老己 · 像素小院
 
-**[进入像素小院](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site/)** · [下载离线版 ZIP](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site/downloads/aini-laoji-v0.8.0.zip)
+**[进入像素小院](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site/)** · [下载离线版 ZIP](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site/downloads/aini-laoji-v0.8.1.zip)
 
-在线版直接打开。离线版：下载 ZIP → 解压 → 用 Chrome 打开 `aini-laoji-v8.html`。
+在线版直接打开。离线版：下载 ZIP → 解压 → 用 Chrome 打开 `aini-laoji-v8.0.1.html`。
 
 | 想做什么 | 去哪里 |
 | --- | --- |
 | 让小人行动 | 按住小人拖到目的地，松手后他会慢慢走过去 |
 | 喝水／午休／开会 | 拖到水井／吊床／村口路牌；也可展开“更多”选择目的地 |
+| 看当天次数 | 画面右侧的“喝水”“午休”“上厕所”，分别记录 |
 | 调整走速、停下或找小人 | 画面下方的步速、“停一停”和“找找小人” |
 | 保存、恢复进度 | 画面下方“带走小院”和“恢复备份” |
 

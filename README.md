@@ -11,7 +11,7 @@
 | 产品 | 想解决什么 | 直接使用 | 了解设计 |
 | --- | --- | --- | --- |
 | 本地开票工作台 | 帮个人工作室、小老板理清客户、开单与收款 | [在线使用](https://josie-billing-workspace.coral-ox-0471.chatgpt.site) · [先看虚构演示](https://josie-billing-workspace.coral-ox-0471.chatgpt.site/?demo=1) · [下载离线版](https://josie-billing-workspace.coral-ox-0471.chatgpt.site/Billing-Workspace-v0.2.0.zip) | [产品案例](cases/local-billing-workspace.md) |
-| 爱你老己 · 像素小院 | 把自己真实的一天，映射成看得见的小院生活 | [直接玩](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site) · [下载离线版](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site/downloads/aini-laoji-v0.8.0.zip) | [玩法与设计](cases/aini-laoji.md) |
+| 爱你老己 · 像素小院 | 让现实中的自己与小院里的自己相互映照、相互照顾 | [直接玩](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site) · [下载离线版](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site/downloads/aini-laoji-v0.8.0.zip) | [玩法与设计](cases/aini-laoji.md) |
 
 ### 本地开票工作台
 
@@ -23,7 +23,9 @@
 
 ![像素小院 v8 的离线画面预览](images/farm-yard.png)
 
-午休是躺吊床，开会是去村口，喝水「大水理论」和上厕所对应自己的真实行为。当前可以手动操作、闲逛和种小苗；生活时间线、提醒及外部事件接入仍在逐渐完善。
+你在现实中上班，小院里的小人过着与你对应的生活：午休躺吊床，开会去村口，喝水「大水理论」和上厕所也映射成他的动作。你照顾小人，也通过他的生活记得照顾自己。这份相互照顾是产品的核心。
+
+当前为手动交互原型，可以操作、闲逛和种小苗；完整生活时间线、提醒及外部事件接入尚待实现。
 
 ## 使用自己的数据
 

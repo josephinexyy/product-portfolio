@@ -1,6 +1,6 @@
 # 爱你老己：和小院里的自己相互照顾
 
-**[进入像素小院](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site/)** · [下载离线版 ZIP](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site/downloads/aini-laoji-v0.8.0.zip) · [使用说明](../USING_THE_APPS.md#爱你老己--像素小院) · [返回软件入口](../README.md#直接使用)
+**[进入像素小院](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site/)** · [下载离线版 ZIP](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site/downloads/aini-laoji-v0.8.0.zip) · [使用说明](../USING_THE_APPS.md#爱你老己--像素小院) · [返回软件入口](https://github.com/josephinexyy/product-portfolio#直接使用)
 
 **现实中的我，和小院里的我，相互照顾。**
 

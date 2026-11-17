@@ -1,6 +1,6 @@
 # 使用说明与备份迁移
 
-[返回软件入口](README.md#直接使用) · [开票工具](#本地开票工作台) · [像素小院](#爱你老己--像素小院) · [报告问题](https://github.com/josephinexyy/product-portfolio/issues/new?template=bug.yml) · [提个建议](https://github.com/josephinexyy/product-portfolio/issues/new?template=idea.yml)
+[返回软件入口](https://github.com/josephinexyy/product-portfolio#直接使用) · [开票工具](#本地开票工作台) · [像素小院](#爱你老己--像素小院) · [报告问题](https://github.com/josephinexyy/product-portfolio/issues/new?template=bug.yml) · [提个建议](https://github.com/josephinexyy/product-portfolio/issues/new?template=idea.yml)
 
 ## 本地开票工作台
 
@@ -51,4 +51,4 @@ CSV 不能替代完整备份。不要把真实账本、客户证件、银行资�
 
 请填写产品、设备／浏览器、操作、预期和实际结果。用虚构数据复现，并遮住截图中的个人信息。
 
-[返回软件入口](README.md#直接使用)
+[返回软件入口](https://github.com/josephinexyy/product-portfolio#直接使用)

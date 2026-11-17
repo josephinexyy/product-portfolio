@@ -1,17 +1,19 @@
 # Josie Xiang · 产品作品集
 
-我是一名产品经理，喜欢倒腾小硬件、小软件，也喜欢琢磨让日常体验更顺手的小设计。
+## 直接使用
 
-这里记录从实际需要出发做出来的两个产品：为什么做、做了哪些取舍，以及使用中的问题怎样变成下一次修改。我负责需求、流程与体验设计和迭代，使用 AI 辅助实现。
+| 软件 | 在线打开 | 下载到电脑 |
+| --- | --- | --- |
+| 本地开票工作台 | **[打开开票工具](https://josie-billing-workspace.coral-ox-0471.chatgpt.site/)** | [下载离线版 ZIP](https://josie-billing-workspace.coral-ox-0471.chatgpt.site/Billing-Workspace-v0.2.0.zip) |
+| 爱你老己 · 像素小院 | **[进入像素小院](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site/)** | [下载离线版 ZIP](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site/downloads/aini-laoji-v0.8.0.zip) |
 
-**软件对所有人开放使用。** 可以在线体验，也可以下载到自己的电脑。这个仓库展示产品案例、界面和公开迭代记录；完整开发工程单独维护。
+在线版点开即可使用。第一次用开票工具，可以[先看虚构演示](https://josie-billing-workspace.coral-ox-0471.chatgpt.site/?demo=1)。离线版下载后，**解压 ZIP → 用 Chrome 打开里面的 HTML 文件**。
 
-## 选择一个试试
+[使用说明与备份迁移](USING_THE_APPS.md) · [报告问题](https://github.com/josephinexyy/product-portfolio/issues/new?template=bug.yml) · [提个建议](https://github.com/josephinexyy/product-portfolio/issues/new?template=idea.yml)
 
-| 产品 | 想解决什么 | 直接使用 | 了解设计 |
-| --- | --- | --- | --- |
-| 本地开票工作台 | 帮个人工作室、小老板理清客户、开单与收款 | [在线使用](https://josie-billing-workspace.coral-ox-0471.chatgpt.site) · [先看虚构演示](https://josie-billing-workspace.coral-ox-0471.chatgpt.site/?demo=1) · [下载离线版](https://josie-billing-workspace.coral-ox-0471.chatgpt.site/Billing-Workspace-v0.2.0.zip) | [产品案例](cases/local-billing-workspace.md) |
-| 爱你老己 · 像素小院 | 让现实中的自己与小院里的自己相互映照、相互照顾 | [直接玩](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site) · [下载离线版](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site/downloads/aini-laoji-v0.8.0.zip) | [玩法与设计](cases/aini-laoji.md) |
+## 产品与设计
+
+[开票工具：问题、设计与迭代](cases/local-billing-workspace.md) · [像素小院：玩法、映射与相互照顾](cases/aini-laoji.md)
 
 ### 本地开票工作台
 
@@ -33,10 +35,10 @@
 
 **下载软件不会自动带回以前的账本。** 演示数据与正式账本分开，公开版本不包含创作者的真实客户和业务记录。详见[使用与数据迁移](USING_THE_APPS.md)。
 
-## 欢迎反馈
+## 关于我与反馈
 
-[使用中卡住了](https://github.com/josephinexyy/product-portfolio/issues/new?template=bug.yml) · [我有个建议](https://github.com/josephinexyy/product-portfolio/issues/new?template=idea.yml)
+我是一名产品经理，喜欢倒腾小硬件、小软件，也喜欢琢磨让日常体验更顺手的小设计。我负责需求、流程与体验设计和迭代，使用 AI 辅助实现。这里记录为什么做、做了哪些取舍，以及反馈怎样变成下一次修改。
 
-想听具体的体验：哪个操作需要停下来想？哪一处比例、提示或流程让你不舒服？请用虚构数据举例，截图前遮住个人和业务资料。
+欢迎通过顶部的“报告问题”或“提个建议”反馈，提交时需要登录 GitHub。请用虚构数据举例，截图前遮住个人和业务资料。
 
 [公开迭代记录](UPDATES.md) · [素材与软件授权说明](NOTICES.md)

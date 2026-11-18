@@ -57,7 +57,7 @@ body{background:radial-gradient(ellipse at 50% 0,#faf2dc 0,#eeeadd 42%,#e2e7d8 1
 </head>
 <body>
 <main class="shell">
- <header class="masthead"><div class="wordmark"><div class="stamp" aria-hidden="true">己</div><div><div class="brand">爱你老己</div><div class="subbrand">像素小院</div></div></div><span class="version">V0.12.0</span></header>
+ <header class="masthead"><div class="wordmark"><div class="stamp" aria-hidden="true">己</div><div><div class="brand">爱你老己</div><div class="subbrand">像素小院</div></div></div><span class="version">V0.12.1</span></header>
  <section class="intro"><div><h1>慢慢过今天。</h1><p>喝口水，做点小事，也给自己留一点空白。</p></div><div class="today"><span id="dateLabel"></span><strong id="clock">--:--</strong></div></section>
  <section class="workspace" aria-label="我的像素小院">
   <div class="farm-column">
@@ -501,7 +501,9 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
      const colour=palette[rows[j][i]];
      if(!colour)continue;
      context.fillStyle=colour;
-     context.fillRect(x+(mirror?rows[j].length-1-i:i)*size,y+j*size,size,size);
+     const left=x+(mirror?rows[j].length-1-i:i)*size,top=y+j*size;
+     const px=Math.round(left),py=Math.round(top);
+     context.fillRect(px,py,Math.round(left+size)-px,Math.round(top+size)-py);
    }
  }
  const catFur={d:'#6b4842',a:'#c58159',o:'#e89b64',g:'#ffc483',b:'#a96045',p:'#ec9a9d',w:'#ffe5bc',e:'#3c3932',s:'#fff8df'};
@@ -543,20 +545,25 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    '...dwwwwwwwwdoogdd...',
    '....dddddddddddd.....'
  ];
- const padCat=rows=>rows.map(row=>row.padEnd(21,'.'));
+ const CAT_WIDTH=21;
+ const padCat=rows=>rows.map(row=>row.padEnd(CAT_WIDTH,'.'));
  const catPoses={
    sit:padCat(catFace.concat(tailBody)),
    blink:padCat(catFace.map(row=>row.replace(/[es]/g,'b')).concat(tailBody)),
    walk:stepBody.map(feet=>padCat(catFace.concat(feet))),
    sleep:padCat(curledCat)
  };
- function cat(x,y,action,t,facing='right',onPillow=false){
+ function cat(x,y,action,t,facing='right',onPillow=false,scale=1){
    const sleeping=action==='sleep',walking=action==='walk',mirror=facing==='left';
    const step=Math.floor(t*7)%2,blink=Math.floor(t*8)%41===37;
    const pose=sleeping?catPoses.sleep:walking?catPoses.walk[step]:blink?catPoses.blink:catPoses.sit;
-   if(!onPillow)shadow(x,y,13);
-   paintPixels(ctx,pose,catFur,snap(x-21),snap(y-pose.length*2),2,mirror);
-   if(sleeping&&!onPillow){r(x+16,y-23,6,2,C.cream);r(x+18,y-21,2,2,C.cream);r(x+16,y-19,6,2,C.cream);}
+   const pixel=2*scale;
+   if(!onPillow)shadow(x,y,13*scale);
+   paintPixels(ctx,pose,catFur,Math.round(x-CAT_WIDTH*pixel/2),Math.round(y)-pose.length*pixel,pixel,mirror);
+   if(sleeping&&!onPillow){
+     const left=x+16*scale,top=y-23*scale;
+     r(left,top,6,2,C.cream);r(left+2,top+2,2,2,C.cream);r(left,top+4,6,2,C.cream);
+   }
  }
  function restroom(x,y){
    shed(x,y);
@@ -1138,7 +1145,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
      {y:228,draw:()=>A.tree(64,228)},{y:112,draw:()=>A.tree(293,112)},
      {y:159,draw:()=>A.tree(615,159)},{y:193,draw:()=>A.tree(452,193,'pinkTree')},
      {y:215,draw:()=>A.bowl(416,215)},{y:330,draw:()=>A.catBed(238,330)},
-     {y:cat.y,draw:()=>A.cat(cat.x,cat.y,cat.path.length?'walk':game.zone==='nap'?'sleep':'sit',game.time,cat.facing)}
+     {y:cat.y,draw:()=>A.cat(cat.x,cat.y,cat.path.length?'walk':game.zone==='nap'?'sleep':'sit',game.time,cat.facing,false,.625)}
    ];
    data.crops.forEach((c,i)=>items.push({y:306+Math.floor(i/4)*32,draw:()=>A.crop(i,c)}));
    const hidden=(game.zone==='nap'||game.zone==='toilet')&&!hero.path.length&&!game.drag?.moved;

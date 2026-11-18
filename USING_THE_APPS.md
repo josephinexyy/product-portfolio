@@ -34,11 +34,11 @@ CSV 不能替代完整备份。不要把真实账本、客户证件、银行资�
 
 ## 爱你老己 · 像素小院
 
-**[进入像素小院](https://josephinexyy.github.io/product-portfolio/garden/)** · [下载离线版 ZIP](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.12.0.zip)
+**[进入像素小院](https://josephinexyy.github.io/product-portfolio/garden/)** · [下载离线版 ZIP](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.12.1.zip)
 
 用过旧网址的玩家，可在原浏览器的旧小院点「带走小院」，再到新网址点「恢复备份」。
 
-在线版直接打开。离线版：下载 ZIP → 解压 → 用 Chrome 打开 `aini-laoji-v0.12.0.html`。
+在线版直接打开。离线版：下载 ZIP → 解压 → 用 Chrome 打开 `aini-laoji-v0.12.1.html`。
 
 | 想做什么 | 去哪里 |
 | --- | --- |

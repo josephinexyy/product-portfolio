@@ -30,11 +30,25 @@ body{background:radial-gradient(ellipse at 50% 0,#faf2dc 0,#eeeadd 42%,#e2e7d8 1
 .journal-layout{display:grid;grid-template-columns:1fr 1fr}.journal-left,.journal-right{min-width:0;padding:20px}.journal-left{background:#f8edcf;border-right:1px solid #dacba5}.journal-right{display:grid;align-content:start;gap:12px}.journal-cover{aspect-ratio:640/230;border:2px solid #9d8058;height:auto;cursor:default;touch-action:auto}.journal-date{font:11px monospace;color:#685b46}#diaryDate{font:12px monospace;max-width:unset;color:#4e4c3e}.journal-heading{display:flex;align-items:center;gap:8px;margin-top:12px}.journal-heading img{width:32px;aspect-ratio:1;image-rendering:pixelated}.journal-heading h2{margin:0;color:#493a36;font-size:25px}.journal-meta{margin:4px 0 11px;color:#685b46}.journal-stats{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:0}.journal-stat{min-width:0;border:1px solid #ddccaa;background:#fffae9;padding:8px;display:grid;grid-template-columns:28px 1fr;column-gap:6px;grid-template-rows:auto 1fr}.journal-stat img{grid-row:1 / 3;width:26px;image-rendering:pixelated}.journal-stat dt{font-size:11px;color:#6a5e4d}.journal-stat dd{margin:0;font-size:15px;font-weight:600;line-height:1.35;color:#405646;overflow-wrap:anywhere}.journal-stat small{grid-column:2;color:#6a5e4d;font-size:10px}
 #diaryForm{display:grid;gap:8px}#diaryMood{color:var(--ink);border:1px solid #cfba98;background:#fffaf0;padding:3px 5px;border-radius:3px;font-size:13px;max-width:110px}#diaryNote{color:var(--ink);width:100%;min-height:132px;resize:vertical;border:1px solid #cfba98;border-radius:4px;padding:8px 10px;line-height:26px;background:repeating-linear-gradient(0deg,#fffaf0 0 25px,#eadcc1 25px 26px);background-position:0 6px;font:14px/26px var(--serif)}.diary-note-label{font:19px var(--serif)}#diaryStatus{min-height:1.5em;margin:0;color:#576548}.share-settings{min-width:0;border:1px solid #daccaa;margin:0;padding:9px 10px;color:#665b4b;font-size:11px}.share-settings label{display:block}.journal-actions{display:flex;gap:8px;flex-wrap:wrap}.journal-actions button,.share-actions a{font-size:12px;padding:8px 12px}.share-actions a{text-decoration:none;display:inline-block}#shareDialog{width:min(510px,95vw)}.share-actions{position:sticky;bottom:0;background:#efe0bf;border-top:1px solid #c8ad7d;padding:10px 14px;text-align:right}#shareImage{display:block;width:min(420px,100%);height:auto;margin:0 auto}.share-image-slot{padding:10px;background:#f7edda}
 @media(max-width:560px){.journal-layout{grid-template-columns:1fr}.journal-left,.journal-right{padding:13px}.journal-left{border-right:0;border-bottom:1px solid #dacba5}.journal-heading h2{font-size:21px}.shell{padding:0 12px}#wallDialog{padding:13px}#wishText{font-size:19px;line-height:25px}.chalk-draft{grid-template-columns:minmax(0,1fr) 53px;padding:6px 8px;gap:5px}#wishSketch{width:50px}.chalkboard{padding:9px}#wallNotes{grid-template-columns:repeat(auto-fill,minmax(min(108px,100%),1fr))}.chalk-note{font-size:16px}.chalk-note canvas{width:56px}.care{row-gap:5px}.care strong{font-size:19px}.nap-strip{bottom:7px;left:7px}}
+/* Quiet breathing cue and the dated activity list. */
+.breath-panel{position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%);width:min(302px,90%);display:grid;grid-template-columns:76px 1fr;align-items:center;gap:9px 14px;padding:13px 14px;background:#f9f0d9f7;border:2px solid #9b8b66;border-radius:9px;box-shadow:0 10px 32px #273c3d59;color:#42564b}
+.breath-dial{width:74px;height:74px;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle,#fff6d6 27%,#d1e0bba0 59%,transparent 72%);grid-row:span 2}
+.breath-orb{width:53px;height:53px;border-radius:50%;display:grid;place-items:center;transform:scale(var(--breath-scale,.83));background:radial-gradient(circle at 37% 33%,#fff8cb,#b8cd99 62%,#899d73);box-shadow:0 0 0 4px #dbe1af95,0 0 0 8px #849c7732,inset 0 0 0 1px #879c6a;will-change:transform}
+.breath-orb::before,.breath-orb::after{content:"";grid-area:1/1;width:16px;height:8px;border-radius:9px 9px 1px 9px;background:#5a805e;transform:translate(-5px,-2px) rotate(32deg)}
+.breath-orb::after{transform:translate(5px,-2px) rotate(-32deg) scaleX(-1);background:#72926a}
+.breath-copy{align-self:end}.breath-copy strong{display:block;font:600 19px/1.2 var(--serif)}.breath-copy small{display:block;font-size:11px;color:#6a6d57;margin-top:4px}.breath-panel button{justify-self:start;align-self:start;background:#f9f5e2}.breath-panel button:hover{background:#ece9ce}
+@media(prefers-reduced-motion:reduce){.breath-orb{transform:none;will-change:auto}}
+#meetingDialog{background:#fff4d9;border:2px solid #aa8d60}#meetingForm label{display:block;margin:12px 0}#meetingMood{max-width:none;color:#4e5642;border:1px solid #c7b995;border-radius:4px;padding:5px}
+.diary-timeline{padding:15px 20px 18px;border-top:1px solid #dacba5;background:#fbf0d7}.diary-timeline h3{font:600 18px/1.3 var(--serif);margin:0}.timeline-head{display:flex;justify-content:space-between;align-items:center;gap:8px}.timeline-head small{font-size:11px;color:#695e4a}.diary-timeline p{font-size:12px;margin:6px 0;color:#695e4a}
+#activityList{list-style:none;margin:6px 0;padding:0;max-height:195px;overflow:auto}#activityList li{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:8px;align-items:center;border-bottom:1px solid #dfd1ad;padding:6px 0;font-size:12px}#activityList time{font:12px monospace;color:#6b5a42}
+#activityEditor{margin-top:6px}#activityEditor summary{padding:3px 0;font-size:12px;font-weight:600}#activityForm{display:flex;align-items:end;gap:8px;flex-wrap:wrap;padding:7px 0}#activityForm label{display:grid;gap:3px;font-size:11px}#activityForm select,#activityForm input,#shareWish{min-width:0;max-width:100%;font-size:12px;border:1px solid #c9b997;border-radius:3px;padding:4px;background:#fffaf0;color:#4a473b}#activityDuration{width:76px}#activityStatus{min-height:1.3em;margin:4px 0 0}
+.share-wish-label{display:grid!important;grid-template-columns:auto minmax(0,1fr);gap:6px;align-items:center;margin-top:5px}
+@media(max-width:430px){.breath-panel{padding:8px 10px;grid-template-columns:61px 1fr;gap:5px 9px}.breath-dial{width:60px;height:60px}.breath-orb{width:43px;height:43px}.breath-copy strong{font-size:16px}.diary-timeline{padding:11px 13px}}
 </style>
 </head>
 <body>
 <main class="shell">
- <header class="masthead"><div class="wordmark"><div class="stamp" aria-hidden="true">己</div><div><div class="brand">爱你老己</div><div class="subbrand">像素小院</div></div></div><span class="version">V0.9.1</span></header>
+ <header class="masthead"><div class="wordmark"><div class="stamp" aria-hidden="true">己</div><div><div class="brand">爱你老己</div><div class="subbrand">像素小院</div></div></div><span class="version">V0.10.0</span></header>
  <section class="intro"><div><h1>慢慢过今天。</h1><p>喝口水，做点小事，也给自己留一点空白。</p></div><div class="today"><span id="dateLabel"></span><strong id="clock">--:--</strong></div></section>
  <section class="workspace" aria-label="我的像素小院">
   <div class="farm-column">
@@ -43,6 +57,11 @@ body{background:radial-gradient(ellipse at 50% 0,#faf2dc 0,#eeeadd 42%,#e2e7d8 1
     <canvas id="scene" width="640" height="400" role="img" aria-label="像素小院。按住戴绿头巾的小人，将其拖到水井、吊床、菜园、小屋或村口。也可以用下方目的地按钮。"></canvas>
     <button id="leaveBtn" class="scene-back" hidden>回小院</button><div id="bubble" class="bubble" role="status" aria-live="polite"></div><div id="hint" class="hint" hidden></div>
     <div id="wakeBtn" class="nap-strip" hidden><span>午休 <strong id="napElapsed">0 秒</strong></span><button type="button" class="quiet-button">结束午休</button></div>
+    <div id="breathPanel" class="breath-panel" role="group" aria-label="呼吸练习" hidden>
+     <div class="breath-dial" aria-hidden="true"><div id="breathOrb" class="breath-orb"></div></div>
+     <div class="breath-copy"><strong id="breathPhase" aria-live="polite"></strong><small>还剩 <span id="breathTime"></span> 秒</small></div>
+     <button id="breathStop" class="quiet-button" type="button">结束呼吸</button>
+    </div>
     <div id="cropPanel" class="crop-panel" hidden><label for="cropText">今天，想让哪件小事长出来？</label><input id="cropText" maxlength="40" placeholder="比如：写好这一页周报"><label for="cropKind">种什么 <select id="cropKind"><option value="wheat">麦子</option><option value="tomato">番茄</option><option value="sunflower">向日葵</option></select></label><p id="cropHint">给小苗起个名字。清单的完成由你自己确认。</p><div class="crop-buttons"><button id="cropCancel" class="quiet-button">先歇歇</button><button id="cropStart" class="primary">开始种下</button></div></div>
    </div>
    <div class="toolbar"><div class="tools"><button id="homeBtn" class="primary home-action">回家下班</button><button id="diaryBtn" class="quiet-button">下班日记</button><button id="wallBtn" class="quiet-button">心愿墙</button><button id="findBtn" class="quiet-button">找找小人</button><button id="stopBtn" class="quiet-button">停一停</button></div><div class="tools"><label class="wander"><input id="wander" type="checkbox" checked>自己散步</label><label class="wander">步速 <select id="pace" aria-label="行走速度"><option value="22">更慢</option><option value="30">慢慢走</option><option value="42">轻快些</option></select></label></div></div>
@@ -81,7 +100,7 @@ body{background:radial-gradient(ellipse at 50% 0,#faf2dc 0,#eeeadd 42%,#e2e7d8 1
    <div class="journal-heading"><img data-ui-icon="journalSeal" alt=""><h2 id="diaryTitle">下班了，欢迎回家。</h2></div>
    <p class="journal-meta"><time id="diaryDateLabel" class="journal-date"></time> · 今天怎么过的</p>
    <dl class="journal-stats">
-    <div class="journal-stat"><img data-ui-icon="journalPin" alt=""><dt>开会</dt><dd id="diaryValue0"></dd></div>
+    <div class="journal-stat"><img data-ui-icon="journalPin" alt=""><dt>开会</dt><dd id="diaryValue0"></dd><small id="diaryMeetingTotal"></small></div>
     <div class="journal-stat"><img data-ui-icon="journalWater" alt=""><dt>喝水</dt><dd id="diaryValue1"></dd></div>
     <div class="journal-stat"><img data-ui-icon="journalMoon" alt=""><dt>午睡</dt><dd id="diaryValue2"></dd><small id="diaryNapCount"></small></div>
     <div class="journal-stat"><img data-ui-icon="journalTab" alt=""><dt>上厕所</dt><dd id="diaryValue3"></dd></div>
@@ -94,10 +113,23 @@ body{background:radial-gradient(ellipse at 50% 0,#faf2dc 0,#eeeadd 42%,#e2e7d8 1
     <textarea id="diaryNote" maxlength="240" placeholder="今天哪一刻，有好好照顾自己？"></textarea>
     <p id="diaryStatus" role="status"></p>
    </form>
-   <fieldset class="share-settings"><legend>分享到图片</legend><label><input id="shareNote" type="checkbox"> 带上日记正文</label><label><input id="shareToilet" type="checkbox"> 显示上厕所次数</label></fieldset>
+   <fieldset class="share-settings"><legend>分享到图片</legend><label><input id="shareNote" type="checkbox"> 带上日记正文</label><label><input id="shareToilet" type="checkbox"> 显示上厕所次数</label><label class="share-wish-label">带一句心愿 <select id="shareWish"></select></label></fieldset>
    <div class="journal-actions"><button type="submit" form="diaryForm" class="primary" id="diarySave">记下今天</button><button type="button" class="quiet-button" id="previewShare">预览分享图</button></div>
   </section>
  </div>
+ <section class="diary-timeline" aria-labelledby="activityTitle">
+  <div class="timeline-head"><h3 id="activityTitle">这一天的时间线</h3><button type="button" class="quiet-button" id="activityUndo" hidden>撤销移除</button></div>
+  <p id="activityEmpty">有时间的活动会记在这里。</p><ol id="activityList"></ol>
+  <details id="activityEditor"><summary>补记活动</summary>
+   <form id="activityForm"><label>活动 <select id="activityKind"></select></label><label>时间 <input type="time" id="activityTime" required></label><label id="activityDurationField">时长（分钟） <input type="number" id="activityDuration" min="0" max="1440" step="1" placeholder="可留空"></label><button type="submit" class="primary">补记</button></form>
+  </details>
+  <p id="activityStatus" role="status"></p>
+ </section>
+</dialog>
+<dialog id="meetingDialog" aria-labelledby="meetingTitle">
+ <h2 id="meetingTitle">散会啦。</h2>
+ <p>这场会开了 <strong id="meetingDuration"></strong>。想给这场会留一句什么？</p>
+ <form id="meetingForm"><label>散会感受 <select id="meetingMood"><option value="">先留空</option></select></label><div class="crop-buttons"><button type="button" id="meetingSkip" class="quiet-button">直接回小院</button><button class="primary" type="submit">记下，回小院</button></div></form>
 </dialog>
 <dialog id="shareDialog" aria-labelledby="shareTitle">
  <header class="dialog-header"><span id="shareTitle">下班日记 · 分享图</span><button id="shareClose" class="quiet-button">返回日记</button></header>
@@ -240,17 +272,70 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
     if(m)return m+' 分 '+s+' 秒';
     return s+' 秒';
   }
+  const ACTIVITY_LABELS={meeting:'开会',water:'喝水',nap:'午睡',toilet:'上厕所'};
+  const MEETING_MOODS=['总算结束了','今天聊得还行','收获了一点东西','留到明天再想'];
+  const activityKeys={meeting:'meetings',water:'water',nap:'rest',toilet:'toilet'};
+  function cleanActivities(raw){
+    if(!raw||typeof raw!=='object'||Array.isArray(raw))return {};
+    const dates=Object.keys(raw).filter(date=>/^\d{4}-\d{2}-\d{2}$/.test(date)&&Array.isArray(raw[date])).sort().slice(-366);
+    return Object.fromEntries(dates.map(date=>[date,raw[date].filter(item=>item&&
+      Object.hasOwn(activityKeys,item.type)&&typeof item.id==='string'&&item.id.length<=80&&Number.isSafeInteger(item.at)&&item.at>0&&item.at<=8640000000000000
+    ).map(({id,type,at,seconds,mood})=>({id,type,at,seconds:count(seconds),mood:type==='meeting'&&MEETING_MOODS.includes(mood)?mood:''}))]));
+  }
+  function activitiesFor(data,date){return (data.activities[date]||[]).slice().sort((a,b)=>b.at-a.at);}
+  function adjustActivity(data,date,item,delta){
+    const current=data.journal.date===date;
+    const target=current?data.journal:diaryFor(data,date);
+    const key=activityKeys[item.type];
+    target[key]=Math.max(0,Math.min(100000000,target[key]+delta));
+    if(item.type==='nap')target.napSeconds=Math.max(0,Math.min(100000000,target.napSeconds+item.seconds*delta));
+    if(!current)data.diaries[date]=target;
+  }
+  function addActivity(data,date,type,at,seconds=0){
+    if(!Object.hasOwn(activityKeys,type)||!Number.isSafeInteger(at)||at<=0)return null;
+    const id=at.toString(36)+'-'+Math.random().toString(36).slice(2);
+    const item={id,type,at,seconds:count(seconds),mood:''};
+    restoreActivity(data,date,item);
+    return item;
+  }
+  function restoreActivity(data,date,item){
+    const list=data.activities[date]??=[];
+    if(list.some(entry=>entry.id===item.id))return false;
+    list.push(item);adjustActivity(data,date,item,1);return true;
+  }
+  function removeActivity(data,date,id){
+    const list=data.activities[date]||[],index=list.findIndex(item=>item.id===id);
+    if(index<0||data.activeMeeting?.id===id)return null;
+    const [item]=list.splice(index,1);
+    adjustActivity(data,date,item,-1);
+    return item;
+  }
+  function annotateMeeting(data,{date,id},updates){
+    const item=(data.activities[date]||[]).find(i=>i.id===id&&i.type==='meeting');
+    if(!item)return;
+    if(updates.seconds!==undefined)item.seconds=count(updates.seconds);
+    if(MEETING_MOODS.includes(updates.mood))item.mood=updates.mood;
+  }
+  const BREATH_LENGTH=20;
+  function breathFrame(elapsed){
+    const position=elapsed%10,inhale=position<4;
+    const linear=inhale?position/4:1-(position-4)/6;
+    const swell=(1-Math.cos(Math.PI*linear))/2;
+    return {phase:inhale?'慢慢吸气':'缓缓呼气',scale:.83+swell*.31,remaining:Math.max(0,Math.ceil(BREATH_LENGTH-elapsed))};
+  }
   function cleanSave(raw){
     const x=raw&&typeof raw==='object'?raw:{};
     const whole=(v,max=100000000)=>Number.isSafeInteger(v)&&v>=0&&v<=max?v:0;
     const crops=Array.from({length:8},(_,i)=>({text:typeof x.crops?.[i]?.text==='string'?x.crops[i].text.slice(0,40):'',stage:whole(x.crops?.[i]?.stage,4),kind:['tomato','sunflower'].includes(x.crops?.[i]?.kind)?x.crops[i].kind:'wheat'}));
-    const date=localDate(),diaries=cleanHistory(x.diaries);
+    const date=localDate(),diaries=cleanHistory(x.diaries),activities=cleanActivities(x.activities);
+    const reference=x.activeMeeting;
+    const activeMeeting=reference&&Object.hasOwn(activities,reference.date)&&activities[reference.date].some(item=>item.type==='meeting'&&item.id===reference.id&&item.at<=Date.now())?{date:reference.date,id:reference.id}:null;
     const previous=/^\d{4}-\d{2}-\d{2}$/.test(x.journal?.date)?x.journal.date:date;
     const wishes=(Array.isArray(x.wishes)?x.wishes:[]).filter(w=>typeof w==='string'&&w.trim()).slice(-WALL_CAPACITY).map(w=>wishCharacters(formatWish(w)).slice(0,80).join(''));
     const data={version:7,wishes,coins:whole(x.coins),todos:(Array.isArray(x.todos)?x.todos:[]).slice(0,100).filter(t=>t&&typeof t.text==='string').map(t=>({text:t.text.slice(0,80),done:t.done===true})),crops,
       weather:['sunny','rain','night','warm'].includes(x.weather)?x.weather:'sunny',
       pace:[22,30,42].includes(x.pace)?x.pace:30,wander:x.wander!==false,
-      journal:cleanJournal(x.journal?.date===previous?x.journal:diaries[previous],previous),diaries,
+      journal:cleanJournal(x.journal?.date===previous?x.journal:diaries[previous],previous),diaries,activities,activeMeeting,
       napStartedAt:Number.isSafeInteger(x.napStartedAt)&&x.napStartedAt>0&&x.napStartedAt<=Date.now()?x.napStartedAt:0,
       learned:x.learned&&typeof x.learned==='object'&&!Array.isArray(x.learned)?Object.fromEntries(Object.entries(x.learned).filter(([k,v])=>/^(上午|下午|晚上):(water|nap|work|toilet|home|desk|walk|village)$/.test(k)&&Number.isSafeInteger(v)&&v>0).slice(0,100)):{}
     };
@@ -262,7 +347,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
     return cleanSave({coins:read('coins',0),todos:Array.isArray(todos)?todos:[],crops:Array.from({length:8},(_,i)=>({text:texts?.[i]||'',stage:stages?.[i]||0})),weather:['sunny','warm','rain','night'][read('weather',0)]});
   }
   function depthOrder(items){return items.map((x,i)=>({...x,_index:i})).sort((a,b)=>a.y-b.y||a._index-b._index);}
-  const api={WIDTH,HEIGHT,WALL,WISH_LIMIT,WALL_CAPACITY,wishCharacters,formatWish,wallLines,FIELD,cropStand,ZONES,OBSTACLES,inside,walkable,moveToward,nearestFree,route,segmentClear,zoneAt,localDate,MOODS,cleanJournal,switchDay,recordCareAction,diaryFor,putDiary,duration,cleanSave,migrateLegacy,depthOrder};
+  const api={WIDTH,HEIGHT,WALL,WISH_LIMIT,WALL_CAPACITY,wishCharacters,formatWish,wallLines,FIELD,cropStand,ZONES,OBSTACLES,inside,walkable,moveToward,nearestFree,route,segmentClear,zoneAt,localDate,MOODS,cleanJournal,switchDay,recordCareAction,diaryFor,putDiary,duration,ACTIVITY_LABELS,MEETING_MOODS,activitiesFor,addActivity,restoreActivity,removeActivity,annotateMeeting,BREATH_LENGTH,breathFrame,cleanSave,migrateLegacy,depthOrder};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FarmCore=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
 
@@ -586,7 +671,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
     }
     return lines;
   }
-  function draw(canvas,landscape,entry,{note,toilet}){
+  function draw(canvas,landscape,entry,{note,toilet,wish}){
     canvas.width=1080;canvas.height=1440;
     const c=canvas.getContext('2d');
     function block(x,y,w,h,colour){c.fillStyle=colour;c.fillRect(x,y,w,h);}
@@ -620,6 +705,20 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
     shown.forEach((line,i)=>{
       const y=1047+i*36;block(89,y+8,900,2,'#dfcfad');fill(line,95,y,'27px '+serif);
     });
+    if(wish){
+      const size=K.wishCharacters(wish).length<=24?23:16;
+      const font='bold '+size+'px '+serif,lineHeight=size+3;
+      c.font=font;
+      const available=wrap(c,wish,347),quote=available.slice(0,4);
+      if(available.length>quote.length)quote[3]=K.wishCharacters(quote[3]).slice(0,-1).join('')+'…';
+      const h=Math.max(54,quote.length*lineHeight+14),w=416,x=992-w,y=1398-h;
+      block(x,y,w,h,'#886440');block(x+4,y+4,w-8,h-8,'#3a5553');
+      A.drawChalk(c,A.chalkTheme(wish),x+11,y+Math.round((h-27)/2),1,wish);
+      const first=y+(h-quote.length*lineHeight)/2+size-2;
+      c.shadowColor='#dfc98a';c.shadowBlur=1;
+      quote.forEach((line,i)=>fill(line,x+53,first+i*lineHeight,font,'#f9e5b7'));
+      c.shadowBlur=0;
+    }
     A.ui(c,'journalHeart',84,1323,41);
     fill('爱你老己，明天见。',135,1357,'29px '+serif,'#665647');
   }
@@ -636,9 +735,9 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  const initial=readKey(SAVE_KEY,null);
  let data=initial?F.cleanSave(initial):F.migrateLegacy((key,d)=>readKey('aini_v2_'+key,d));
  const hero={x:142,y:205,path:[],facing:'down'},cat={x:181,y:211,path:[],facing:'right'};
- const game={scene:'farm',zone:'idle',pending:null,actionTime:0,crop:-1,drag:null,time:0,dwell:5,catDwell:5,breathing:0,focusHero:0};
+ const game={scene:'farm',zone:'idle',pending:null,actionTime:0,crop:-1,drag:null,time:0,dwell:5,catDwell:5,breathing:null,focusHero:0};
  let bubbleTimer=0,hoverZone=null,diaryDate=null,shareUrl=null,landscapeReady=false;
- let composingWish=false,erasedWish=null;
+ let composingWish=false,erasedWish=null,erasedActivity=null,closingMeeting=null;
  if(data.napStartedAt){
    Object.assign(hero,F.ZONES.nap.stand);
    game.zone='nap';
@@ -647,18 +746,51 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  function updateSaveStatus(){$('saveStatus').textContent=storageHealthy?'已保存在此浏览器':'暂时无法保存，请导出备份';$('saveStatus').classList.toggle('warning',!storageHealthy);}
  function say(text){$('bubble').textContent=text;$('bubble').classList.add('show');clearTimeout(bubbleTimer);bubbleTimer=setTimeout(()=>$('bubble').classList.remove('show'),3600);}
  function setStatus(text){$('state').textContent=text;}
- function record(action,seconds=0){
+ function record(action,seconds=0,at=Date.now()){
    F.switchDay(data);
-   data.journal=F.recordCareAction(data.journal,action,data.journal.date,seconds);
+   const date=F.localDate(new Date(at)),item=F.addActivity(data,date,action,at,seconds);
    save();renderStats();
+   return {date,id:item.id};
  }
  function endNap(){
    if(!data.napStartedAt)return false;
-   const seconds=Math.max(0,Math.floor((Date.now()-data.napStartedAt)/1000));
+   const started=data.napStartedAt,seconds=Math.max(0,Math.floor((Date.now()-started)/1000));
    data.napStartedAt=0;
-   record('nap',seconds);
+   record('nap',seconds,started);
    renderNap();
    return true;
+ }
+ function endMeeting(){
+   const ref=data.activeMeeting;
+   if(!ref)return null;
+   const item=F.activitiesFor(data,ref.date).find(entry=>entry.id===ref.id);
+   data.activeMeeting=null;
+   const seconds=item?Math.max(0,Math.floor((Date.now()-item.at)/1000)):0;
+   F.annotateMeeting(data,ref,{seconds});save();
+   return {...ref,seconds};
+ }
+ function leaveMeeting(){
+   endBreath();
+   closingMeeting=endMeeting();
+   if(!closingMeeting){setScene('farm');return;}
+   $('meetingDuration').textContent=F.duration(closingMeeting.seconds);
+   $('meetingMood').value='';
+   $('meetingDialog').showModal();
+ }
+ function renderBreath(){
+   const active=game.breathing!==null;
+   $('breathPanel').hidden=!active;
+   $('heartBtn').textContent=active?'结束呼吸':'模拟心率事件';
+   if(!active)return;
+   const frame=F.breathFrame(game.breathing),phase=$('breathPhase');
+   if(phase.textContent!==frame.phase)phase.textContent=frame.phase;
+   if($('breathTime').textContent!==String(frame.remaining))$('breathTime').textContent=frame.remaining;
+   $('breathOrb').style.setProperty('--breath-scale',frame.scale);
+ }
+ function endBreath(message){
+   if(game.breathing===null)return;
+   game.breathing=null;renderBreath();
+   if(message)say(message);
  }
  function renderNap(){
    $('wakeBtn').hidden=!data.napStartedAt||game.scene!=='farm';
@@ -670,7 +802,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  function arrive(){
    const target=game.pending;if(!target)return;game.pending=null;game.zone=target;game.actionTime=0;game.catDwell=0;
    if(target==='home'){setScene('indoor');openDiary(F.localDate(),true);return;}
-   if(target==='village'){record('meeting');setScene('village');return;}
+   if(target==='village'){setScene('village');data.activeMeeting=record('meeting');save();return;}
    if(target==='nap'){data.napStartedAt=Date.now();renderNap();}
    if(target==='desk'){setStatus('整理一下今天的事');$('todoText').focus();say('想做的事，一件一件写下来。');return;}
    if(target==='work'){
@@ -685,8 +817,10 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    const hour=new Date().getHours(),key=(hour<12?'上午':hour<18?'下午':'晚上')+':'+target;data.learned[key]=(data.learned[key]||0)+1;save();
  }
  function setScene(name){
+   endBreath();
+   if(game.scene==='village'&&name!=='village')endMeeting();
    endNap();
-   game.scene=name;game.pending=null;game.zone='idle';game.actionTime=0;game.crop=-1;hero.path=[];cat.path=[];game.breathing=0;game.drag=null;hoverZone=null;$('cropPanel').hidden=true;
+   game.scene=name;game.pending=null;game.zone='idle';game.actionTime=0;game.crop=-1;hero.path=[];cat.path=[];game.drag=null;hoverZone=null;$('cropPanel').hidden=true;
    $('leaveBtn').hidden=name==='farm';$('homeBtn').hidden=name==='indoor';$('findBtn').hidden=name!=='farm';$('stopBtn').hidden=name!=='farm';$('sceneName').textContent={farm:'我的小院',indoor:'下班到家',village:'村里的会面'}[name];
    $('leaveBtn').textContent=name==='village'?'散会，回小院':'出门，回小院';
    if(name==='farm'){hero.x=142;hero.y=205;game.dwell=6;setStatus('在小院里，慢慢来');say('回到小院了。');}
@@ -696,7 +830,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    if(game.scene!=='farm'||!F.ZONES[zone])return;
    if(zone==='nap'&&game.zone==='nap'&&data.napStartedAt)return;
    endNap();
-   game.zone='idle';game.pending=zone;game.actionTime=0;game.crop=-1;game.breathing=0;$('cropPanel').hidden=true;
+   game.zone='idle';game.pending=zone;game.actionTime=0;game.crop=-1;endBreath();$('cropPanel').hidden=true;
    const safe=F.nearestFree(hero);hero.x=safe.x;hero.y=safe.y;hero.path=F.route(hero,F.ZONES[zone].stand);game.dwell=6;
    if(!hero.path.length){game.pending=null;say('这条路暂时走不过去，换个位置试试。');return;}
    setStatus('慢慢走向'+F.ZONES[zone].label);
@@ -716,7 +850,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    setStatus('在种「'+text+'」');say('陪这件小事长一会儿。清单是否完成，由你来勾选。');save();
  }
  function stopAction(){
-   if(game.drag)cancelDrag();endNap();game.zone='idle';game.pending=null;game.crop=-1;game.actionTime=0;game.breathing=0;hero.path=[];game.dwell=8;$('cropPanel').hidden=true;setStatus('已停下');
+   if(game.drag)cancelDrag();endNap();game.zone='idle';game.pending=null;game.crop=-1;game.actionTime=0;endBreath();hero.path=[];game.dwell=8;$('cropPanel').hidden=true;setStatus('已停下');
  }
  function advance(o,speed,dt){
    let budget=speed*dt;
@@ -725,11 +859,19 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  const wanderSpots=[{x:142,y:225},{x:209,y:240},{x:273,y:258},{x:268,y:325},{x:460,y:337},{x:500,y:240},{x:81,y:253}];
  const catSpots=[{x:188,y:210},{x:272,y:251},{x:454,y:250},{x:460,y:336},{x:197,y:291}];
  function update(dt){
-   game.time+=dt;if(game.scene!=='farm'||$('wallDialog').open||$('diaryDialog').open||$('restoreDialog').open)return;
+   game.time+=dt;
+   if($('wallDialog').open||$('diaryDialog').open||$('restoreDialog').open||$('meetingDialog').open)return;
+   if(game.breathing!==null){
+     game.breathing+=dt;
+     if(game.breathing>=F.BREATH_LENGTH)endBreath('呼吸结束，慢慢接着来。');
+     else renderBreath();
+     return;
+   }
+   if(game.scene!=='farm')return;
    if(!game.drag){
      advance(hero,data.pace*(game.pending||game.zone==='work'?1:.78),dt);
      if(!hero.path.length&&game.pending)arrive();
-     if(!hero.path.length&&!game.pending&&game.zone==='idle'&&data.wander&&game.breathing<=0){
+     if(!hero.path.length&&!game.pending&&game.zone==='idle'&&data.wander){
        game.dwell-=dt;if(game.dwell<=0){const candidates=wanderSpots.filter(p=>Math.hypot(p.x-hero.x,p.y-hero.y)>30);const p=candidates[Math.floor(Math.random()*candidates.length)];hero.path=F.route(hero,p);game.dwell=6+Math.random()*5;}
      }
      const durations={water:7,toilet:7,walk:10};
@@ -745,7 +887,6 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
      let p;if(game.zone==='water')p={x:416,y:216};else if(game.zone==='nap')p={x:238,y:328};else p=catSpots[Math.floor(Math.random()*catSpots.length)];
      cat.path=F.route(cat,p);game.catDwell=5+Math.random()*6;
    }advance(cat,23,dt);
-   if(game.breathing>0){game.breathing=Math.max(0,game.breathing-dt);if(game.breathing===0){setStatus('慢慢呼吸，回到小院');game.dwell=6;}}
    if(game.focusHero>0)game.focusHero-=dt;
  }
  function drawFarm(){
@@ -767,7 +908,6 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    for(const item of F.depthOrder(items))item.draw();
    if(hoverZone){const z=F.ZONES[hoverZone];ctx.save();ctx.strokeStyle='#faf0ce';ctx.lineWidth=1;ctx.setLineDash([4,3]);ctx.strokeRect(z.box[0],z.box[1],z.box[2],z.box[3]);ctx.restore();}
    if(game.focusHero>0||game.drag){A.oval(hero.x,hero.y+2,12,5,'#f7edd299');A.line(hero.x,hero.y-43,hero.x,hero.y-37,'#fff3cf',2);A.line(hero.x-3,hero.y-40,hero.x,hero.y-37,'#fff3cf');A.line(hero.x+3,hero.y-40,hero.x,hero.y-37,'#fff3cf');}
-   if(game.breathing>0){const radius=17+Math.sin(game.time*.8)*6;ctx.strokeStyle='#fff0cbaa';ctx.lineWidth=1;ctx.beginPath();ctx.arc(hero.x,hero.y-13,radius,0,Math.PI*2);ctx.stroke();}
  }
  function draw(){
    ctx.clearRect(0,0,F.WIDTH,F.HEIGHT);
@@ -782,7 +922,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  function hideHint(){$('hint').hidden=true;hoverZone=null;}
  function cancelDrag(){if(!game.drag)return;hero.x=game.drag.origin.x;hero.y=game.drag.origin.y;hero.path=game.drag.path;game.drag=null;cv.classList.remove('grab');hideHint();}
  cv.addEventListener('pointerdown',e=>{
-   if(e.button!==0||game.scene!=='farm')return;
+   if(e.button!==0||game.scene!=='farm'||game.breathing!==null)return;
    const p=scenePoint(e);
    const sleeping=game.zone==='nap'&&!hero.path.length;
    const onSleeper=sleeping&&p.x>=89&&p.x<=152&&p.y>=283&&p.y<=331;
@@ -807,18 +947,33 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    if(z)go(z);else if(d.sleeping){stopAction();hero.path=F.route(hero,F.nearestFree(scenePoint(e)));setStatus('下吊床，走一走');}else{hero.path=d.path;say('这里先不做事，回到刚才的位置。');}
  });
  cv.addEventListener('pointercancel',cancelDrag);cv.addEventListener('lostpointercapture',()=>{if(game.drag)cancelDrag();});
- window.addEventListener('blur',cancelDrag);window.addEventListener('keydown',e=>{if(e.key==='Escape'){cancelDrag();$('cropPanel').hidden=true;if(game.zone==='work'&&game.crop>=0)stopAction();}});
- $('leaveBtn').onclick=()=>setScene('farm');
+ window.addEventListener('blur',cancelDrag);window.addEventListener('keydown',e=>{if(e.key==='Escape'){if(game.breathing!==null&&!document.querySelector('dialog[open]')){endBreath('已结束呼吸。');return;}cancelDrag();$('cropPanel').hidden=true;if(game.zone==='work'&&game.crop>=0)stopAction();}});
+ $('leaveBtn').onclick=()=>{if(game.scene==='village')leaveMeeting();else setScene('farm');};
+ $('meetingMood').append(...F.MEETING_MOODS.map(mood=>new Option(mood,mood)));
+ $('meetingForm').onsubmit=e=>{
+   e.preventDefault();
+   if(closingMeeting){F.annotateMeeting(data,closingMeeting,{mood:$('meetingMood').value});save();}
+   $('meetingDialog').close();
+ };
+ $('meetingSkip').onclick=()=>$('meetingDialog').close();
+ $('meetingDialog').addEventListener('close',()=>{closingMeeting=null;setScene('farm');});
  $('wakeBtn').querySelector('button').onclick=()=>{if(game.zone==='nap')finishAction();};
  $('homeBtn').onclick=()=>{if(game.scene!=='farm')setScene('farm');go('home');};
- $('diaryBtn').onclick=()=>openDiary(F.localDate());$('stopBtn').onclick=()=>{stopAction();say('今天也可以留一点空白。');};
+ $('diaryBtn').onclick=()=>openDiary(F.localDate());$('stopBtn').onclick=()=>{
+   if(game.breathing!==null){endBreath('已结束呼吸。');return;}
+   stopAction();say('今天也可以留一点空白。');
+ };
  $('findBtn').onclick=()=>{if(game.scene!=='farm')return;game.focusHero=4;say(game.zone==='nap'?'你在吊床里午休。':game.zone==='toilet'?'你在上厕所，稍等一会儿就出来。':'小人头顶亮起来啦，按住就能拖。');};
  $('wander').checked=data.wander;$('wander').onchange=e=>{data.wander=e.target.checked;if(!data.wander&&game.zone==='idle'&&!game.pending)hero.path=[];game.dwell=6;save();};
  $('pace').value=String(data.pace);$('pace').onchange=e=>{data.pace=Number(e.target.value);save();};
  $('weatherBtn').onclick=()=>{const all=['sunny','warm','rain','night'];data.weather=all[(all.indexOf(data.weather)+1)%all.length];save();renderWeather();};
  $('meetingBtn').onclick=()=>{if(game.scene!=='farm')setScene('farm');go('village');say('模拟日程：村里有个会，慢慢走过去。');};
  $('salaryBtn').onclick=()=>{data.coins+=50;save();renderStats();say('模拟工资到账，小院多了 50 枚金币。');};
- $('heartBtn').onclick=()=>{if(game.scene!=='farm')setScene('farm');stopAction();game.breathing=14;setStatus('跟着小圆圈，慢慢呼吸');say('模拟心率事件：先停下来，陪自己呼吸一会儿。');};
+ $('heartBtn').onclick=()=>{
+   if(game.breathing!==null){endBreath('已结束呼吸。');return;}
+   cancelDrag();game.breathing=0;renderBreath();$('breathStop').focus();
+ };
+ $('breathStop').onclick=()=>{endBreath('已结束呼吸。');if(game.scene==='farm')$('stopBtn').focus();else $('leaveBtn').focus();};
  $('cropStart').onclick=startCrop;$('cropText').onkeydown=e=>{if(e.key==='Enter'&&!e.isComposing)startCrop();};$('cropCancel').onclick=stopAction;
  $('todoForm').onsubmit=e=>{e.preventDefault();const text=$('todoText').value.trim();if(!text)return;if(data.todos.length>=100){say('清单先留 100 件以内，慢慢来。');return;}data.todos.push({text:text.slice(0,80),done:false});$('todoText').value='';save();renderTodos();};
  function renderTodos(){
@@ -917,8 +1072,62 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    $('diaryDateLabel').dateTime=diaryDate;$('diaryDateLabel').textContent=diaryDate;
    $('diarySave').textContent=diaryDate!==F.localDate()?'保存日记':entry.settled&&entry.note?'保存修改':'记下今天';
  }
+ const timeFormatter=new Intl.DateTimeFormat('zh-CN',{hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
+ function renderTimeline(){
+   const history=$('activityList');history.replaceChildren();
+   const entries=F.activitiesFor(data,diaryDate);
+   const totals=F.diaryFor(data,diaryDate);
+   $('activityEmpty').hidden=entries.length>0;
+   $('activityEmpty').textContent=totals.water+totals.rest+totals.toilet+totals.meetings
+     ?'旧版的次数仍在上方。可以在这里补记具体时间。':'有时间的活动会记在这里。';
+   $('activityUndo').hidden=!erasedActivity;
+   const meetingSeconds=entries.reduce((total,item)=>total+(item.type==='meeting'?item.seconds:0),0);
+   $('diaryMeetingTotal').textContent=meetingSeconds?F.duration(meetingSeconds):'';
+   for(const item of entries){
+     const li=document.createElement('li'),time=document.createElement('time'),label=document.createElement('span'),undo=document.createElement('button');
+     time.dateTime=new Date(item.at).toISOString();
+     time.textContent=timeFormatter.format(item.at);
+     const active=data.activeMeeting?.id===item.id;
+     label.textContent=F.ACTIVITY_LABELS[item.type]+(item.seconds?' · '+F.duration(item.seconds):'')+(item.mood?' · '+item.mood:'')+(active?' · 进行中':'');
+     undo.type='button';undo.className='quiet-button';undo.textContent='移除';undo.disabled=active;
+     undo.setAttribute('aria-label','移除 '+time.textContent+' 的'+F.ACTIVITY_LABELS[item.type]+'记录');
+     undo.onclick=()=>{
+       const removed=F.removeActivity(data,diaryDate,item.id);
+       if(!removed)return;
+       erasedActivity=removed;save();renderStats();updateDiaryStats();renderTimeline();
+       $('activityStatus').textContent=storageHealthy?'已移除这条记录。':'已移除，浏览器暂时无法保存。';
+       $('activityUndo').focus();
+     };
+     li.append(time,label,undo);history.append(li);
+   }
+ }
+ function updateActivityDuration(){
+   const type=$('activityKind').value,hasDuration=type==='nap'||type==='meeting';
+   $('activityDurationField').hidden=!hasDuration;$('activityDuration').disabled=!hasDuration;
+ }
+ $('activityKind').append(...Object.entries(F.ACTIVITY_LABELS).map(([key,label])=>new Option(label,key)));
+ $('activityKind').onchange=updateActivityDuration;
+ $('activityForm').onsubmit=e=>{
+   e.preventDefault();
+   const at=new Date(diaryDate+'T'+$('activityTime').value).getTime();
+   if(!Number.isFinite(at)||at>Date.now()+60000){$('activityStatus').textContent='选一个已经发生的时间。';return;}
+   const duration=$('activityDuration').disabled?0:Number($('activityDuration').value)*60;
+   if(!F.addActivity(data,diaryDate,$('activityKind').value,at,duration))return;
+   save();renderStats();updateDiaryStats();renderTimeline();
+   $('activityDuration').value='';$('activityStatus').textContent=storageHealthy?'已补记。':'已补记，浏览器暂时无法保存。';
+   $('activityEditor').open=false;
+ };
+ $('activityUndo').onclick=()=>{
+   if(!erasedActivity||!F.restoreActivity(data,diaryDate,erasedActivity))return;
+   erasedActivity=null;save();renderStats();updateDiaryStats();renderTimeline();
+   $('activityStatus').textContent=storageHealthy?'已恢复记录。':'已恢复，浏览器暂时无法保存。';
+   $('activityEditor').querySelector('summary').focus();
+ };
  function showDiaryDate(date){
-   diaryDate=date;
+   diaryDate=date;erasedActivity=null;
+   $('activityTime').value=date===F.localDate()?timeFormatter.format(Date.now()):'12:00';
+   $('activityDuration').value='';$('activityStatus').textContent='';$('activityEditor').open=false;
+   updateActivityDuration();renderTimeline();
    const entry=F.diaryFor(data,date);
    $('diaryNote').value=entry.note;
    $('diaryMood').value=entry.mood;
@@ -932,12 +1141,14 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
      const entry=F.diaryFor(data,date);
      F.putDiary(data,date,entry.note,entry.mood,true);save();
    }
-   const dates=[...new Set([date,...Object.keys(data.diaries)])].sort().reverse();
+   const dates=[...new Set([date,...Object.keys(data.diaries),...Object.keys(data.activities)])].sort().reverse();
    $('diaryDate').replaceChildren(...dates.map(d=>new Option(d,d)));
    $('diaryDate').value=date;
    showDiaryDate(date);
    if(settle)$('diaryStatus').textContent=storageHealthy?'今天的活动已结算':'浏览器暂时无法保存结算';
    $('shareNote').checked=false;$('shareToilet').checked=false;
+   $('shareWish').replaceChildren(new Option('不带心愿',''),...data.wishes.slice().reverse().map((text,index)=>new Option(text,String(data.wishes.length-index-1))));
+   $('shareWish').value='';$('shareWish').disabled=!data.wishes.length;
    $('diaryDialog').showModal();
  }
  function persistDiary(settled){
@@ -958,7 +1169,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  $('previewShare').onclick=()=>{
    if(!landscapeReady){$('diaryStatus').textContent='插画还在加载，稍等一下。';return;}
    const entry=F.diaryFor(data,diaryDate),card=document.createElement('canvas');
-   J.draw(card,$('journalLandscape'),entry,{note:$('shareNote').checked,toilet:$('shareToilet').checked});
+   J.draw(card,$('journalLandscape'),entry,{note:$('shareNote').checked,toilet:$('shareToilet').checked,wish:data.wishes[$('shareWish').value]||''});
    $('previewShare').disabled=true;
    card.toBlob(blob=>{
      $('previewShare').disabled=false;
@@ -976,12 +1187,13 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  $('backupFile').onchange=async e=>{
    const file=e.target.files[0];if(!file)return;
    try{
-     if(file.size>2*1024*1024)throw Error('文件太大了，请选择小院导出的 JSON 备份。');
+     if(file.size>8*1024*1024)throw Error('文件太大了，请选择小院导出的 JSON 备份。');
      const raw=JSON.parse(await file.text());if(raw.format!=='aini-laoji'||raw.version!==7||!raw.data||!Array.isArray(raw.data.todos)||!Array.isArray(raw.data.crops)||raw.data.crops.length!==8)throw Error('这不是可识别的 v7 小院备份。');
      const next=F.cleanSave(raw.data);$('restoreSummary').textContent=`将载入 ${next.todos.length} 条清单、${next.crops.filter(c=>c.stage===4).length} 格成熟作物和 ${next.coins} 枚金币。当前小院会先留一份恢复前备份。`;
      $('restoreDialog').showModal();$('restoreConfirm').onclick=()=>{
        try{localStorage.setItem(SAVE_KEY+'_before_restore',JSON.stringify(data));localStorage.setItem(SAVE_KEY,JSON.stringify(next));}catch{say('保存没有成功，当前小院未替换。请先导出备份。');$('restoreDialog').close();return;}
-       data.napStartedAt=0;stopAction();setScene('farm');data=next;
+       data.napStartedAt=0;data.activeMeeting=null;stopAction();setScene('farm');data=next;
+       if(data.activeMeeting)setScene('village');
        if(data.napStartedAt){Object.assign(hero,F.ZONES.nap.stand);game.zone='nap';setStatus('正在午休');}
        renderAll();renderNap();save();$('restoreDialog').close();say('小院恢复好了。');
      };
@@ -1005,7 +1217,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    draw();requestAnimationFrame(frame);
  }
  function clock(){if(F.switchDay(data)){save();renderStats();}renderNap();const d=new Date();$('clock').textContent=d.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit',hour12:false});$('dateLabel').textContent=`${d.getMonth()+1} 月 ${d.getDate()} 日 · `+['星期日','星期一','星期二','星期三','星期四','星期五','星期六'][d.getDay()];}
- setStatus(data.napStartedAt?'正在午休':'在小院里，慢慢来');renderAll();clock();setInterval(clock,1000);save();A.ready.then(()=>{
+ if(data.activeMeeting)setScene('village');else setStatus(data.napStartedAt?'正在午休':'在小院里，慢慢来');renderAll();clock();setInterval(clock,1000);save();A.ready.then(()=>{
    requestAnimationFrame(frame);
    A.postcard($('journalLandscape'));landscapeReady=true;
    for(const icon of document.querySelectorAll('[data-ui-icon]'))icon.src=A.iconUrl(icon.dataset.uiIcon);

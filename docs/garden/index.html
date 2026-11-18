@@ -52,11 +52,12 @@ body{background:radial-gradient(ellipse at 50% 0,#faf2dc 0,#eeeadd 42%,#e2e7d8 1
 .garden-plot[data-stage="4"] button,#gardenBtn.harvest-ready{background:#f0d886;color:#4e402c;border-color:#a17f4e;font-weight:700}.garden-plot button:hover,#gardenBtn.harvest-ready:hover{background:#eac771}
 #gardenStatus{margin:6px 0 0;min-height:1.45em;color:#536647}
 @media(max-width:430px){#gardenDialog{padding:12px}.garden-plot{padding:6px}}
+.diary-storage{margin:0;color:#75684f;font-size:11px}
 </style>
 </head>
 <body>
 <main class="shell">
- <header class="masthead"><div class="wordmark"><div class="stamp" aria-hidden="true">己</div><div><div class="brand">爱你老己</div><div class="subbrand">像素小院</div></div></div><span class="version">V0.11.0</span></header>
+ <header class="masthead"><div class="wordmark"><div class="stamp" aria-hidden="true">己</div><div><div class="brand">爱你老己</div><div class="subbrand">像素小院</div></div></div><span class="version">V0.12.0</span></header>
  <section class="intro"><div><h1>慢慢过今天。</h1><p>喝口水，做点小事，也给自己留一点空白。</p></div><div class="today"><span id="dateLabel"></span><strong id="clock">--:--</strong></div></section>
  <section class="workspace" aria-label="我的像素小院">
   <div class="farm-column">
@@ -70,7 +71,7 @@ body{background:radial-gradient(ellipse at 50% 0,#faf2dc 0,#eeeadd 42%,#e2e7d8 1
      <div class="breath-copy"><strong id="breathPhase" aria-live="polite"></strong><small>还剩 <span id="breathTime"></span> 秒</small></div>
      <button id="breathStop" class="quiet-button" type="button">结束呼吸</button>
     </div>
-    <div id="cropPanel" class="crop-panel" hidden><label for="cropText">今天，想让哪件小事长出来？</label><input id="cropText" maxlength="40" placeholder="比如：写好这一页周报"><label for="cropKind">种什么 <select id="cropKind"><option value="wheat">麦子</option><option value="tomato">番茄</option><option value="sunflower">向日葵</option></select></label><p id="cropHint">在菜地培育 30 秒，做完也可以直接确认成熟。</p><div class="crop-buttons"><button id="cropCancel" class="quiet-button">先歇歇</button><button id="cropStart" class="primary">开始种下</button></div></div>
+    <div id="cropPanel" class="crop-panel" hidden><label for="cropText">今天，想让哪件小事长出来？</label><input id="cropText" maxlength="40" placeholder="比如：写好这一页周报"><label for="cropKind">种什么 <select id="cropKind"><option value="wheat">麦子</option><option value="tomato">番茄</option><option value="sunflower">向日葵</option><option value="rose">玫瑰</option><option value="jasmine">茉莉</option></select></label><p id="cropHint">在菜地培育 30 秒，做完也可以直接确认成熟。</p><div class="crop-buttons"><button id="cropCancel" class="quiet-button">先歇歇</button><button id="cropStart" class="primary">开始种下</button></div></div>
    </div>
    <div class="toolbar"><div class="tools"><button id="homeBtn" class="primary home-action">回家下班</button><button id="diaryBtn" class="quiet-button">下班日记</button><button id="wallBtn" class="quiet-button">心愿墙</button><button id="gardenBtn" class="quiet-button">小菜园</button><button id="findBtn" class="quiet-button">找找小人</button><button id="stopBtn" class="quiet-button">停一停</button></div><div class="tools"><label class="wander"><input id="wander" type="checkbox" checked>自己散步</label><label class="wander">步速 <select id="pace" aria-label="行走速度"><option value="22">更慢</option><option value="30">慢慢走</option><option value="42">轻快些</option></select></label></div></div>
    <div class="quick-care" id="quickCare" aria-label="小院活动"></div><p class="helper"><strong>按住小人，拖到想去的地方。</strong>松手后，小人会慢慢走过去。<br>喝水、午休和开会由你主动开始。回到小屋时会打开下班日记。</p>
@@ -126,10 +127,10 @@ body{background:radial-gradient(ellipse at 50% 0,#faf2dc 0,#eeeadd 42%,#e2e7d8 1
     <label>今天的心情 <select id="diaryMood"><option value="">先留空</option></select></label>
     <label for="diaryNote" class="diary-note-label">写给老己</label>
     <textarea id="diaryNote" maxlength="240" placeholder="今天哪一刻，有好好照顾自己？"></textarea>
-    <p id="diaryStatus" role="status"></p>
+    <p class="diary-storage">在这台设备上按日期回看。</p><p id="diaryStatus" role="status"></p>
    </form>
    <fieldset class="share-settings"><legend>分享到图片</legend><label><input id="shareNote" type="checkbox"> 带上日记正文</label><label><input id="shareToilet" type="checkbox"> 显示上厕所次数</label><label class="share-wish-label">带一句心愿 <select id="shareWish"></select></label></fieldset>
-   <div class="journal-actions"><button type="submit" form="diaryForm" class="primary" id="diarySave">记下今天</button><button type="button" class="quiet-button" id="previewShare">预览分享图</button></div>
+   <div class="journal-actions"><button type="submit" form="diaryForm" class="primary" id="diarySave">保存日记</button><button type="submit" form="diaryForm" id="diaryBedSave" class="primary" hidden>保存日记并睡觉</button><button type="button" class="quiet-button" id="previewShare">预览分享图</button></div>
   </section>
  </div>
  <section class="diary-timeline" aria-labelledby="activityTitle">
@@ -178,7 +179,10 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
   }
   const FIELD={x:304,y:276,cell:32,columns:4,rows:2};
   const cropStand=i=>({x:FIELD.x+(i%4)*32+29,y:FIELD.y+Math.floor(i/4)*32+26});
-  const CROP_NAMES={wheat:'麦子',tomato:'番茄',sunflower:'向日葵'};
+  const FLOWER_NAMES={sunflower:'向日葵',rose:'玫瑰',jasmine:'茉莉'};
+  const CROP_NAMES={wheat:'麦子',tomato:'番茄',...FLOWER_NAMES};
+  const cropUnit=kind=>Object.hasOwn(FLOWER_NAMES,kind)?'朵':'份';
+  const BEDTIME_SECONDS=1.9;
   const GROW_SECONDS=30;
   const emptyCrop=()=>({text:'',stage:0,kind:'wheat'});
   function plotAt(p){
@@ -383,7 +387,8 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
       weather:['sunny','rain','night','warm'].includes(x.weather)?x.weather:'sunny',
       pace:[22,30,42].includes(x.pace)?x.pace:30,wander:x.wander!==false,
       journal:cleanJournal(x.journal?.date===previous?x.journal:diaries[previous],previous),diaries,activities,activeMeeting,
-      napStartedAt:Number.isSafeInteger(x.napStartedAt)&&x.napStartedAt>0&&x.napStartedAt<=Date.now()?x.napStartedAt:0,
+      bedtimeDate:x.bedtimeDate===date&&!activeMeeting?date:'',
+      napStartedAt:x.bedtimeDate!==date&&Number.isSafeInteger(x.napStartedAt)&&x.napStartedAt>0&&x.napStartedAt<=Date.now()?x.napStartedAt:0,
       learned:x.learned&&typeof x.learned==='object'&&!Array.isArray(x.learned)?Object.fromEntries(Object.entries(x.learned).filter(([k,v])=>/^(上午|下午|晚上):(water|nap|work|toilet|home|desk|walk|village)$/.test(k)&&Number.isSafeInteger(v)&&v>0).slice(0,100)):{}
     };
     data.todos.forEach(todo=>finishTaskCrops(data,todo));
@@ -395,7 +400,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
     return cleanSave({coins:read('coins',0),todos:Array.isArray(todos)?todos:[],crops:Array.from({length:8},(_,i)=>({text:texts?.[i]||'',stage:stages?.[i]||0})),weather:['sunny','warm','rain','night'][read('weather',0)]});
   }
   function depthOrder(items){return items.map((x,i)=>({...x,_index:i})).sort((a,b)=>a.y-b.y||a._index-b._index);}
-  const api={WIDTH,HEIGHT,WALL,WISH_LIMIT,WALL_CAPACITY,wishCharacters,formatWish,wallLines,FIELD,cropStand,CROP_NAMES,GROW_SECONDS,plotAt,finishCrop,finishTaskCrops,harvestCrop,ZONES,OBSTACLES,inside,walkable,moveToward,nearestFree,route,segmentClear,zoneAt,localDate,MOODS,cleanJournal,switchDay,recordCareAction,diaryFor,putDiary,duration,ACTIVITY_LABELS,MEETING_MOODS,activitiesFor,addActivity,restoreActivity,removeActivity,annotateMeeting,BREATH_LENGTH,breathFrame,cleanSave,migrateLegacy,depthOrder};
+  const api={WIDTH,HEIGHT,WALL,WISH_LIMIT,WALL_CAPACITY,wishCharacters,formatWish,wallLines,FIELD,cropStand,CROP_NAMES,cropUnit,BEDTIME_SECONDS,GROW_SECONDS,plotAt,finishCrop,finishTaskCrops,harvestCrop,ZONES,OBSTACLES,inside,walkable,moveToward,nearestFree,route,segmentClear,zoneAt,localDate,MOODS,cleanJournal,switchDay,recordCareAction,diaryFor,putDiary,duration,ACTIVITY_LABELS,MEETING_MOODS,activitiesFor,addActivity,restoreActivity,removeActivity,annotateMeeting,BREATH_LENGTH,breathFrame,cleanSave,migrateLegacy,depthOrder};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FarmCore=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
 
@@ -462,6 +467,13 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    for(let i=0;i<10;i++)sprite('shrub',i*64+12,36+(i%2)*4);
    for(const [x,y,kind] of [[28,104,'pinkTree'],[250,69,'tree'],[569,68,'tree'],[628,73,'pinkTree']])tree(x,y,kind);
    for(const [x,y] of [[34,174],[246,140],[464,137],[560,97],[512,332],[115,369],[610,346]])flowers(x,y);
+   for(const [kind,x,y] of [
+      ['sunflower',30,262],['rose',43,275],['jasmine',62,279],
+      ['rose',200,185],['jasmine',220,186],['sunflower',238,189],
+      ['jasmine',194,374],['rose',211,378],['sunflower',227,374],['jasmine',244,379],
+      ['rose',504,349],['jasmine',520,355],['sunflower',538,353],
+      ['sunflower',607,302],['jasmine',621,308],['rose',602,318]
+   ])gardenFlowers(kind,x,y);
    for(let i=0;i<13;i++){
      const x=34+(i*67)%580,y=110+(i*31)%253;
      r(x,y,2,2,'#bed06a');r(x+2,y+2,4,2,'#719947');
@@ -492,44 +504,59 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
      context.fillRect(x+(mirror?rows[j].length-1-i:i)*size,y+j*size,size,size);
    }
  }
- const catFur={d:'#50383b',a:'#b96a47',o:'#e89a54',g:'#ffc47b',p:'#eaa193',w:'#ffedce',e:'#383838',s:'#fdf7e2'};
- const catUp=[
-   '............d...d...',
-   '...........dad.dad..',
-   '..dd.......dgddgd..',
-   '.daod.....dgogogod.',
-   '.dogd....dgagagagod.',
-   '..dad...dggogggggod.',
-   '..dod..dgogegwegad.',
-   '...daddgogwwpwwgdd.',
-   '....dgaggoowwwwdd..',
-   '....doggoawwwdd....',
-   '....dogagowwd.d....'
+ const catFur={d:'#6b4842',a:'#c58159',o:'#e89b64',g:'#ffc483',b:'#a96045',p:'#ec9a9d',w:'#ffe5bc',e:'#3c3932',s:'#fff8df'};
+ const catFace=[
+   '....dd.........dd....',
+   '...dggd.......dgod...',
+   '...dgppd.....dgppd...',
+   '...dgpggdddddgogpd...',
+   '...dggggogogoggggd...',
+   '..dggogggoggggoogd..',
+   '..dgggggggggggggggd..',
+   '..dgggesegggeseggd...',
+   '..dgggeeggwggeeggd...',
+   '..dppgwwpwpwwgppgd...',
+   '...dwwwwpbpwwwwdd....',
+   '....ddwwwwwwwdd......'
  ];
- const stillPaws=['.....doaddwdd......','.....dwwd.dwd......'];
- const walkingPaws=[
-   ['....doaddwddd......','....dwwd..dwd......'],
-   ['......doaddwd......','......dwd.dwwd.....']
+ const tailBody=[
+   '.....dggwwggd...dd...',
+   '....dgogwwogd..dggd..',
+   '....dggwwwwggd.dod...',
+   '....dggwwwwggddgd....',
+   '.....dwwddwwdddd.....'
+ ];
+ const stepBody=[
+   ['.....dggwwggd...dd...','....dgogwwogd..dggd..','....dggwwwwggdddod...','...dggdwwwdggddgd....','...dwwd....dwwdd.....'],
+   ['.....dggwwggd..dd....','....dgogwwogd.dggd...','....dggwwwwggddod....','.....dggdwwdggdgd....','.....dwwd..dwwdd.....']
  ];
  const curledCat=[
-   '....................',
-   '..........d...d.....',
-   '.........dgd.dgd....',
-   '...dddddgagdgagod...',
-   '..doggogggggegedd...',
-   '.dogagagoogwwpwwd...',
-   '.dgoggoawwwwwwwdd...',
-   '..daooodddgogod.....',
-   '...ddddddddddd......'
+   '.....................',
+   '.....dd....dd........',
+   '....dggd..dggd.......',
+   '....dgppddgpgdddd....',
+   '...dggogoggggooggd...',
+   '..dgggggggogggogggd..',
+   '..dggbgggboogogooggd.',
+   '..dgggwpwwggoaoggggd.',
+   '..dppwwbwwwwgdooogd..',
+   '...dwwwwwwwwdoogdd...',
+   '....dddddddddddd.....'
  ];
- function cat(x,y,action,t,facing='right'){
+ const padCat=rows=>rows.map(row=>row.padEnd(21,'.'));
+ const catPoses={
+   sit:padCat(catFace.concat(tailBody)),
+   blink:padCat(catFace.map(row=>row.replace(/[es]/g,'b')).concat(tailBody)),
+   walk:stepBody.map(feet=>padCat(catFace.concat(feet))),
+   sleep:padCat(curledCat)
+ };
+ function cat(x,y,action,t,facing='right',onPillow=false){
    const sleeping=action==='sleep',walking=action==='walk',mirror=facing==='left';
-   const blink=!walking&&Math.floor(t*8)%36===33,step=Math.floor(t*7)%2;
-   const body=blink?catUp.map(row=>row.replaceAll('e','a')):catUp;
-   const pose=sleeping?curledCat:body.concat(walking?walkingPaws[step]:stillPaws);
-   shadow(x,y,13);
-   paintPixels(ctx,pose.map(row=>row.padEnd(20,'.')),catFur,snap(x-20),snap(y-pose.length*2),2,mirror);
-   if(sleeping){r(x+18,y-24,6,2,C.cream);r(x+20,y-22,2,2,C.cream);r(x+18,y-20,6,2,C.cream);}
+   const step=Math.floor(t*7)%2,blink=Math.floor(t*8)%41===37;
+   const pose=sleeping?catPoses.sleep:walking?catPoses.walk[step]:blink?catPoses.blink:catPoses.sit;
+   if(!onPillow)shadow(x,y,13);
+   paintPixels(ctx,pose,catFur,snap(x-21),snap(y-pose.length*2),2,mirror);
+   if(sleeping&&!onPillow){r(x+16,y-23,6,2,C.cream);r(x+18,y-21,2,2,C.cream);r(x+16,y-19,6,2,C.cream);}
  }
  function restroom(x,y){
    shed(x,y);
@@ -663,6 +690,20 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
      if(i===active){ctx.strokeStyle='#ffe3af';ctx.lineWidth=2;ctx.strokeRect(x+1,y+1,30,30);}
    }
  }
+ const flowerHeads={
+   sunflower:['...yyy...','..ywyyy..','.ywogoyy.','yyogdgoyy','yogddgoyy','yyogdgoyy','.yyogoyy.','..yoyoy..','...yyy...'],
+   rose:['..rrr....','.rppprr..','rpphpppr.','rphrpprr.','rrprhrpr.','.rppprrr.','.srrrrs..','..srs....'],
+   jasmine:['.ww..ww..','wwywwyww.','.ww..ww..','...s.....','..ww.ww..','.wywwyww.','..ww.ww..','.....s...']
+ };
+ const flowerInk={y:'#efb84e',w:'#fff3ca',o:'#d38d3c',g:'#9c6538',d:'#684a34',r:'#ad4f61',p:'#dd7282',h:'#ffa0a2',s:'#6c914f'};
+ function bloom(kind,x,y,mini=false){
+   const pixel=mini?1:2,rows=flowerHeads[kind];
+   paintPixels(ctx,rows,flowerInk,snap(x)-4*pixel,snap(y)-4*pixel,pixel);
+ }
+ function gardenFlowers(kind,x,y){
+   r(x,y-17,2,15,'#456e45');r(x-6,y-9,6,4,'#5a844b');r(x+2,y-12,6,4,'#759b55');
+   bloom(kind,x,y-18,true);
+ }
  function crop(i,{stage,kind,text}){
    const x=320+i%4*32,y=306+Math.floor(i/4)*32;
    if(!stage){
@@ -673,11 +714,10 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    const top=y-8-stage*4;
    r(x,top,2,y-top,'#4a7545');r(x-6,top+10,6,4,'#588446');r(x-8,top+8,4,4,'#85aa54');r(x+2,top+6,6,4,'#728f45');
    if(stage<3)return;
-   if(kind==='sunflower'){
-     if(stage===4){
-       const bloom=['...yyy...','..ywyyy..','.ywogoyy.','yyogdgoyy','yogddgoyy','yyogdgoyy','.yyogoyy.','..yoyoy..','...yyy...'];
-       paintPixels(ctx,bloom,{y:'#efb84e',w:'#ffe5a0',o:'#d38d3c',g:'#9c6538',d:'#684a34'},snap(x-8),snap(top-8),2);
-     }else{oval(x,top,5,4,'#dca252');r(x-2,top-2,4,4,'#eec265');}
+   if(flowerHeads[kind]){
+     if(stage===4)bloom(kind,x,top);
+     else if(kind==='sunflower'){oval(x,top,5,4,'#dca252');r(x-2,top-2,4,4,'#eec265');}
+     else bloom(kind,x,top,true);
    }
    else for(const [dx,dy] of [[-5,7],[5,11],[0,2]]){oval(x+dx,top+dy,4,4,stage===4?'#bc5146':'#d7a057');r(x+dx-2,top+dy-2,2,2,'#f5b47d');r(x+dx,top+dy-4,2,2,'#4c7340');}
  }
@@ -693,18 +733,66 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    if(kind==='warm')r(0,0,640,400,'#efaa5918');
    if(kind==='rain'){r(0,0,640,400,'#3e617a28');for(let i=0;i<65;i++){const x=(i*107-t*28+6400)%640,y=(i*53+t*130)%430-20;line(x,y,x-2,y+6,'#dde7df88');}}
  }
- function indoor(t){
-   r(0,0,640,400,'#2d3c42');
+ function bedFrame(){
+   // The mattress is 104 px across so the two pillow spots are both visible.
+   r(174,173,112,129,'#442f37');r(180,176,104,122,'#80514b');
+   r(176,172,108,25,'#66423e');r(180,176,100,18,'#ac715b');r(186,181,88,8,'#d19573');
+   for(const x of [178,280]){r(x,168,7,31,'#69504a');r(x+2,170,4,24,'#c48c6e');}
+   r(178,194,104,97,'#b9977d');r(182,196,96,90,'#f1dfbe');
+   for(const x of [185,233]){
+     r(x,197,42,25,'#b9a387');r(x+2,198,39,21,'#e7d3ae');
+     r(x+6,200,32,15,'#fff0d3');r(x+8,214,26,2,'#eed8b5');
+   }
+ }
+ function bedQuilt(tucked){
+   r(181,224,99,66,'#526c59');r(184,226,94,60,'#83a084');
+   r(186,225,90,8,'#d2ddad');r(187,234,90,2,'#69876d');
+   for(let j=0;j<3;j++)for(let i=0;i<6;i++){
+     const x=192+i*14,y=243+j*14;
+     r(x,y,2,6,'#c6d3a2');r(x-2,y+2,6,2,'#d2dcaf');
+     r(x+6,y+7,2,2,'#638573');
+   }
+   if(tucked){r(189,224,36,6,'#e0e6c1');r(187,229,41,3,'#819e7d');}
+   r(174,288,112,12,'#80554f');r(176,288,108,3,'#c88d70');
+   r(176,300,9,5,'#604039');r(276,300,10,5,'#604039');
+ }
+ function sleepingHero(){
+   part('idle_down',0,0,16,10,190,200);
+   r(200,212,4,2,'#704e45');r(210,212,4,2,'#704e45');
+ }
+ function indoor(t,bedtime=null){
+   const asleep=bedtime!==null&&bedtime>=FarmCore.BEDTIME_SECONDS;
+   r(0,0,640,400,asleep?'#222a41':'#2d3c42');
    r(120,70,400,322,'#1f2e35');
-   // Interior and yard use the same native pixel grid.
    for(let y=112;y<352;y+=32)for(let x=160;x<480;x+=32)part('floorTiles',16,16,16,16,x,y);
    for(let x=160;x<480;x+=32){part('wallTiles',32,0,16,16,x,80);part('wallTiles',32,64,16,16,x,352);}
    for(let y=112;y<352;y+=32){part('wallTiles',0,32,16,16,128,y);part('wallTiles',64,32,16,16,480,y);}
    for(const [sx,sy,x,y] of [[0,0,128,80],[64,0,480,80],[0,64,128,352],[64,64,480,352]])part('wallTiles',sx,sy,16,16,x,y);
-   r(278,114,84,48,'#784f4a');r(282,118,76,40,'#f5b57c');r(286,122,68,32,'#657c8b');r(292,139,58,14,'#b67578');r(318,120,4,38,'#ffca91');r(282,136,76,4,'#ffca91');r(276,156,88,6,'#e7a873');
-   ctx.save();const light=ctx.createRadialGradient(321,170,9,321,193,98);light.addColorStop(0,'#ffc58858');light.addColorStop(1,'#ffc58800');ctx.fillStyle=light;ctx.fillRect(190,125,262,185);ctx.restore();
-   sprite('rug',320,290);sprite('bookshelf',428,180);sprite('plant',182,184);sprite('bed',212,278);desk(421,263);
-   hero(320,297,'idle',t,'down');cat(351,308,'sleep',t);
+   r(278,114,84,48,'#784f4a');r(282,118,76,40,asleep?'#b17b64':'#f5b57c');r(286,122,68,32,asleep?'#465579':'#657c8b');
+   if(asleep){oval(340,131,7,7,'#f8dba4');oval(343,128,6,6,'#465579');r(299,129,2,2,'#ead4a5');r(305,145,2,2,'#ead4a5');}
+   else r(292,139,58,14,'#b67578');
+   r(318,120,4,38,asleep?'#b48872':'#ffca91');r(282,136,76,4,asleep?'#b48872':'#ffca91');r(276,156,88,6,'#e7a873');
+   ctx.save();const light=ctx.createRadialGradient(321,170,9,321,193,98);light.addColorStop(0,asleep?'#8390cc32':'#ffc58858');light.addColorStop(1,'#ffc58800');ctx.fillStyle=light;ctx.fillRect(190,125,262,185);ctx.restore();
+   sprite('rug',335,333);sprite('bookshelf',428,180);sprite('plant',162,188);desk(421,263);
+   gardenFlowers('rose',451,248);gardenFlowers('jasmine',465,249);
+   bedFrame();
+   if(asleep)sleepingHero();
+   bedQuilt(asleep);
+   if(asleep){
+     cat(252,223,'sleep',t,'right',true);
+     if(Math.floor(t*2)%3!==0){r(272,192,4,2,'#f0d9af');r(274,194,2,2,'#f0d9af');r(272,196,4,2,'#f0d9af');}
+   }else if(bedtime!==null){
+     const human=Math.min(1,bedtime/1.2),kitty=Math.min(1,Math.max(0,(bedtime-.26)/1.62));
+     if(human<1)hero(377-83*human,275-22*human,'walk',t,'left');
+     else{sleepingHero();bedQuilt(true);}
+     if(kitty<.62)cat(341-53*kitty/.62,306-53*kitty/.62,'walk',t,'left');
+     else{
+       const hop=(kitty-.62)/.38;
+       cat(288-36*hop,253-30*hop-Math.sin(hop*Math.PI)*13,'sit',t,'left',true);
+     }
+   }else{
+     hero(377,275,'idle',t,'left');cat(341,306,'sit',t);
+   }
  }
  function village(t){
    meadow();roads(true);fence(66,142,486);
@@ -731,6 +819,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    tree(70,191,'pinkTree');tree(570,176);cottage(276,177);
    r(248,156,12,10,'#ffd18c');r(254,155,2,11,'#ad745f');r(248,160,12,2,'#ad745f');
    for(const [x,y] of [[140,205],[186,174],[430,211],[464,173],[532,201],[601,187]])flowers(x,y);
+   gardenFlowers('rose',155,211);gardenFlowers('jasmine',197,191);gardenFlowers('sunflower',465,206);
    hero(366,196,'idle',0,'down');cat(394,200,'sit',0);
    for(const [x,y] of [[124,146],[203,150],[344,140],[424,163],[491,192]]){r(x-2,y-2,6,6,'#f1cc8140');r(x,y,2,2,'#ffe9a9');}
    ctx=old;
@@ -851,13 +940,9 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  const initial=readKey(SAVE_KEY,null);
  let data=initial?F.cleanSave(initial):F.migrateLegacy((key,d)=>readKey('aini_v2_'+key,d));
  const hero={x:142,y:205,path:[],facing:'down'},cat={x:181,y:211,path:[],facing:'right'};
- const game={scene:'farm',zone:'idle',pending:null,actionTime:0,crop:-1,plotTarget:-1,drag:null,time:0,dwell:5,catDwell:5,breathing:null,focusHero:0};
+ const game={scene:'farm',zone:'idle',pending:null,actionTime:0,crop:-1,plotTarget:-1,drag:null,time:0,dwell:5,catDwell:5,breathing:null,focusHero:0,bed:null};
  let bubbleTimer=0,hoverZone=null,diaryDate=null,shareUrl=null,landscapeReady=false;
  let composingWish=false,erasedWish=null,erasedActivity=null,closingMeeting=null,gardenPlot=-1;
- if(data.napStartedAt){
-   Object.assign(hero,F.ZONES.nap.stand);
-   game.zone='nap';
- }
  function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(data));storageHealthy=true;}catch{storageHealthy=false;}updateSaveStatus();}
  function updateSaveStatus(){$('saveStatus').textContent=storageHealthy?'已保存在此浏览器':'暂时无法保存，请导出备份';$('saveStatus').classList.toggle('warning',!storageHealthy);}
  function say(text){$('bubble').textContent=text;$('bubble').classList.add('show');clearTimeout(bubbleTimer);bubbleTimer=setTimeout(()=>$('bubble').classList.remove('show'),3600);}
@@ -944,12 +1029,34 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  function setScene(name){
    endBreath();
    if(game.scene==='village'&&name!=='village')endMeeting();
+   if(game.scene==='indoor'&&name!=='indoor'&&data.bedtimeDate){
+     data.bedtimeDate='';save();
+   }
+   game.bed=null;
    endNap();
    game.scene=name;game.pending=null;game.zone='idle';game.actionTime=0;game.crop=-1;game.plotTarget=-1;hero.path=[];cat.path=[];game.drag=null;hoverZone=null;$('cropPanel').hidden=true;
    $('gardenBtn').hidden=name!=='farm';$('leaveBtn').hidden=name==='farm';$('homeBtn').hidden=name==='indoor';$('findBtn').hidden=name!=='farm';$('stopBtn').hidden=name!=='farm';$('sceneName').textContent={farm:'我的小院',indoor:'下班到家',village:'村里的会面'}[name];
    $('leaveBtn').textContent=name==='village'?'散会，回小院':'出门，回小院';
+   const descriptions={farm:'像素小院。按住戴绿头巾的小人拖往目的地，也可以用下方按钮。',indoor:'下班到家的小屋，有书桌和铺着被子的宽床。',village:'小人坐在村里的会议桌边。'};
+   cv.setAttribute('aria-label',descriptions[name]);
    if(name==='farm'){hero.x=142;hero.y=205;game.dwell=6;setStatus('在小院里，慢慢来');say('回到小院了。');}
    else{setStatus(name==='indoor'?'回家歇歇':'在村里坐一会儿');say(name==='indoor'?'放下手里的事，回家歇会儿。':'到村里了，坐下来聊聊。');}
+ }
+ function beginBedtime(alreadyAsleep=false){
+   if(game.bed===null){
+     game.bed=alreadyAsleep||window.matchMedia?.('(prefers-reduced-motion: reduce)').matches?F.BEDTIME_SECONDS:0;
+   }
+   $('leaveBtn').textContent='起床，回小院';
+   $('sceneName').textContent='晚安，老己';
+   cv.setAttribute('aria-label','小屋里，老己躺在宽床上，小猫睡在枕头旁。');
+   setStatus('老己和小猫一起睡觉');
+ }
+ function resumeScene(){
+   if(data.activeMeeting)setScene('village');
+   else if(data.bedtimeDate){setScene('indoor');beginBedtime(true);}
+   else if(data.napStartedAt){
+     Object.assign(hero,F.ZONES.nap.stand);game.zone='nap';setStatus('正在午休');
+   }else setStatus('在小院里，慢慢来');
  }
  function go(zone,plot=-1){
    if(game.scene!=='farm'||!F.ZONES[zone])return;
@@ -993,6 +1100,9 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
      if(game.breathing>=F.BREATH_LENGTH)endBreath('呼吸结束，慢慢接着来。');
      else renderBreath();
      return;
+   }
+   if(game.scene==='indoor'&&game.bed!==null){
+     game.bed=Math.min(F.BEDTIME_SECONDS,game.bed+dt);
    }
    if(game.scene!=='farm')return;
    if(!game.drag){
@@ -1041,11 +1151,12 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  function draw(){
    ctx.clearRect(0,0,F.WIDTH,F.HEIGHT);
    if(game.scene==='farm')drawFarm();
-   else if(game.scene==='indoor')A.indoor(game.time);
+   else if(game.scene==='indoor')A.indoor(game.time,game.bed);
    else A.village(game.time);
    if(game.scene!=='indoor')A.weather(data.weather,game.time);
    cv.dataset.heroX=hero.x.toFixed(2);cv.dataset.heroY=hero.y.toFixed(2);
    cv.dataset.action=game.pending?'walking-'+game.pending:game.zone;cv.dataset.scene=game.scene;
+   cv.dataset.bedtime=game.bed===null?'awake':game.bed<F.BEDTIME_SECONDS?'settling':'asleep';
  }
  function scenePoint(e){const b=cv.getBoundingClientRect();return {x:(e.clientX-b.left)*F.WIDTH/b.width,y:(e.clientY-b.top)*F.HEIGHT/b.height};}
  function hideHint(){$('hint').hidden=true;hoverZone=null;}
@@ -1146,7 +1257,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  function renderGarden(){
    const list=$('gardenPlots');
    list.replaceChildren();
-   $('gardenBasket').textContent=Object.entries(data.harvests).map(([kind,n])=>F.CROP_NAMES[kind]+' '+n+(kind==='sunflower'?' 朵':' 份')).join(' · ');
+   $('gardenBasket').textContent=Object.entries(data.harvests).map(([kind,n])=>F.CROP_NAMES[kind]+' '+n+' '+F.cropUnit(kind)).join(' · ');
    data.crops.forEach((crop,index)=>{
      const box=document.createElement('li'),title=document.createElement('strong'),caption=document.createElement('span'),actions=document.createElement('div');
      const kind=F.CROP_NAMES[crop.kind];
@@ -1163,7 +1274,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
          const name=F.CROP_NAMES[result.kind];
          save();renderStats();renderGarden();
          list.querySelector('[data-plot="'+index+'"] button')?.focus();
-         $('gardenStatus').textContent='已收进篮子 · '+name+(result.kind==='sunflower'?' 1 朵':' 1 份')+(result.coins?' · +'+result.coins+' 金币':'');
+         $('gardenStatus').textContent='已收进篮子 · '+name+' 1 '+F.cropUnit(result.kind)+(result.coins?' · +'+result.coins+' 金币':'');
        });
      }else{
        if(crop.text)button('我做完了',()=>{
@@ -1278,7 +1389,10 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    $('diaryNapCount').textContent=entry.rest+' 次'+(entry.rest&&!entry.napSeconds?' · 无时长记录':'');
    $('diaryTitle').textContent=diaryDate===F.localDate()?'下班了，欢迎回家。':'那天的下班日记';
    $('diaryDateLabel').dateTime=diaryDate;$('diaryDateLabel').textContent=diaryDate;
-   $('diarySave').textContent=diaryDate!==F.localDate()?'保存日记':entry.settled&&entry.note?'保存修改':'记下今天';
+   const canSleep=game.scene==='indoor'&&diaryDate===F.localDate();
+   $('diaryBedSave').hidden=!canSleep;
+   $('diarySave').classList.toggle('primary',!canSleep);
+   $('diarySave').classList.toggle('quiet-button',canSleep);
  }
  const timeFormatter=new Intl.DateTimeFormat('zh-CN',{hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
  function renderTimeline(){
@@ -1339,7 +1453,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    const entry=F.diaryFor(data,date);
    $('diaryNote').value=entry.note;
    $('diaryMood').value=entry.mood;
-   $('diaryStatus').textContent='';
+   $('diaryStatus').textContent=entry.note||entry.mood?'这页日记已保存在此浏览器。':'';
    updateDiaryStats();
  }
  function openDiary(date,settle=false){
@@ -1353,18 +1467,32 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    $('diaryDate').replaceChildren(...dates.map(d=>new Option(d,d)));
    $('diaryDate').value=date;
    showDiaryDate(date);
-   if(settle)$('diaryStatus').textContent=storageHealthy?'今天的活动已结算':'浏览器暂时无法保存结算';
+   if(settle&&!storageHealthy)$('diaryStatus').textContent='浏览器暂时无法保存结算';
+   else if(settle&&!$('diaryStatus').textContent)$('diaryStatus').textContent='写下今天，保存后可按日期回看。';
    $('shareNote').checked=false;$('shareToilet').checked=false;
    $('shareWish').replaceChildren(new Option('不带心愿',''),...data.wishes.slice().reverse().map((text,index)=>new Option(text,String(data.wishes.length-index-1))));
    $('shareWish').value='';$('shareWish').disabled=!data.wishes.length;
    $('diaryDialog').showModal();
  }
- function persistDiary(settled){
-   F.putDiary(data,diaryDate,$('diaryNote').value.trim(),$('diaryMood').value,settled);save();updateDiaryStats();
+ function persistDiary(settled,sleep=false){
+   const previousBedtime=data.bedtimeDate;
+   F.putDiary(data,diaryDate,$('diaryNote').value.trim(),$('diaryMood').value,settled);
+   if(sleep)data.bedtimeDate=diaryDate;
+   save();
+   if(!storageHealthy)data.bedtimeDate=previousBedtime;
+   updateDiaryStats();
    $('diaryStatus').textContent=storageHealthy?(settled?'日记已保存':'草稿已保存'):'浏览器暂时无法保存日记';
+   return storageHealthy;
  }
  $('diaryMood').append(...F.MOODS.map(mood=>new Option(mood,mood)));
- $('diaryForm').onsubmit=e=>{e.preventDefault();persistDiary(true);};
+ $('diaryForm').onsubmit=e=>{
+   e.preventDefault();
+   const sleep=e.submitter===$('diaryBedSave')&&game.scene==='indoor'&&diaryDate===F.localDate();
+   if(persistDiary(true,sleep)&&sleep){
+     $('diaryDialog').close();beginBedtime();
+     say('日记已保存。晚安，老己。');$('leaveBtn').focus({preventScroll:true});
+   }
+ };
  $('diaryNote').oninput=()=>persistDiary(false);
  $('diaryMood').onchange=()=>persistDiary(false);
  $('diaryDate').onchange=e=>showDiaryDate(e.target.value);
@@ -1400,9 +1528,8 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
      const next=F.cleanSave(raw.data);$('restoreSummary').textContent=`将载入 ${next.todos.length} 条清单、${next.crops.filter(c=>c.stage===4).length} 格成熟作物和 ${next.coins} 枚金币。当前小院会先留一份恢复前备份。`;
      $('restoreDialog').showModal();$('restoreConfirm').onclick=()=>{
        try{localStorage.setItem(SAVE_KEY+'_before_restore',JSON.stringify(data));localStorage.setItem(SAVE_KEY,JSON.stringify(next));}catch{say('保存没有成功，当前小院未替换。请先导出备份。');$('restoreDialog').close();return;}
-       data.napStartedAt=0;data.activeMeeting=null;stopAction();setScene('farm');data=next;
-       if(data.activeMeeting)setScene('village');
-       if(data.napStartedAt){Object.assign(hero,F.ZONES.nap.stand);game.zone='nap';setStatus('正在午休');}
+       data.napStartedAt=0;data.activeMeeting=null;data.bedtimeDate='';stopAction();setScene('farm');data=next;
+       resumeScene();
        renderAll();renderNap();save();$('restoreDialog').close();say('小院恢复好了。');
      };
    }catch(err){say(err.message||'这份备份暂时打不开。');}finally{e.target.value='';}
@@ -1425,7 +1552,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    draw();requestAnimationFrame(frame);
  }
  function clock(){if(F.switchDay(data)){save();renderStats();}renderNap();const d=new Date();$('clock').textContent=d.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit',hour12:false});$('dateLabel').textContent=`${d.getMonth()+1} 月 ${d.getDate()} 日 · `+['星期日','星期一','星期二','星期三','星期四','星期五','星期六'][d.getDay()];}
- if(data.activeMeeting)setScene('village');else setStatus(data.napStartedAt?'正在午休':'在小院里，慢慢来');renderAll();clock();setInterval(clock,1000);save();A.ready.then(()=>{
+ resumeScene();renderAll();clock();setInterval(clock,1000);save();A.ready.then(()=>{
    requestAnimationFrame(frame);
    A.postcard($('journalLandscape'));landscapeReady=true;
    for(const icon of document.querySelectorAll('[data-ui-icon]'))icon.src=A.iconUrl(icon.dataset.uiIcon);

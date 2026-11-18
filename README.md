@@ -5,7 +5,7 @@
 | 作品 | 在线使用 | 离线版 |
 | --- | --- | --- |
 | 本地开票工作台 | [打开工具](https://josephinexyy.github.io/product-portfolio/billing/) · [试用演示账本](https://josephinexyy.github.io/product-portfolio/billing/?demo=1) | [下载 ZIP](https://josephinexyy.github.io/product-portfolio/billing/Billing-Workspace-v0.2.0.zip) |
-| 爱你老己 · 像素小院 | [进入小院](https://josephinexyy.github.io/product-portfolio/garden/) | [下载 ZIP](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.11.0.zip) |
+| 爱你老己 · 像素小院 | [进入小院](https://josephinexyy.github.io/product-portfolio/garden/) | [下载 ZIP](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.12.0.zip) |
 
 离线版解压后，用浏览器打开里面的 HTML 文件。换设备前先导出自己的账本或小院存档。[使用说明与备份](USING_THE_APPS.md)
 

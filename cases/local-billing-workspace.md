@@ -1,6 +1,6 @@
 # 本地开票工作台：让一个人也能把业务往来理清楚
 
-**[打开开票工具](https://josie-billing-workspace.coral-ox-0471.chatgpt.site/)** · [先看虚构演示](https://josie-billing-workspace.coral-ox-0471.chatgpt.site/?demo=1) · [下载离线版 ZIP](https://josie-billing-workspace.coral-ox-0471.chatgpt.site/Billing-Workspace-v0.2.0.zip) · [使用说明](../USING_THE_APPS.md#本地开票工作台) · [返回软件入口](https://github.com/josephinexyy/product-portfolio#直接使用)
+**[打开开票工具](https://josephinexyy.github.io/product-portfolio/billing/)** · [先看虚构演示](https://josephinexyy.github.io/product-portfolio/billing/?demo=1) · [下载离线版 ZIP](https://josephinexyy.github.io/product-portfolio/billing/Billing-Workspace-v0.2.0.zip) · [使用说明](../USING_THE_APPS.md#本地开票工作台) · [返回软件入口](https://github.com/josephinexyy/product-portfolio#直接使用)
 
 **适用人群：**个人工作室、自由职业者和个体经营者，尤其是需要港币 / 美元和中英文单据的香港服务业务。
 

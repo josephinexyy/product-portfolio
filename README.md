@@ -5,7 +5,7 @@
 | 软件 | 在线打开 | 下载到电脑 |
 | --- | --- | --- |
 | 本地开票工作台 | **[打开开票工具](https://josie-billing-workspace.coral-ox-0471.chatgpt.site/)** | [下载离线版 ZIP](https://josie-billing-workspace.coral-ox-0471.chatgpt.site/Billing-Workspace-v0.2.0.zip) |
-| 爱你老己 · 像素小院 | **[进入像素小院](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site/)** | [下载离线版 ZIP](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site/downloads/aini-laoji-v0.8.1.zip) |
+| 爱你老己 · 像素小院 | **[进入像素小院](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site/)** | [下载离线版 ZIP](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site/downloads/aini-laoji-v0.8.2.zip) |
 
 在线版点开即可使用。第一次用开票工具，可以[先看虚构演示](https://josie-billing-workspace.coral-ox-0471.chatgpt.site/?demo=1)。离线版下载后，**解压 ZIP → 用 Chrome 打开里面的 HTML 文件**。
 

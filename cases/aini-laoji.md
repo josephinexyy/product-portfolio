@@ -1,6 +1,6 @@
 # 爱你老己：看见自己，把自己的一天具象化
 
-**[进入像素小院](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site/)** · [下载离线版 ZIP](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site/downloads/aini-laoji-v0.8.1.zip) · [使用说明](../USING_THE_APPS.md#爱你老己--像素小院) · [返回软件入口](https://github.com/josephinexyy/product-portfolio#直接使用)
+**[进入像素小院](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site/)** · [下载离线版 ZIP](https://aini-laoji-garden-v7.coral-ox-0471.chatgpt.site/downloads/aini-laoji-v0.8.2.zip) · [使用说明](../USING_THE_APPS.md#爱你老己--像素小院) · [返回软件入口](https://github.com/josephinexyy/product-portfolio#直接使用)
 
 **看见自己，把自己的一天具象化。**
 
@@ -45,7 +45,9 @@
 
 ## 当前边界与下一步
 
-当前是 v0.8.1 / v8.0.1 原型，提供手动操作和模拟事件；尚未连接飞书、Apple Watch 或真实工资数据。完整生活时间线、喝水及上厕所提醒、会议期间的心率关联、工资触发麦子成熟并手动收获，是后续方向。
+玩家可以把午休中的小人从吊床上拖下来，在菜园种麦子、番茄或向日葵。点小院的心愿墙写下一句话，墙上会留下文字和按主题绘制的粉笔画。留言保存在当前浏览器，也可以随小院备份带走。
+
+当前是 v0.8.2 / v8.0.2 原型，提供手动操作和模拟事件；尚未连接飞书、Apple Watch 或真实工资数据。完整生活时间线、喝水及上厕所提醒、会议期间的心率关联、工资触发麦子成熟并手动收获，是后续方向。
 
 已有 14 项规则与素材检查，以及真实游戏脚本的离线 Canvas 流程检查。本轮完整的真实浏览器和手机设备试玩尚待补充。上面的图片是离线渲染预览，不当作设备验证证明。
 

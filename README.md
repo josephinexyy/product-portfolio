@@ -1,4 +1,4 @@
-# 产品作品集 · Josie Xiang
+# 产品作品集 · Josephine Xiang
 
 ## 直接使用
 
@@ -17,4 +17,4 @@
 **[爱你老己 · 小人怎样映出我的一天](cases/aini-laoji.md)**  
 小人可以自己走到井边，什么时候才算我喝了一次水？看这个选择怎样影响记录、拖动和午休的玩法。
 
-[反馈问题或建议](https://github.com/josephinexyy/product-portfolio/issues/new/choose) · [素材与授权](NOTICES.md) · [Josie 的主页](https://github.com/josephinexyy)
+[反馈问题或建议](https://github.com/josephinexyy/product-portfolio/issues/new/choose) · [素材与授权](NOTICES.md) · [Josephine 的主页](https://github.com/josephinexyy)

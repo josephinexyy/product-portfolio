@@ -34,18 +34,18 @@ CSV 不能替代完整备份。不要把真实账本、客户证件、银行资�
 
 ## 爱你老己 · 像素小院
 
-**[进入像素小院](https://josephinexyy.github.io/product-portfolio/garden/)** · [下载离线版 ZIP](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.9.0.zip)
+**[进入像素小院](https://josephinexyy.github.io/product-portfolio/garden/)** · [下载离线版 ZIP](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.9.1.zip)
 
 用过旧网址的玩家，可在原浏览器的旧小院点「带走小院」，再到新网址点「恢复备份」。
 
-在线版直接打开。离线版：下载 ZIP → 解压 → 用 Chrome 打开 `aini-laoji-v0.9.0.html`。
+在线版直接打开。离线版：下载 ZIP → 解压 → 用 Chrome 打开 `aini-laoji-v0.9.1.html`。
 
 | 想做什么 | 去哪里 |
 | --- | --- |
 | 让小人行动 | 按住小人拖到目的地，松手后他会慢慢走过去 |
 | 喝水／午休／开会 | 拖到水井／吊床／村口路牌，或点画面下的快捷按钮。午休结束时点「结束午休」或把小人拖走 |
 | 结算、写日记 | 把小人带回小屋或点「回家下班」。日记可回看日期，能预览并保存 PNG |
-| 画涂鸦 | 点院内墙面或「涂鸦墙」，输入文字后预览并画上墙 |
+| 写粉笔字 | 点院内墙面或「心愿墙」，每句最多 24 字。最新一句会写在院内墙上 |
 | 调整走速、停下或找小人 | 画面下方的步速、“停一停”和“找找小人” |
 | 保存、恢复进度 | 画面下方“带走小院”和“恢复备份” |
 

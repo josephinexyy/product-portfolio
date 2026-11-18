@@ -2,7 +2,7 @@
 
 **看见自己，把自己的一天具象化。** 我想做一个和我一起上班的小人。我开会，他就去村口；我午休，他就躺进吊床。看着他过这一天，我也会想起自己上一次喝水是什么时候。
 
-[进入小院](https://josephinexyy.github.io/product-portfolio/garden/) · [离线下载](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.9.0.zip) · [反馈问题或建议](https://github.com/josephinexyy/product-portfolio/issues/new/choose)
+[进入小院](https://josephinexyy.github.io/product-portfolio/garden/) · [离线下载](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.9.1.zip) · [反馈问题或建议](https://github.com/josephinexyy/product-portfolio/issues/new/choose)
 
 ![像素小院早期版本的离线画面](../images/farm-yard.png)
 
@@ -16,7 +16,7 @@
 | --- | --- |
 | 小人上了吊床就拖不动，只能等午休结束 | 让躺着的小人也能被拖走。起身时按实际经过时间结算，拖走也能记录已经休息多久。 |
 | 猫和厕所都要靠猜 | 重画橘猫的尖耳、条纹和翘尾，在小木屋门上写清楚 Toilet。人物、门和家具继续按同一像素比例绘制。 |
-| 待办能写下要做的事，有时我只想说“今天不准加班了” | 加一面心愿墙。写下这句话，墙上就画一只长翅膀的钟。周一开会会变成划掉的对话框。院里能看最近三幅，完整留言留在自己的浏览器。 |
+| 待办能写下要做的事，有时我只想说“今天不准加班了” | 加一面心愿墙。写下这句话，墙上就画一只长翅膀的钟。周一开会会变成划掉的对话框。写的时候字就带着粉笔纹理，每句最多 24 字。院里能看最新一句，完整留言留在自己的浏览器。 |
 | 一天过去了，想回头看看自己都做过什么 | 回家时打开日记，把会议、喝水、午睡和如厕写进同一页。日记可以选心情、留几句给自己，也可以保存成竖版像素小院卡片。 |
 
 ## 接下来想试的两件事

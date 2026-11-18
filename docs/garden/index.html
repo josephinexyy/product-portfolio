@@ -15,19 +15,26 @@
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 body{background:radial-gradient(ellipse at 50% 0,#faf2dc 0,#eeeadd 42%,#e2e7d8 100%);min-height:100vh}.workspace{box-shadow:0 14px 38px #4a463519}.scene-bar{background:#efe9d6}.stage{border-block:1px solid #41574c3d}#scene[data-scene="indoor"],#scene[data-scene="village"]{cursor:default}
 .shell{margin-top:31px}.masthead{margin-bottom:19px}.intro{margin-bottom:19px}.quick-care{display:flex;gap:7px;flex-wrap:wrap;padding:9px 15px 0}.quick-care .quiet-button{background:#eeeadb}.quick-care .quiet-button:hover{background:#e2e8d2}.toolbar .tools:first-child{flex-wrap:wrap}.primary:hover{background:#4f694e}.home-action{padding:6px 11px}.care{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:12px}#napTotal{display:block;color:#56634d;margin:0;font-size:10px}.nap-strip{position:absolute;bottom:12px;left:12px;display:flex;align-items:center;gap:8px;max-width:calc(100% - 24px);border:1px solid #b9ad83;border-radius:4px;background:#f8edcf;padding:5px 8px;font-size:11px}.nap-strip button{white-space:nowrap}.dialog-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.dialog-header h2{margin:0}
-#wallDialog{width:min(720px,95vw);max-height:92dvh;overflow:auto;border:2px solid #95815d;background:#f7efd9;box-shadow:0 18px 55px #19252753}
-.chalkboard{background-color:#334a49;background-image:repeating-linear-gradient(0deg,transparent 0 47px,#acc8b218 48px 49px),radial-gradient(ellipse at 20% 8%,#567169,#314847 70%);border:9px ridge #ad805e;box-shadow:inset 0 0 35px #152c2b;min-height:208px;max-height:48dvh;overflow:auto;padding:16px;color:#f5e8bd}.chalkboard p{margin:0;min-height:140px;display:grid;place-content:center;text-align:center;font:16px/1.8 var(--serif)}
-#wallNotes{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(160px,100%),1fr));gap:12px}.chalk-note{min-width:0;min-height:127px;display:grid;align-content:start;justify-items:center;gap:4px;margin:0;padding:8px;border-bottom:1px dashed #e4d39a60;text-align:center;color:#ffe0a0;font:16px/1.45 var(--serif);overflow-wrap:anywhere}.chalk-note[data-tone="1"]{color:#ffd0bf;border-color:#e4a98e61}.chalk-note[data-tone="2"]{color:#bee1cd;border-color:#aadcbd61}.chalk-note[data-tone="3"]{color:#ddd8fb;border-color:#ddd8fb64}.chalk-note canvas{width:96px;height:auto;aspect-ratio:72/56;pointer-events:none}.chalk-note figcaption{width:100%}
-#wallForm{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}#wallForm label{width:100%}#wishText{flex:1;min-width:120px;padding:7px;background:#fffdf4;border:1px solid #bfbba5;border-radius:3px}#wishPreview{display:flex;align-items:center;gap:12px;padding:5px 8px;margin-top:9px;color:#ffeed0;background:#3b5351;border-radius:4px;font-size:11px}#wishSketch{width:58px;height:auto;pointer-events:none}#wallStatus{display:block;margin-top:8px}#cropKind{font-size:13px}
+#wallDialog{--chalk-grain:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAABCUlEQVR42o1UwXEDMQjcZFyMf2klP391lUSpxF9KcBm6DtzJ+hHkYAycduZGEtIBYleA5CDZ+QfhK5p+Q9fD2KPzBN8hC3MbxAYIHXoMt+7WgccJMX4BnAHcdH0FsOl419GfB4A7gujdzCO06gZIfmzGPriGRlJgCi5FFjabaK97UnrgqC1k1Vdkw6KOsxSSRUByLUnqmen1afsEsCvlm45fAC46359y+N+f9lsgtwvcE8uyqJgWK3YcHOQBSeL1iIqx4vlJlr0XdsTuWMg0ZFkKpr0jmS/DB/0gyaJBTPygxq7q2JHUbyTXk6M6RxnOzL416mxbs6Wd1R5hg4vQdRwBIT3p1i+kPQDzTe7uClttoAAAAABJRU5ErkJggg==);--chalk-font:"Kaiti SC",KaiTi,STKaiti,"Noto Serif CJK SC","Songti SC",serif;width:min(720px,95vw);max-height:92dvh;overflow:auto;border:2px solid #95815d;background:#f7efd9;box-shadow:0 18px 55px #19252753}
+.chalk-surface{background-color:#314947;background-image:radial-gradient(ellipse at 20% 8%,#506b63,#314847 70%);color:#fff0c9;border:6px ridge #ad805e;box-shadow:inset 0 0 25px #152c2be0}
+#wallForm{margin:0 0 13px}.chalk-draft-head,.wall-collections,.chalk-actions{display:flex;justify-content:space-between;align-items:center;gap:8px}.chalk-draft-head{margin-bottom:7px}.chalk-draft-head label{font-weight:600}.chalk-counter,.wall-collections small{font-size:12px;font-variant-numeric:tabular-nums;color:#665a47}.chalk-counter.limit{color:#9c4037;font-weight:700}
+.chalk-draft{padding:10px 11px;display:grid;grid-template-columns:minmax(0,1fr) 71px;align-items:center;gap:8px}.chalk-lettering{font-family:var(--chalk-font);font-weight:600;text-shadow:.4px .5px 0 currentColor,0 0 1px currentColor;-webkit-mask-image:var(--chalk-grain);mask-image:var(--chalk-grain)}
+#wishText{display:block;resize:none;width:100%;min-height:92px;overflow:auto;padding:5px 2px;background:transparent;border:0;color:#fff3ca;font-size:22px;line-height:27px;caret-color:#fff3ca;text-align:left;overflow-wrap:anywhere}
+#wishText::placeholder{color:#ded2aa;text-shadow:none}.chalk-draft:focus-within{outline:2px solid #859779;outline-offset:2px}#wishText:focus-visible{outline:none}
+#wishPreview{display:grid;justify-items:center;gap:3px;text-align:center;font-size:10px;line-height:1.25;color:#fff0cb}#wishSketch{width:67px;height:auto;pointer-events:none}
+.chalk-actions{margin-top:8px}.chalk-actions p,#wallFull{margin:0;color:#74664e;font-size:11px}.chalk-actions button{flex:none}.chalk-actions button:disabled{opacity:.56;cursor:default}.chalk-actions button:disabled:hover{background:var(--green)}
+.wall-collections{margin:0 0 6px;font-size:12px}.chalkboard{max-height:37dvh;overflow:auto;padding:12px;color:#f5e8bd}.chalkboard p{margin:0;min-height:60px;display:grid;place-content:center;text-align:center;font:15px/1.6 var(--chalk-font)}
+#wallNotes{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(155px,100%),1fr));gap:10px}.chalk-note{min-width:0;display:grid;grid-template-rows:auto 1fr auto;justify-items:center;gap:4px;margin:0;padding:6px;border-bottom:1px dashed #e4d39a60;text-align:center;color:#ffe9ad;font-size:17px;line-height:1.45;overflow-wrap:anywhere}.chalk-note[data-tone="1"]{color:#ffccbc;border-color:#e4a98e61}.chalk-note[data-tone="2"]{color:#c5e6d2;border-color:#aadcbd61}.chalk-note[data-tone="3"]{color:#e5dafa;border-color:#ddd8fb64}.chalk-note canvas{width:71px;height:auto;aspect-ratio:72/56;pointer-events:none}.chalk-note figcaption{width:100%}
+.chalk-erase{padding:4px 6px;font-size:11px;color:#eee2c4;background:none;border:0;text-decoration:underline;text-underline-offset:3px}.chalk-erase:focus-visible{outline-color:#fff0c9}.wall-feedback{display:flex;align-items:center;gap:10px;margin-top:8px;min-height:1.6em}#wallStatus{font-size:11px}#cropKind{font-size:13px}
 #diaryDialog,#shareDialog{width:min(850px,95vw);max-height:94dvh;padding:0;border:2px solid #a78a60;background:#fff6e1;color:#4a473b;box-shadow:0 16px 66px #172d3e66;overflow:auto}#diaryDialog::backdrop,#shareDialog::backdrop{background:#263841a6}#diaryDialog .dialog-header,#shareDialog .dialog-header{padding:10px 16px;margin:0;background:#efe0bf;border-bottom:1px solid #c8ad7d;font-size:12px;position:sticky;top:0;z-index:1}
 .journal-layout{display:grid;grid-template-columns:1fr 1fr}.journal-left,.journal-right{min-width:0;padding:20px}.journal-left{background:#f8edcf;border-right:1px solid #dacba5}.journal-right{display:grid;align-content:start;gap:12px}.journal-cover{aspect-ratio:640/230;border:2px solid #9d8058;height:auto;cursor:default;touch-action:auto}.journal-date{font:11px monospace;color:#685b46}#diaryDate{font:12px monospace;max-width:unset;color:#4e4c3e}.journal-heading{display:flex;align-items:center;gap:8px;margin-top:12px}.journal-heading img{width:32px;aspect-ratio:1;image-rendering:pixelated}.journal-heading h2{margin:0;color:#493a36;font-size:25px}.journal-meta{margin:4px 0 11px;color:#685b46}.journal-stats{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:0}.journal-stat{min-width:0;border:1px solid #ddccaa;background:#fffae9;padding:8px;display:grid;grid-template-columns:28px 1fr;column-gap:6px;grid-template-rows:auto 1fr}.journal-stat img{grid-row:1 / 3;width:26px;image-rendering:pixelated}.journal-stat dt{font-size:11px;color:#6a5e4d}.journal-stat dd{margin:0;font-size:15px;font-weight:600;line-height:1.35;color:#405646;overflow-wrap:anywhere}.journal-stat small{grid-column:2;color:#6a5e4d;font-size:10px}
 #diaryForm{display:grid;gap:8px}#diaryMood{color:var(--ink);border:1px solid #cfba98;background:#fffaf0;padding:3px 5px;border-radius:3px;font-size:13px;max-width:110px}#diaryNote{color:var(--ink);width:100%;min-height:132px;resize:vertical;border:1px solid #cfba98;border-radius:4px;padding:8px 10px;line-height:26px;background:repeating-linear-gradient(0deg,#fffaf0 0 25px,#eadcc1 25px 26px);background-position:0 6px;font:14px/26px var(--serif)}.diary-note-label{font:19px var(--serif)}#diaryStatus{min-height:1.5em;margin:0;color:#576548}.share-settings{min-width:0;border:1px solid #daccaa;margin:0;padding:9px 10px;color:#665b4b;font-size:11px}.share-settings label{display:block}.journal-actions{display:flex;gap:8px;flex-wrap:wrap}.journal-actions button,.share-actions a{font-size:12px;padding:8px 12px}.share-actions a{text-decoration:none;display:inline-block}#shareDialog{width:min(510px,95vw)}.share-actions{position:sticky;bottom:0;background:#efe0bf;border-top:1px solid #c8ad7d;padding:10px 14px;text-align:right}#shareImage{display:block;width:min(420px,100%);height:auto;margin:0 auto}.share-image-slot{padding:10px;background:#f7edda}
-@media(max-width:560px){.journal-layout{grid-template-columns:1fr}.journal-left,.journal-right{padding:13px}.journal-left{border-right:0;border-bottom:1px solid #dacba5}.journal-heading h2{font-size:21px}.shell{padding:0 12px}#wallDialog{padding:13px}.chalkboard{padding:10px}#wallNotes{grid-template-columns:repeat(auto-fill,minmax(min(108px,100%),1fr))}.chalk-note{font-size:14px}.chalk-note canvas{width:73px}.care{row-gap:5px}.care strong{font-size:19px}.nap-strip{bottom:7px;left:7px}}
+@media(max-width:560px){.journal-layout{grid-template-columns:1fr}.journal-left,.journal-right{padding:13px}.journal-left{border-right:0;border-bottom:1px solid #dacba5}.journal-heading h2{font-size:21px}.shell{padding:0 12px}#wallDialog{padding:13px}#wishText{font-size:19px;line-height:25px}.chalk-draft{grid-template-columns:minmax(0,1fr) 53px;padding:6px 8px;gap:5px}#wishSketch{width:50px}.chalkboard{padding:9px}#wallNotes{grid-template-columns:repeat(auto-fill,minmax(min(108px,100%),1fr))}.chalk-note{font-size:16px}.chalk-note canvas{width:56px}.care{row-gap:5px}.care strong{font-size:19px}.nap-strip{bottom:7px;left:7px}}
 </style>
 </head>
 <body>
 <main class="shell">
- <header class="masthead"><div class="wordmark"><div class="stamp" aria-hidden="true">己</div><div><div class="brand">爱你老己</div><div class="subbrand">像素小院</div></div></div><span class="version">V0.9.0</span></header>
+ <header class="masthead"><div class="wordmark"><div class="stamp" aria-hidden="true">己</div><div><div class="brand">爱你老己</div><div class="subbrand">像素小院</div></div></div><span class="version">V0.9.1</span></header>
  <section class="intro"><div><h1>慢慢过今天。</h1><p>喝口水，做点小事，也给自己留一点空白。</p></div><div class="today"><span id="dateLabel"></span><strong id="clock">--:--</strong></div></section>
  <section class="workspace" aria-label="我的像素小院">
   <div class="farm-column">
@@ -38,7 +45,7 @@ body{background:radial-gradient(ellipse at 50% 0,#faf2dc 0,#eeeadd 42%,#e2e7d8 1
     <div id="wakeBtn" class="nap-strip" hidden><span>午休 <strong id="napElapsed">0 秒</strong></span><button type="button" class="quiet-button">结束午休</button></div>
     <div id="cropPanel" class="crop-panel" hidden><label for="cropText">今天，想让哪件小事长出来？</label><input id="cropText" maxlength="40" placeholder="比如：写好这一页周报"><label for="cropKind">种什么 <select id="cropKind"><option value="wheat">麦子</option><option value="tomato">番茄</option><option value="sunflower">向日葵</option></select></label><p id="cropHint">给小苗起个名字。清单的完成由你自己确认。</p><div class="crop-buttons"><button id="cropCancel" class="quiet-button">先歇歇</button><button id="cropStart" class="primary">开始种下</button></div></div>
    </div>
-   <div class="toolbar"><div class="tools"><button id="homeBtn" class="primary home-action">回家下班</button><button id="diaryBtn" class="quiet-button">下班日记</button><button id="wallBtn" class="quiet-button">涂鸦墙</button><button id="findBtn" class="quiet-button">找找小人</button><button id="stopBtn" class="quiet-button">停一停</button></div><div class="tools"><label class="wander"><input id="wander" type="checkbox" checked>自己散步</label><label class="wander">步速 <select id="pace" aria-label="行走速度"><option value="22">更慢</option><option value="30">慢慢走</option><option value="42">轻快些</option></select></label></div></div>
+   <div class="toolbar"><div class="tools"><button id="homeBtn" class="primary home-action">回家下班</button><button id="diaryBtn" class="quiet-button">下班日记</button><button id="wallBtn" class="quiet-button">心愿墙</button><button id="findBtn" class="quiet-button">找找小人</button><button id="stopBtn" class="quiet-button">停一停</button></div><div class="tools"><label class="wander"><input id="wander" type="checkbox" checked>自己散步</label><label class="wander">步速 <select id="pace" aria-label="行走速度"><option value="22">更慢</option><option value="30">慢慢走</option><option value="42">轻快些</option></select></label></div></div>
    <div class="quick-care" id="quickCare" aria-label="小院活动"></div><p class="helper"><strong>按住小人，拖到想去的地方。</strong>松手后，小人会慢慢走过去。<br>喝水、午休和开会由你主动开始。回到小屋时会打开下班日记。</p>
   </div>
   <aside class="sidebar" aria-label="今天的记录">
@@ -52,11 +59,19 @@ body{background:radial-gradient(ellipse at 50% 0,#faf2dc 0,#eeeadd 42%,#e2e7d8 1
  <footer class="footer"><em>看见自己，也照顾自己。</em><span>Josephine Xiang</span><span>素材 · Pixel-Boy &amp; AAA / Kenney</span></footer>
 </main>
 <dialog id="wallDialog" aria-labelledby="wallTitle">
- <header class="dialog-header"><h2 id="wallTitle">小院涂鸦墙</h2><button id="wallClose" class="quiet-button">收起粉笔</button></header>
- <div class="chalkboard" id="chalkboard"><p id="wallEmpty">这块墙留给你。想抱怨一句，也可以。</p><div id="wallNotes"></div></div>
- <form id="wallForm"><label for="wishText">写一句话，看看它会变成什么涂鸦。</label><input id="wishText" maxlength="80" required placeholder="比如：周一不想开会"><button class="primary">画到墙上</button></form>
- <div id="wishPreview" hidden><canvas id="wishSketch" width="72" height="56" role="img"></canvas><span id="wishMotif"></span></div>
- <small role="status" id="wallStatus"></small>
+ <header class="dialog-header"><h2 id="wallTitle">小院心愿墙</h2><button id="wallClose" class="quiet-button">收起粉笔</button></header>
+ <form id="wallForm">
+  <div class="chalk-draft-head"><label for="wishText">拿粉笔写一句</label><span id="wishCount" class="chalk-counter"></span></div>
+  <div class="chalk-draft chalk-surface">
+   <textarea id="wishText" class="chalk-lettering" rows="3" maxlength="240" spellcheck="false" enterkeyhint="done" aria-describedby="wishRules wishCount" placeholder="周一不想开会…" autofocus></textarea>
+   <div id="wishPreview" hidden><canvas id="wishSketch" width="72" height="56" role="img"></canvas><span id="wishMotif"></span></div>
+  </div>
+  <div class="chalk-actions"><p id="wishRules">院里的墙面会显示最新一句。</p><button id="wishSubmit" class="primary" disabled>写上墙</button></div>
+  <p id="wallFull" hidden>墙写满了。擦掉一条，就可以写新的。</p>
+ </form>
+ <div class="wall-collections"><span>墙上的字</span><small id="wallCapacity"></small></div>
+ <div class="chalkboard chalk-surface" id="chalkboard"><p id="wallEmpty">这块墙留给你。写愿望，或者写一句今天没说出口的话。</p><div id="wallNotes"></div></div>
+ <div class="wall-feedback"><small role="status" id="wallStatus"></small><button id="undoWish" type="button" class="quiet-button" hidden>撤销擦除</button></div>
 </dialog>
 <dialog id="diaryDialog" aria-labelledby="diaryTitle">
  <header class="dialog-header"><span>下班日记</span><label>日期 <select id="diaryDate" aria-label="选择日记日期"></select></label><button id="diaryClose" type="button" class="quiet-button">合上日记</button></header>
@@ -101,6 +116,19 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
   // Bounding boxes are visible art; obstacles are only the solid ground footprints.
   // A 16px native tile becomes 32px in the world. Feet are the actor anchor.
   const WALL=[298,49,136,76];
+  const WALL_LINE_LENGTH=8,WALL_LINES=3,WISH_LIMIT=WALL_LINE_LENGTH*WALL_LINES,WALL_CAPACITY=60;
+  const segmenter=typeof Intl.Segmenter==='function'?new Intl.Segmenter('zh',{granularity:'grapheme'}):null;
+  function wishCharacters(text){
+    return segmenter?Array.from(segmenter.segment(text),item=>item.segment):Array.from(text);
+  }
+  function formatWish(text){return text.replace(/\s+/g,' ').trim();}
+  function wallLines(text){
+    const chars=wishCharacters(formatWish(text));
+    const visible=chars.length>WISH_LIMIT?[...chars.slice(0,WISH_LIMIT-1),'…']:chars;
+    const lines=[];
+    for(let i=0;i<visible.length;i+=WALL_LINE_LENGTH)lines.push(visible.slice(i,i+WALL_LINE_LENGTH).join(''));
+    return lines;
+  }
   const FIELD={x:304,y:276,cell:32,columns:4,rows:2};
   const cropStand=i=>({x:FIELD.x+(i%4)*32+16,y:FIELD.y+Math.floor(i/4)*32+34});
   const ZONES={
@@ -218,7 +246,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
     const crops=Array.from({length:8},(_,i)=>({text:typeof x.crops?.[i]?.text==='string'?x.crops[i].text.slice(0,40):'',stage:whole(x.crops?.[i]?.stage,4),kind:['tomato','sunflower'].includes(x.crops?.[i]?.kind)?x.crops[i].kind:'wheat'}));
     const date=localDate(),diaries=cleanHistory(x.diaries);
     const previous=/^\d{4}-\d{2}-\d{2}$/.test(x.journal?.date)?x.journal.date:date;
-    const wishes=(Array.isArray(x.wishes)?x.wishes:[]).filter(w=>typeof w==='string'&&w.trim()).slice(-60).map(w=>w.trim().slice(0,80));
+    const wishes=(Array.isArray(x.wishes)?x.wishes:[]).filter(w=>typeof w==='string'&&w.trim()).slice(-WALL_CAPACITY).map(w=>wishCharacters(formatWish(w)).slice(0,80).join(''));
     const data={version:7,wishes,coins:whole(x.coins),todos:(Array.isArray(x.todos)?x.todos:[]).slice(0,100).filter(t=>t&&typeof t.text==='string').map(t=>({text:t.text.slice(0,80),done:t.done===true})),crops,
       weather:['sunny','rain','night','warm'].includes(x.weather)?x.weather:'sunny',
       pace:[22,30,42].includes(x.pace)?x.pace:30,wander:x.wander!==false,
@@ -234,7 +262,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
     return cleanSave({coins:read('coins',0),todos:Array.isArray(todos)?todos:[],crops:Array.from({length:8},(_,i)=>({text:texts?.[i]||'',stage:stages?.[i]||0})),weather:['sunny','warm','rain','night'][read('weather',0)]});
   }
   function depthOrder(items){return items.map((x,i)=>({...x,_index:i})).sort((a,b)=>a.y-b.y||a._index-b._index);}
-  const api={WIDTH,HEIGHT,WALL,FIELD,cropStand,ZONES,OBSTACLES,inside,walkable,moveToward,nearestFree,route,segmentClear,zoneAt,localDate,MOODS,cleanJournal,switchDay,recordCareAction,diaryFor,putDiary,duration,cleanSave,migrateLegacy,depthOrder};
+  const api={WIDTH,HEIGHT,WALL,WISH_LIMIT,WALL_CAPACITY,wishCharacters,formatWish,wallLines,FIELD,cropStand,ZONES,OBSTACLES,inside,walkable,moveToward,nearestFree,route,segmentClear,zoneAt,localDate,MOODS,cleanJournal,switchDay,recordCareAction,diaryFor,putDiary,duration,cleanSave,migrateLegacy,depthOrder};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FarmCore=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
 
@@ -383,13 +411,20 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
      ctx.save();ctx.font='bold 12px sans-serif';ctx.textAlign='center';ctx.fillStyle='#e8dba9';ctx.fillText('心愿墙',x+w/2,y+43);ctx.restore();
      drawChalk(ctx,'star',x+14,y+23,1,'心愿');r(x+w-29,y+34,6,2,'#f3c3a7');r(x+w-27,y+32,2,6,'#f3c3a7');
    }else{
-     wishes.slice(-3).forEach((text,i)=>{
-       const left=x+9+i*40,top=y+18;
-       drawChalk(ctx,chalkTheme(text),left,top,1,text);
-       const chars=Array.from(text);
-       ctx.save();ctx.font='9px sans-serif';ctx.textAlign='center';ctx.fillStyle=['#f1c4af','#b3dacb','#edd688'][i];
-       ctx.fillText(chars.slice(0,4).join('')+(chars.length>4?'…':''),left+17,y+58,39);ctx.restore();
+     const text=wishes.at(-1);
+     drawChalk(ctx,chalkTheme(text),x+9,y+18,1,text);
+     wishes.slice(-3,-1).forEach((older,i)=>drawChalk(ctx,chalkTheme(older),x+12+i*16,y+48,.4,older));
+     const lines=FarmCore.wallLines(text);
+     ctx.save();
+     ctx.font='600 10px "Kaiti SC","KaiTi","Noto Serif CJK SC",serif';
+     ctx.textAlign='left';
+     const top=y+25+Math.floor((3-lines.length)*7);
+     lines.forEach((line,i)=>{
+       const left=x+44,baseline=top+i*14;
+       ctx.fillStyle='#a7a68a80';ctx.fillText(line,left+.35,baseline+.3,82);
+       ctx.fillStyle='#f8ecc7';ctx.fillText(line,left,baseline,82);
      });
+     ctx.restore();
    }
    r(x+10,y+h-8,w-20,4,'#95704e');r(x+91,y+h-10,10,2,'#f1c4af');r(x+104,y+h-10,8,2,'#b3dacb');
  }
@@ -603,6 +638,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  const hero={x:142,y:205,path:[],facing:'down'},cat={x:181,y:211,path:[],facing:'right'};
  const game={scene:'farm',zone:'idle',pending:null,actionTime:0,crop:-1,drag:null,time:0,dwell:5,catDwell:5,breathing:0,focusHero:0};
  let bubbleTimer=0,hoverZone=null,diaryDate=null,shareUrl=null,landscapeReady=false;
+ let composingWish=false,erasedWish=null;
  if(data.napStartedAt){
    Object.assign(hero,F.ZONES.nap.stand);
    game.zone='nap';
@@ -732,9 +768,16 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    if(hoverZone){const z=F.ZONES[hoverZone];ctx.save();ctx.strokeStyle='#faf0ce';ctx.lineWidth=1;ctx.setLineDash([4,3]);ctx.strokeRect(z.box[0],z.box[1],z.box[2],z.box[3]);ctx.restore();}
    if(game.focusHero>0||game.drag){A.oval(hero.x,hero.y+2,12,5,'#f7edd299');A.line(hero.x,hero.y-43,hero.x,hero.y-37,'#fff3cf',2);A.line(hero.x-3,hero.y-40,hero.x,hero.y-37,'#fff3cf');A.line(hero.x+3,hero.y-40,hero.x,hero.y-37,'#fff3cf');}
    if(game.breathing>0){const radius=17+Math.sin(game.time*.8)*6;ctx.strokeStyle='#fff0cbaa';ctx.lineWidth=1;ctx.beginPath();ctx.arc(hero.x,hero.y-13,radius,0,Math.PI*2);ctx.stroke();}
-   A.weather(data.weather,game.time);
  }
- function draw(){ctx.clearRect(0,0,F.WIDTH,F.HEIGHT);if(game.scene==='farm')drawFarm();else if(game.scene==='indoor')A.indoor(game.time);else A.village(game.time);cv.dataset.heroX=hero.x.toFixed(2);cv.dataset.heroY=hero.y.toFixed(2);cv.dataset.action=game.pending?'walking-'+game.pending:game.zone;cv.dataset.scene=game.scene;}
+ function draw(){
+   ctx.clearRect(0,0,F.WIDTH,F.HEIGHT);
+   if(game.scene==='farm')drawFarm();
+   else if(game.scene==='indoor')A.indoor(game.time);
+   else A.village(game.time);
+   if(game.scene!=='indoor')A.weather(data.weather,game.time);
+   cv.dataset.heroX=hero.x.toFixed(2);cv.dataset.heroY=hero.y.toFixed(2);
+   cv.dataset.action=game.pending?'walking-'+game.pending:game.zone;cv.dataset.scene=game.scene;
+ }
  function scenePoint(e){const b=cv.getBoundingClientRect();return {x:(e.clientX-b.left)*F.WIDTH/b.width,y:(e.clientY-b.top)*F.HEIGHT/b.height};}
  function hideHint(){$('hint').hidden=true;hoverZone=null;}
  function cancelDrag(){if(!game.drag)return;hero.x=game.drag.origin.x;hero.y=game.drag.origin.y;hero.path=game.drag.path;game.drag=null;cv.classList.remove('grab');hideHint();}
@@ -743,7 +786,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    const p=scenePoint(e);
    const sleeping=game.zone==='nap'&&!hero.path.length;
    const onSleeper=sleeping&&p.x>=89&&p.x<=152&&p.y>=283&&p.y<=331;
-   if(!onSleeper&&F.inside(p,F.WALL)){openWall();return;}
+   if(!onSleeper&&F.inside(p,F.WALL)){e.preventDefault();openWall();return;}
    if(game.zone==='toilet'&&!hero.path.length)return;
    if(!onSleeper&&(sleeping||Math.abs(p.x-hero.x)>16||p.y<hero.y-39||p.y>hero.y+7)){const z=F.zoneAt(p);if(z)say('把小人拖到'+F.ZONES[z].label+'，才会开始。');return;}
    game.drag={id:e.pointerId,start:p,sleeping,offset:onSleeper?{x:0,y:12}:{x:hero.x-p.x,y:hero.y-p.y},origin:{x:hero.x,y:hero.y},path:hero.path.slice(),moved:false};hero.path=[];cv.setPointerCapture(e.pointerId);cv.classList.add('grab');e.preventDefault();
@@ -789,8 +832,10 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  function renderWeather(){$('weatherLabel').textContent={sunny:'晴 · 微风',warm:'暖 · 午后',rain:'雨 · 听雨',night:'夜 · 星光'}[data.weather];}
  function openWall(){
    if($('wallDialog').open)return;
-   renderWall();previewWish();$('wallStatus').textContent='';
+   erasedWish=null;$('undoWish').hidden=true;$('wallStatus').textContent='';
+   renderWall();previewWish();
    $('wallDialog').showModal();
+   $('wishText').focus({preventScroll:true});
  }
  function paintWish(canvas,text){
    const c=canvas.getContext('2d'),theme=A.chalkTheme(text);
@@ -800,26 +845,69 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    return A.designs[theme][0];
  }
  function previewWish(){
-   const value=$('wishText').value.trim(),preview=$('wishPreview');
-   preview.hidden=!value;
+   const field=$('wishText');
+   const draft=field.value.replace(/\s+/g,' ').trimStart(),characters=F.wishCharacters(draft);
+   if(!composingWish&&draft!==field.value){
+     const caret=field.value.slice(0,field.selectionStart).replace(/\s+/g,' ').trimStart().length;
+     field.value=draft;
+     field.setSelectionRange(caret,caret);
+   }
+   const value=draft.trimEnd();
+   const over=characters.length-F.WISH_LIMIT;
+   $('wishCount').textContent=characters.length+' / '+F.WISH_LIMIT+' 字'+(over>0?' · 超出 '+over+' 字':'');
+   $('wishCount').classList.toggle('limit',over>0);
+   $('wishPreview').hidden=!value;
    $('wishMotif').textContent=value?paintWish($('wishSketch'),value):'';
+   $('wishSubmit').disabled=composingWish||!value||over>0||data.wishes.length>=F.WALL_CAPACITY;
+   field.setAttribute('aria-invalid',String(!composingWish&&over>0));
+ }
+ function eraseWish(index){
+   const [text]=data.wishes.splice(index,1);
+   erasedWish={index,text};
+   save();renderWall();previewWish();
+   $('wallStatus').textContent=storageHealthy?'已擦掉这条心愿。':'已擦掉这条心愿，浏览器暂时无法保存。';
+   $('undoWish').hidden=false;
+   $('undoWish').focus({preventScroll:true});
  }
  function renderWall(){
    const notes=$('wallNotes');notes.replaceChildren();$('wallEmpty').hidden=data.wishes.length>0;
+   $('wallCapacity').textContent=data.wishes.length+' / '+F.WALL_CAPACITY+' 条';
+   $('wallFull').hidden=data.wishes.length<F.WALL_CAPACITY;
    data.wishes.slice().reverse().forEach((text,i)=>{
-     const entry=document.createElement('figure'),picture=document.createElement('canvas'),words=document.createElement('figcaption');
+     const entry=document.createElement('figure'),picture=document.createElement('canvas'),words=document.createElement('figcaption'),erase=document.createElement('button');
      entry.className='chalk-note';entry.dataset.tone=String(i%4);picture.width=72;picture.height=56;
-     picture.setAttribute('role','img');paintWish(picture,text);words.textContent=text;entry.append(picture,words);notes.append(entry);
+     words.className='chalk-lettering';
+     picture.setAttribute('role','img');paintWish(picture,text);words.textContent=text;
+     erase.type='button';erase.className='chalk-erase';erase.textContent='擦掉';
+     erase.setAttribute('aria-label','擦掉心愿：'+text);
+     erase.onclick=()=>eraseWish(data.wishes.length-1-i);
+     entry.append(picture,words,erase);notes.append(entry);
    });
  }
  $('wallBtn').onclick=openWall;$('wallClose').onclick=()=>$('wallDialog').close();
+ $('wishText').addEventListener('compositionstart',()=>{composingWish=true;previewWish();});
+ $('wishText').addEventListener('compositionend',()=>{composingWish=false;previewWish();});
  $('wishText').oninput=previewWish;
+ $('wishText').onkeydown=e=>{
+   if(e.key!=='Enter'||e.isComposing||composingWish||e.keyCode===229)return;
+   e.preventDefault();
+   if(!$('wishSubmit').disabled)$('wallForm').requestSubmit();
+ };
+ $('undoWish').onclick=()=>{
+   if(!erasedWish||data.wishes.length>=F.WALL_CAPACITY)return;
+   data.wishes.splice(erasedWish.index,0,erasedWish.text);
+   erasedWish=null;$('undoWish').hidden=true;
+   save();renderWall();previewWish();
+   $('wallStatus').textContent=storageHealthy?'心愿已放回墙上。':'已放回心愿，浏览器暂时无法保存。';
+ };
  $('wallForm').onsubmit=e=>{
-   e.preventDefault();const message=$('wishText').value.trim().slice(0,80);
-   if(!message){$('wishText').focus();return;}
-   if(data.wishes.length>=60){$('wallStatus').textContent='墙上已经写满 60 句了。';return;}
+   e.preventDefault();
+   const message=F.formatWish($('wishText').value);
+   if(composingWish||!message||F.wishCharacters(message).length>F.WISH_LIMIT||data.wishes.length>=F.WALL_CAPACITY)return;
    data.wishes.push(message);save();renderWall();$('chalkboard').scrollTop=0;$('wishText').value='';previewWish();
-   $('wallStatus').textContent=storageHealthy?'画好了 · '+A.designs[A.chalkTheme(message)][0]:'画好了，请导出备份留存。';
+   if(data.wishes.length===F.WALL_CAPACITY){erasedWish=null;$('undoWish').hidden=true;}
+   $('wallStatus').textContent=storageHealthy?'写上墙了 · '+A.designs[A.chalkTheme(message)][0]:'已写上墙，请导出备份留存。';
+   $('wishText').focus({preventScroll:true});
  };
  function updateDiaryStats(){
    const entry=F.diaryFor(data,diaryDate);

@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="爱你老己：用一座慢慢生活的像素小院，看见今天的自己。">
+<title>爱你老己 · 慢慢过今天</title>
+<style>
+:root{--paper:#f6f3e9;--ink:#404e40;--soft:#7b8373;--line:#dedfd0;--green:#627b59;--cream:#ede5cf;--accent:#ae745c;--serif:"Songti SC","Noto Serif CJK SC","SimSun",serif}
+*{box-sizing:border-box}body{margin:0;background:#ebece1;color:var(--ink);font:14px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--green);outline-offset:4px}button{color:var(--ink)}[hidden]{display:none!important}
+.shell{max-width:1192px;margin:42px auto;padding:0 30px}.masthead{display:flex;justify-content:space-between;align-items:center;margin-bottom:27px}.wordmark{display:flex;align-items:center;gap:12px}.stamp{width:36px;height:36px;display:grid;place-items:center;border:1px solid #87947a;color:var(--green);font:22px var(--serif);border-radius:3px}.brand{font:19px var(--serif);letter-spacing:3px}.subbrand{font:9px/1.7 monospace;letter-spacing:2px;color:var(--soft)}.version{font:11px monospace;color:var(--soft);letter-spacing:1px}.intro{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:25px}h1{font:normal 35px/1.3 var(--serif);letter-spacing:2px;margin:0 0 8px}.intro p{font-size:13px;color:var(--soft);margin:0}.today{text-align:right;font-size:11px;color:var(--soft)}.today strong{font:22px/1.5 monospace;display:block;font-weight:400;color:var(--ink)}
+.workspace{display:grid;grid-template-columns:minmax(0,1fr) 260px;background:var(--paper);border:1px solid #cdd1bd;border-radius:9px;box-shadow:0 9px 30px #52604409;overflow:hidden}.farm-column{min-width:0;border-right:1px solid var(--line)}.scene-bar{display:flex;justify-content:space-between;padding:12px 18px;font-size:11px;letter-spacing:1px;color:var(--soft);background:#f1f0e3}.scene-title{color:var(--ink)}.dot{display:inline-block;width:5px;height:5px;background:#7d9567;border-radius:50%;vertical-align:middle;margin-right:7px}.stage{width:100%;aspect-ratio:8/5;position:relative;background:#a3b783}canvas{display:block;width:100%;height:100%;image-rendering:pixelated;touch-action:none;cursor:grab}canvas.grab{cursor:grabbing}.bubble{position:absolute;top:14px;left:50%;transform:translateX(-50%);background:#fbf6e8ed;border:1px solid #c4c8ad;border-radius:4px;font-size:11px;padding:7px 13px;max-width:78%;text-align:center;pointer-events:none;opacity:0;transition:opacity .2s;box-shadow:0 2px 8px #4558370b}.bubble.show{opacity:1}.hint{position:absolute;bottom:13px;left:50%;transform:translateX(-50%);background:#485943ed;color:#fff7df;font-size:11px;padding:6px 13px;border-radius:4px;pointer-events:none;white-space:nowrap}.scene-back{position:absolute;left:14px;top:14px;border:1px solid #d0d3bb;background:#f7f0df;padding:6px 11px;border-radius:4px;font-size:11px}.toolbar{padding:11px 15px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--line)}.tools{display:flex;align-items:center;gap:8px}.quiet-button{background:none;border:1px solid #d5d8c7;border-radius:4px;padding:5px 9px;font-size:11px}.quiet-button:hover{background:#e9ecdf}.wander{font-size:11px;display:flex;gap:6px;align-items:center;color:var(--soft)}input[type=checkbox]{accent-color:var(--green)}select{font-size:11px;background:transparent;border:0;color:var(--soft);max-width:90px}.helper{font-size:11px;color:var(--soft);margin:0;padding:12px 18px 15px;line-height:1.8}.helper strong{font-weight:500;color:var(--green)}
+.sidebar{padding:22px 22px 18px}.section-label{font-size:10px;letter-spacing:2px;color:var(--soft);margin:0 0 13px}.current{font:19px/1.5 var(--serif);margin:0 0 20px;min-height:57px}.care{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;border-bottom:1px solid var(--line);padding-bottom:22px;margin-bottom:23px}.care span{font-size:10px;color:var(--soft);display:block}.care strong{font:25px monospace;font-weight:400}.care em{font-size:10px;font-style:normal;color:var(--soft);margin-left:5px}.list-title{display:flex;align-items:center;justify-content:space-between}.list-title small{font:11px monospace;color:var(--soft)}#todoList{list-style:none;margin:0;padding:0;max-height:194px;overflow:auto}#todoList li{display:flex;align-items:start;justify-content:space-between;padding:9px 0;gap:4px;border-bottom:1px solid #e5e6d9;font-size:12px}#todoList label{display:flex;align-items:start;gap:8px;min-width:0;overflow-wrap:anywhere}#todoList input{margin:4px 0 0}.done span{text-decoration:line-through;color:#9caa92}.delete{background:none;border:0;color:#a3a68f;font-size:17px;line-height:1.1;padding:2px 0 2px 6px}.empty{font-size:11px;color:#949d88;line-height:1.9;margin:4px 0 20px}#todoForm{display:flex;gap:5px;margin-top:12px}#todoText{min-width:0;width:100%;font-size:11px;background:#f0f0e4;border:1px solid #dadfca;padding:7px 8px;border-radius:3px;color:var(--ink)}.add{border:1px solid var(--green);background:var(--green);color:#fff;padding:1px 9px;border-radius:3px}.harvest{display:flex;justify-content:space-between;gap:10px;margin-top:25px;padding-top:16px;border-top:1px solid var(--line);font-size:10px;color:var(--soft)}.harvest strong{font-weight:500;color:#826c4c}.bottom{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:var(--soft);padding:15px 2px}.bottom .warning{color:#a56447}.footer{display:flex;justify-content:space-between;gap:15px;border-top:1px solid #d7dccb;padding-top:18px;margin-top:24px;color:#89917f;font-size:10px;letter-spacing:.5px}.footer em{font:15px var(--serif);font-style:normal;color:#718064}
+.extras{margin-top:18px;border:1px solid #d4d9c5;border-radius:5px;font-size:11px;color:var(--soft)}summary{cursor:pointer;padding:10px 14px}.extras-body{padding:0 14px 14px}.extras-body p{font-size:10px;line-height:1.9;margin:0 0 10px}.extras-actions{display:flex;gap:8px;flex-wrap:wrap}.import-tools{display:flex;gap:7px;align-items:center}.text-button{background:none;border:0;padding:0;color:var(--soft);font-size:10px;text-decoration:underline;text-underline-offset:3px}.crop-panel{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);width:min(290px,90%);background:#f8f4e7;border:1px solid #b8c3a4;padding:15px;border-radius:5px;box-shadow:0 8px 20px #4558371a}.crop-panel label{font-size:12px;display:block;margin-bottom:9px}.crop-panel input{width:100%;border:1px solid #ced2bb;border-radius:3px;background:#fffdf4;font-size:12px;padding:8px}.crop-panel p{font-size:10px;color:var(--soft);margin:8px 0}.crop-buttons{display:flex;justify-content:end;gap:7px}.primary{background:var(--green);color:#fff9e8;border:0;padding:7px 12px;border-radius:3px;font-size:11px}dialog{border:1px solid #c5cdb7;border-radius:8px;padding:24px;width:min(400px,90%);background:var(--paper);color:var(--ink)}dialog::backdrop{background:#23382255}dialog h2{font:23px var(--serif);margin:0 0 12px}dialog p{font-size:12px;line-height:1.9}dialog .crop-buttons{margin-top:20px}
+@media(min-width:1400px){.shell{margin-top:55px}}@media(max-width:900px){.shell{padding:0 18px;margin:24px auto}.workspace{grid-template-columns:minmax(0,1fr) 220px}.sidebar{padding:19px 16px}.toolbar{padding:9px;gap:7px}.tools{gap:5px}h1{font-size:30px}}@media(max-width:700px){.workspace{display:block}.farm-column{border-right:0}.sidebar{display:grid;grid-template-columns:1fr 1.2fr;gap:0 22px;border-top:1px solid var(--line)}.care-block{grid-column:1}.todo-block{grid-column:2;grid-row:1 / span 2}.care{margin-bottom:0;border-bottom:0;padding-bottom:10px}.current{font-size:17px;margin-bottom:10px;min-height:44px}.harvest{grid-column:1 / -1;margin-top:8px}.intro{align-items:center}.intro p{font-size:11px}.today{font-size:10px;min-width:100px}.today strong{font-size:18px}h1{font-size:27px;letter-spacing:1px}.masthead{margin-bottom:24px}.brand{font-size:16px}.toolbar{align-items:center}.helper{padding:10px 12px}.bottom{gap:10px;align-items:start}.footer em{font-size:13px}.version{font-size:9px}.wordmark{gap:8px}.import-tools{gap:9px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+#wallDialog{width:min(650px,95vw);max-height:90vh;overflow:auto}#wallDialog header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}#wallTitle{margin:0}.chalkboard{background-color:#304846;background-image:repeating-linear-gradient(0deg,transparent 0 45px,#203935 46px 47px);border:7px ridge #a77e54;padding:14px;min-height:165px;max-height:48vh;overflow:auto;color:#f5e8bd}.chalkboard p{margin:0}#wallNotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(185px,100%),1fr));gap:14px}.chalk-note{display:flex;align-items:center;gap:8px;padding:7px;border-bottom:2px dotted #acc6ad55;font:17px/1.5 var(--serif);overflow-wrap:anywhere}.chalk-note canvas{width:65px;height:50px;flex:none;pointer-events:none}#wallForm{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}#wallForm label{width:100%}#wishText{flex:1;min-width:120px;padding:7px;background:#fffdf4;border:1px solid #ccd0bc}#wallStatus{display:block;margin-top:8px}#cropKind{font-size:13px}
+</style>
+</head>
+<body>
+<main class="shell">
+ <header class="masthead"><div class="wordmark"><div class="stamp" aria-hidden="true">己</div><div><div class="brand">爱你老己</div><div class="subbrand">A LITTLE LIFE, WELL LIVED</div></div></div><span class="version">PIXEL GARDEN / V8.0.2</span></header>
+ <section class="intro"><div><h1>慢慢过今天。</h1><p>喝口水，做点小事，也给自己留一点空白。</p></div><div class="today"><span id="dateLabel"></span><strong id="clock">--:--</strong></div></section>
+ <section class="workspace" aria-label="我的像素小院">
+  <div class="farm-column">
+   <div class="scene-bar"><span class="scene-title"><span class="dot"></span><span id="sceneName">我的小院</span></span><span id="weatherLabel">晴 · 微风</span></div>
+   <div class="stage">
+    <canvas id="scene" width="640" height="400" role="img" aria-label="像素小院。按住戴浅色头巾的小人，将他拖到水井、吊床、菜园、小屋或村口。键盘用户可用下方目的地列表。"></canvas>
+    <button id="leaveBtn" class="scene-back" hidden>回小院</button><div id="bubble" class="bubble" role="status" aria-live="polite"></div><div id="hint" class="hint" hidden></div>
+    <div id="cropPanel" class="crop-panel" hidden><label for="cropText">今天，想让哪件小事长出来？</label><input id="cropText" maxlength="40" placeholder="比如：写好这一页周报"><label for="cropKind">种什么 <select id="cropKind"><option value="wheat">麦子</option><option value="tomato">番茄</option><option value="sunflower">向日葵</option></select></label><p id="cropHint">给小苗起个名字。清单的完成由你自己确认。</p><div class="crop-buttons"><button id="cropCancel" class="quiet-button">先歇歇</button><button id="cropStart" class="primary">开始种下</button></div></div>
+   </div>
+   <div class="toolbar"><div class="tools"><button id="wallBtn" class="quiet-button">心愿墙</button><button id="findBtn" class="quiet-button">找找小人</button><button id="stopBtn" class="quiet-button">停一停</button></div><div class="tools"><label class="wander"><input id="wander" type="checkbox" checked>自己散步</label><label class="wander">步速 <select id="pace" aria-label="行走速度"><option value="22">更慢</option><option value="30">慢慢走</option><option value="42">轻快些</option></select></label></div></div>
+   <p class="helper"><strong>按住小人，拖到想去的地方。</strong>松手后，小人会慢慢走过去。<br>闲逛只是在生活；喝水、休息和工作，都等你主动开始。</p>
+  </div>
+  <aside class="sidebar" aria-label="今天的记录">
+   <div class="care-block"><p class="section-label">此刻的自己</p><p class="current" id="state" aria-live="polite">在小院里，慢慢来</p><div class="care"><div><span>喝水</span><strong id="waterN">0</strong><em>次</em></div><div><span>午休</span><strong id="restN">0</strong><em>次</em></div><div><span>上厕所</span><strong id="toiletN">0</strong><em>次</em></div></div></div>
+   <div class="todo-block"><div class="list-title"><p class="section-label">今天想做的事</p><small id="todoCount">0 / 0</small></div><ul id="todoList"></ul><p id="todoEmpty" class="empty">不用把一天排得很满。<br>从一件小事开始就好。</p><form id="todoForm"><input id="todoText" aria-label="添加一件今天想做的事" maxlength="80" placeholder="写一件小事…" autocomplete="off"><button class="add" aria-label="添加待办" type="submit">+</button></form></div>
+   <div class="harvest"><span>小苗 <strong><span id="doneN">0</span> / 8</strong></span><span>小院金币 <strong id="coins">0</strong></span></div>
+  </aside>
+ </section>
+ <div class="bottom"><span id="saveStatus" role="status">已保存在此浏览器</span><div class="import-tools"><button id="exportBtn" class="text-button">带走小院</button><button id="importBtn" class="text-button">恢复备份</button><input id="backupFile" type="file" accept=".json,application/json" hidden></div></div>
+ <details class="extras"><summary>更多：天气、演示事件与键盘操作</summary><div class="extras-body"><p>天气和外部事件用于原型演示，尚未连接飞书、Apple Watch 或薪资系统。记录留在当前浏览器；清理浏览器前请先带走备份。</p><div class="extras-actions"><button class="quiet-button" id="weatherBtn">换个天气</button><button class="quiet-button" id="meetingBtn">模拟会议</button><button class="quiet-button" id="salaryBtn">模拟工资</button><button class="quiet-button" id="heartBtn">模拟心率事件</button><button class="quiet-button" id="beforeRestoreBtn">下载恢复前备份</button></div><p style="margin-top:13px">键盘也可以选择目的地。这里的操作同样需要你主动触发。</p><div id="destinations" class="extras-actions"></div></div></details>
+ <footer class="footer"><em>看见自己，也照顾自己。</em><span>Josie Xiang · 一个仍在生长的小项目</span><span>美术：Pixel-Boy &amp; AAA · CC0</span></footer>
+</main>
+<dialog id="wallDialog" aria-labelledby="wallTitle"><header><h2 id="wallTitle">小院心愿墙</h2><button id="wallClose" class="quiet-button">回小院</button></header><div class="chalkboard" id="chalkboard"><p id="wallEmpty">这块墙留给你。想抱怨一句，也可以。</p><div id="wallNotes"></div></div><form id="wallForm"><label for="wishText">今天想在墙上写什么？</label><input id="wishText" maxlength="80" required placeholder="比如：今天不准加班了"><button class="primary">画到墙上</button></form><small role="status" id="wallStatus"></small></dialog>
+<dialog id="restoreDialog"><h2>把小院带回来</h2><p id="restoreSummary"></p><div class="crop-buttons"><button id="restoreCancel" class="quiet-button">取消</button><button id="restoreConfirm" class="primary">确认恢复</button></div></dialog>
+<script>
+window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,340],"frames":{"cottage":{"source":"house.png","crop":[0,0,64,48],"reduction":1,"anchor":[22,48],"atlas":[2,2,64,48]},"shed":{"source":"house.png","crop":[416,0,48,48],"reduction":1,"anchor":[24,48],"atlas":[70,2,48,48]},"fountain":{"source":"house.png","crop":[48,240,32,32],"reduction":1,"anchor":[16,32],"atlas":[122,2,32,32]},"table":{"source":"element.png","crop":[176,16,48,16],"reduction":1,"anchor":[24,16],"atlas":[158,2,48,16]},"sign":{"source":"element.png","crop":[96,48,16,32],"reduction":1,"anchor":[8,32],"atlas":[210,2,16,32]},"tree":{"source":"nature.png","crop":[0,0,32,32],"reduction":1,"anchor":[16,31],"atlas":[2,54,32,32]},"pinkTree":{"source":"nature.png","crop":[0,288,48,48],"reduction":1,"anchor":[24,46],"atlas":[38,54,48,48]},"shrub":{"source":"nature.png","crop":[96,128,32,32],"reduction":1,"anchor":[16,30],"atlas":[90,54,32,32]},"flowerWhite":{"source":"nature.png","crop":[96,176,16,16],"reduction":2,"anchor":[4,7],"atlas":[126,54,8,8]},"flowerRed":{"source":"nature.png","crop":[48,176,16,16],"reduction":2,"anchor":[4,7],"atlas":[138,54,8,8]},"flowerYellow":{"source":"nature.png","crop":[0,176,16,16],"reduction":2,"anchor":[4,7],"atlas":[150,54,8,8]},"grass":{"source":"field.png","crop":[16,112,16,16],"reduction":1,"anchor":[0,0],"atlas":[162,54,16,16]},"grassDetail":{"source":"floor.png","crop":[16,192,16,16],"reduction":1,"anchor":[0,0],"atlas":[182,54,16,16]},"pathTiles":{"source":"floor.png","crop":[0,0,48,48],"reduction":1,"anchor":[0,0],"atlas":[202,54,48,48]},"pond":{"source":"water.png","crop":[0,96,48,48],"reduction":1,"anchor":[24,48],"atlas":[2,106,48,48]},"bed":{"source":"bed.png","crop":[192,48,16,32],"reduction":1,"anchor":[8,32],"atlas":[54,106,16,32]},"bookshelf":{"source":"element.png","crop":[128,112,32,32],"reduction":1,"anchor":[16,32],"atlas":[74,106,32,32]},"plant":{"source":"element.png","crop":[0,112,16,32],"reduction":1,"anchor":[8,32],"atlas":[110,106,16,32]},"floorTiles":{"source":"interiorFloor.png","crop":[0,0,48,48],"reduction":1,"anchor":[0,0],"atlas":[130,106,48,48]},"wallTiles":{"source":"wall.png","crop":[0,0,80,80],"reduction":1,"anchor":[0,0],"atlas":[2,158,80,80]},"rug":{"source":"camp.png","crop":[128,80,32,32],"reduction":1,"anchor":[16,32],"atlas":[86,158,32,32]},"catRug":{"source":"camp.png","crop":[128,80,32,32],"reduction":2,"anchor":[8,16],"atlas":[122,158,16,16]},"idle_down":{"source":"idle.png","crop":[0,0,16,16],"reduction":1,"anchor":[8,16],"atlas":[142,158,16,16]},"npc_down":{"source":"npc.png","crop":[0,0,16,16],"reduction":1,"anchor":[8,16],"atlas":[162,158,16,16]},"walk_down_0":{"source":"walk.png","crop":[0,0,16,16],"reduction":1,"anchor":[8,16],"atlas":[182,158,16,16]},"walk_down_1":{"source":"walk.png","crop":[0,16,16,16],"reduction":1,"anchor":[8,16],"atlas":[202,158,16,16]},"walk_down_2":{"source":"walk.png","crop":[0,32,16,16],"reduction":1,"anchor":[8,16],"atlas":[222,158,16,16]},"walk_down_3":{"source":"walk.png","crop":[0,48,16,16],"reduction":1,"anchor":[8,16],"atlas":[2,242,16,16]},"idle_up":{"source":"idle.png","crop":[16,0,16,16],"reduction":1,"anchor":[8,16],"atlas":[22,242,16,16]},"npc_up":{"source":"npc.png","crop":[16,0,16,16],"reduction":1,"anchor":[8,16],"atlas":[42,242,16,16]},"walk_up_0":{"source":"walk.png","crop":[16,0,16,16],"reduction":1,"anchor":[8,16],"atlas":[62,242,16,16]},"walk_up_1":{"source":"walk.png","crop":[16,16,16,16],"reduction":1,"anchor":[8,16],"atlas":[82,242,16,16]},"walk_up_2":{"source":"walk.png","crop":[16,32,16,16],"reduction":1,"anchor":[8,16],"atlas":[102,242,16,16]},"walk_up_3":{"source":"walk.png","crop":[16,48,16,16],"reduction":1,"anchor":[8,16],"atlas":[122,242,16,16]},"idle_left":{"source":"idle.png","crop":[32,0,16,16],"reduction":1,"anchor":[8,16],"atlas":[142,242,16,16]},"npc_left":{"source":"npc.png","crop":[32,0,16,16],"reduction":1,"anchor":[8,16],"atlas":[162,242,16,16]},"walk_left_0":{"source":"walk.png","crop":[32,0,16,16],"reduction":1,"anchor":[8,16],"atlas":[182,242,16,16]},"walk_left_1":{"source":"walk.png","crop":[32,16,16,16],"reduction":1,"anchor":[8,16],"atlas":[202,242,16,16]},"walk_left_2":{"source":"walk.png","crop":[32,32,16,16],"reduction":1,"anchor":[8,16],"atlas":[222,242,16,16]},"walk_left_3":{"source":"walk.png","crop":[32,48,16,16],"reduction":1,"anchor":[8,16],"atlas":[2,262,16,16]},"idle_right":{"source":"idle.png","crop":[48,0,16,16],"reduction":1,"anchor":[8,16],"atlas":[22,262,16,16]},"npc_right":{"source":"npc.png","crop":[48,0,16,16],"reduction":1,"anchor":[8,16],"atlas":[42,262,16,16]},"walk_right_0":{"source":"walk.png","crop":[48,0,16,16],"reduction":1,"anchor":[8,16],"atlas":[62,262,16,16]},"walk_right_1":{"source":"walk.png","crop":[48,16,16,16],"reduction":1,"anchor":[8,16],"atlas":[82,262,16,16]},"walk_right_2":{"source":"walk.png","crop":[48,32,16,16],"reduction":1,"anchor":[8,16],"atlas":[102,262,16,16]},"walk_right_3":{"source":"walk.png","crop":[48,48,16,16],"reduction":1,"anchor":[8,16],"atlas":[122,262,16,16]},"cat_0":{"source":"cat-padded.png","crop":[0,0,22,18],"reduction":2,"anchor":[5,8],"atlas":[142,262,11,9]},"cat_1":{"source":"cat-padded.png","crop":[22,0,22,18],"reduction":2,"anchor":[5,8],"atlas":[157,262,11,9]},"hammock":{"source":"extensions.png","crop":[0,0,64,24],"reduction":1,"anchor":[32,24],"atlas":[172,262,64,24]},"bowl":{"source":"extensions.png","crop":[64,0,16,8],"reduction":1,"anchor":[8,8],"atlas":[2,290,16,8]},"note":{"source":"extensions.png","crop":[80,0,16,8],"reduction":1,"anchor":[8,8],"atlas":[22,290,16,8]},"soil":{"source":"extensions.png","crop":[96,0,16,16],"reduction":1,"anchor":[0,0],"atlas":[42,290,16,16]},"crop_0":{"source":"extensions.png","crop":[112,0,16,16],"reduction":1,"anchor":[8,16],"atlas":[62,290,16,16]},"crop_1":{"source":"extensions.png","crop":[128,0,16,16],"reduction":1,"anchor":[8,16],"atlas":[82,290,16,16]},"crop_2":{"source":"extensions.png","crop":[144,0,16,16],"reduction":1,"anchor":[8,16],"atlas":[102,290,16,16]},"crop_3":{"source":"extensions.png","crop":[160,0,16,16],"reduction":1,"anchor":[8,16],"atlas":[122,290,16,16]},"crop_4":{"source":"extensions.png","crop":[176,0,16,16],"reduction":1,"anchor":[8,16],"atlas":[142,290,16,16]},"cup":{"source":"extensions.png","crop":[80,16,10,8],"reduction":1,"anchor":[5,8],"atlas":[162,290,10,8]},"hammockTree":{"source":"hammock-tree.png","crop":[0,0,32,48],"reduction":1,"anchor":[16,47],"atlas":[176,290,32,48]}},"sha256":"cc5531b4aa202821ac439bd1439662ff776a23c9438207c85dcb97ed850cff2b"},"image":"data:image/png;base64,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"};
+</script>
+<script>
+/* Movement, hit testing, navigation and save validation shared by the app and tests. */
+(function(root){
+  'use strict';
+  const WIDTH=640, HEIGHT=400;
+  // Bounding boxes are visible art; obstacles are only the solid ground footprints.
+  // A 16px native tile becomes 32px in the world. Feet are the actor anchor.
+  const FIELD={x:304,y:276,cell:32,columns:4,rows:2};
+  const cropStand=i=>({x:FIELD.x+(i%4)*32+16,y:FIELD.y+Math.floor(i/4)*32+34});
+  const ZONES={
+    home:{label:'小屋',box:[98,80,128,96],stand:{x:142,y:196}},
+    water:{label:'饮水井',box:[333,134,64,64],stand:{x:365,y:212}},
+    toilet:{label:'洗手间',box:[507,118,96,96],stand:{x:555,y:228}},
+    desk:{label:'写清单',box:[220,158,96,32],stand:{x:268,y:206}},
+    nap:{label:'吊床',box:[56,283,128,48],stand:{x:120,y:339}},
+    work:{label:'小菜园',box:[304,276,128,64],stand:{x:320,y:354}},
+    walk:{label:'花园',box:[44,218,53,38],stand:{x:80,y:267}},
+    village:{label:'去村里',box:[570,232,32,64],stand:{x:586,y:310}}
+  };
+  const OBSTACLES=[
+    [98,145,128,31],[337,177,56,21],[511,179,88,35],[222,174,92,16],
+    [82,309,76,12],[58,208,12,20],[54,315,12,22],[175,315,12,22],
+    [442,54,84,58],[286,92,13,20],[609,139,13,20],[445,173,14,20]
+  ];
+  const inside=(p,r,pad=0)=>p.x>=r[0]-pad&&p.x<=r[0]+r[2]+pad&&p.y>=r[1]-pad&&p.y<=r[1]+r[3]+pad;
+  function walkable(p){return p.x>=20&&p.x<=620&&p.y>=115&&p.y<=379&&!OBSTACLES.some(r=>inside(p,r,4));}
+  function moveToward(o,p,speed,dt){
+    const dx=p.x-o.x,dy=p.y-o.y,d=Math.hypot(dx,dy),n=Math.min(d,speed*Math.max(0,dt));
+    if(d){o.x+=dx/d*n;o.y+=dy/d*n;}
+    return d-n<0.1;
+  }
+  function nearestFree(p){
+    const clamped={x:Math.max(20,Math.min(620,p.x)),y:Math.max(115,Math.min(379,p.y))};
+    if(walkable(clamped))return clamped;
+    for(let r=8;r<640;r+=8)for(let a=0;a<24;a++){
+      const q={x:Math.round(clamped.x+Math.cos(a*Math.PI/12)*r),y:Math.round(clamped.y+Math.sin(a*Math.PI/12)*r)};
+      if(walkable(q))return q;
+    }
+    return {x:142,y:196};
+  }
+  function segmentClear(a,b){const n=Math.ceil(Math.hypot(b.x-a.x,b.y-a.y)/3);for(let i=0;i<=n;i++)if(!walkable({x:a.x+(b.x-a.x)*i/Math.max(1,n),y:a.y+(b.y-a.y)*i/Math.max(1,n)}))return false;return true;}
+  function route(a,b){
+    const from=nearestFree(a),to=nearestFree(b);
+    if(segmentClear(from,to))return [to];
+    const cell=8,cols=80,rows=50;
+    const point=i=>({x:(i%cols)*cell+4,y:Math.floor(i/cols)*cell+4});
+    const closest=p=>{
+      let best=-1,dist=Infinity;
+      for(let y=14;y<48;y++)for(let x=2;x<78;x++){
+        const id=y*cols+x,q=point(id),d=(q.x-p.x)**2+(q.y-p.y)**2;
+        if(d<dist&&walkable(q)&&segmentClear(p,q)){best=id;dist=d;}
+      }return best;
+    };
+    const start=closest(from),end=closest(to);if(start<0||end<0)return [];
+    const queue=[start],previous=new Int32Array(cols*rows).fill(-1);previous[start]=start;
+    for(let i=0;i<queue.length&&previous[end]<0;i++){
+      const id=queue[i];
+      for(const d of [-1,1,-cols,cols]){
+        const next=id+d;if(next<0||next>=cols*rows||previous[next]>=0||Math.abs(next%cols-id%cols)>1)continue;
+        if(walkable(point(next))&&segmentClear(point(id),point(next))){previous[next]=id;queue.push(next);}
+      }
+    }
+    if(previous[end]<0)return [];
+    const result=[to];let cur=end;while(cur!==start){result.push(point(cur));cur=previous[cur];}result.push(point(start));result.reverse();
+    const simple=[];let last=from;
+    for(let i=0;i<result.length;){let n=i;while(n+1<result.length&&segmentClear(last,result[n+1]))n++;simple.push(result[n]);last=result[n];i=n+1;}
+    return simple;
+  }
+  function zoneAt(p){
+    const found=Object.entries(ZONES).filter(([,z])=>inside(p,z.box)||Math.hypot(p.x-z.stand.x,p.y-z.stand.y)<17);
+    found.sort((a,b)=>Math.hypot(p.x-a[1].stand.x,p.y-a[1].stand.y)-Math.hypot(p.x-b[1].stand.x,p.y-b[1].stand.y));
+    return found[0]?.[0]||null;
+  }
+  function localDate(d=new Date()){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
+  function cleanJournal(raw,date=localDate()){
+    const count=v=>Number.isSafeInteger(v)&&v>=0&&v<=100000000?v:0;
+    const current=raw?.date===date?raw:{};
+    return {date,water:count(current.water),rest:count(current.rest),toilet:count(current.toilet)};
+  }
+  function recordCareAction(journal,action,date=localDate()){
+    const next=cleanJournal(journal,date),key={water:'water',nap:'rest',toilet:'toilet'}[action];
+    if(key)next[key]=Math.min(100000000,next[key]+1);
+    return next;
+  }
+  function cleanSave(raw){
+    const x=raw&&typeof raw==='object'?raw:{};
+    const whole=(v,max=100000000)=>Number.isSafeInteger(v)&&v>=0&&v<=max?v:0;
+    const crops=Array.from({length:8},(_,i)=>({text:typeof x.crops?.[i]?.text==='string'?x.crops[i].text.slice(0,40):'',stage:whole(x.crops?.[i]?.stage,4),kind:['tomato','sunflower'].includes(x.crops?.[i]?.kind)?x.crops[i].kind:'wheat'}));
+    const date=localDate();
+    const wishes=(Array.isArray(x.wishes)?x.wishes:[]).filter(w=>typeof w==='string'&&w.trim()).slice(-60).map(w=>w.trim().slice(0,80));
+    return {version:7,wishes,coins:whole(x.coins),todos:(Array.isArray(x.todos)?x.todos:[]).slice(0,100).filter(t=>t&&typeof t.text==='string').map(t=>({text:t.text.slice(0,80),done:t.done===true})),crops,
+      weather:['sunny','rain','night','warm'].includes(x.weather)?x.weather:'sunny',
+      pace:[22,30,42].includes(x.pace)?x.pace:30,wander:x.wander!==false,
+      journal:cleanJournal(x.journal,date),
+      learned:x.learned&&typeof x.learned==='object'&&!Array.isArray(x.learned)?Object.fromEntries(Object.entries(x.learned).filter(([k,v])=>/^(上午|下午|晚上):(water|nap|work|toilet|home|desk|walk|village)$/.test(k)&&Number.isSafeInteger(v)&&v>0).slice(0,100)):{}
+    };
+  }
+  function migrateLegacy(read){
+    const todos=read('todos',[]),texts=read('cropTexts',[]),stages=read('cropStages',[]);
+    return cleanSave({coins:read('coins',0),todos:Array.isArray(todos)?todos:[],crops:Array.from({length:8},(_,i)=>({text:texts?.[i]||'',stage:stages?.[i]||0})),weather:['sunny','warm','rain','night'][read('weather',0)]});
+  }
+  function depthOrder(items){return items.map((x,i)=>({...x,_index:i})).sort((a,b)=>a.y-b.y||a._index-b._index);}
+  const api={WIDTH,HEIGHT,FIELD,cropStand,ZONES,OBSTACLES,inside,walkable,moveToward,nearestFree,route,segmentClear,zoneAt,localDate,cleanJournal,recordCareAction,cleanSave,migrateLegacy,depthOrder};
+  if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FarmCore=api;
+})(typeof globalThis!=='undefined'?globalThis:this);
+
+</script>
+<script>
+/* CC0 Ninja Adventure sprites + documented small extensions; see ASSET_CREDITS.md.
+   Every sprite is rendered at 2x its native resolution, with explicit foot anchors. */
+(function(root){
+ 'use strict';
+ const M=FarmAssets.manifest,S=M.scale,C={grass:'#79a74a',cream:'#ffe3af',ink:'#493d3c'};
+ const image=new Image();let ctx,ground;
+ const ready=new Promise((resolve,reject)=>{image.onload=resolve;image.onerror=()=>reject(Error('小院素材加载失败，请重新打开文件。'));});
+ image.src=FarmAssets.image;
+ const snap=v=>Math.round(v/S)*S;
+ const r=(x,y,w,h,c)=>{ctx.fillStyle=c;ctx.fillRect(snap(x),snap(y),snap(w),snap(h));};
+ function oval(x,y,rx,ry,c){for(let yy=-Math.ceil(ry);yy<=ry;yy+=S){const w=Math.sqrt(Math.max(0,1-(yy/ry)**2))*rx;r(x-w,y+yy,w*2,S,c);}}
+ function line(x,y,x2,y2,c,width=2){ctx.strokeStyle=c;ctx.lineWidth=width;ctx.lineCap='butt';ctx.beginPath();ctx.moveTo(snap(x),snap(y));ctx.lineTo(snap(x2),snap(y2));ctx.stroke();}
+ function shadow(x,y,w=16){oval(x,y,w,3,'#243c3326');}
+ function sprite(name,x,y,flip=false){
+   const f=M.frames[name],[sx,sy,w,h]=f.atlas,[ax,ay]=f.anchor;
+   const dx=snap(x-ax*S),dy=snap(y-ay*S);
+   if(flip){ctx.save();ctx.translate(dx+w*S,dy);ctx.scale(-1,1);ctx.drawImage(image,sx,sy,w,h,0,0,w*S,h*S);ctx.restore();}
+   else ctx.drawImage(image,sx,sy,w,h,dx,dy,w*S,h*S);
+ }
+ function part(name,sx,sy,w,h,x,y){const f=M.frames[name];ctx.drawImage(image,f.atlas[0]+sx,f.atlas[1]+sy,w,h,snap(x),snap(y),w*S,h*S);}
+ function fence(x,y,length){
+   r(x,y-14,length,4,'#875741');r(x,y-6,length,4,'#c88851');
+   for(let n=0;n<=length;n+=24){r(x+n-2,y-22,6,24,'#634a3d');r(x+n,y-20,2,20,'#efb66d');r(x+n-2,y-22,6,2,'#f7d28a');}
+ }
+ // Four 8x8 source quarters combine into a 16x16 tile. No texture stretching.
+ function roadTile(col,row,cells){
+   const has=(x,y)=>cells.has(x+','+y),l=has(col-1,row),rr=has(col+1,row),u=has(col,row-1),d=has(col,row+1);
+   for(let qy=0;qy<2;qy++)for(let qx=0;qx<2;qx++){
+     let sx=qx?(rr?24:40):(l?16:0),sy=qy?(d?24:40):(u?16:0);
+     // A missing diagonal gets the source's rounded inner-corner quarter.
+     part('pathTiles',sx,sy,8,8,col*32+qx*16,row*32+qy*16);
+   }
+ }
+ function roads(village=false){
+   const cells=new Set();const add=(x,y)=>cells.add(x+','+y);
+   if(village){for(let y=5;y<10;y++)for(let x=6;x<14;x++)add(x,y);for(let x=1;x<20;x++)add(x,8);}
+   else{
+     for(let x=2;x<=18;x++)add(x,7);
+     for(const [col,from,to] of [[4,5,7],[8,5,7],[11,6,7],[17,6,7],[18,7,10],[3,7,10],[14,7,10]])for(let y=from;y<=to;y++)add(col,y);
+     for(let x=14;x<=18;x++)add(x,10);
+   }
+   for(const cell of cells){const [x,y]=cell.split(',').map(Number);roadTile(x,y,cells);}
+ }
+ function meadow(){
+   for(let y=0;y<400;y+=32)for(let x=0;x<640;x+=32)sprite('grass',x,y);
+   for(let i=0;i<36;i++){const x=(i*7%20)*32,y=(i*11%13)*32;sprite('grassDetail',x,y);}
+ }
+ function flowers(x,y){sprite('flowerWhite',x-12,y);sprite('flowerRed',x+12,y+6);sprite('flowerYellow',x+2,y-10);}
+ function makeGround(){
+   ground=document.createElement('canvas');ground.width=640;ground.height=400;
+   const old=ctx;ctx=ground.getContext('2d');ctx.imageSmoothingEnabled=false;meadow();roads();
+   sprite('pond',484,118);
+   fence(242,126,164);fence(538,114,76);fence(282,370,176);fence(504,370,88);
+   flowers(70,248);flowers(260,220);flowers(486,226);flowers(232,346);
+   for(let i=0;i<10;i++)sprite('shrub',i*64+12,36+(i%2)*4);
+   ctx=old;
+ }
+ function base(){if(!ground)makeGround();ctx.drawImage(ground,0,0);}
+ function cottage(x,y){shadow(x+18,y,58);sprite('cottage',x,y);}
+ function well(x,y){shadow(x,y,25);sprite('fountain',x,y);}
+ function shed(x,y){shadow(x,y,40);sprite('shed',x,y);}
+ function desk(x,y){shadow(x,y,40);sprite('table',x,y);sprite('note',x-12,y-16);}
+ function sign(x,y){sprite('sign',x,y);}
+ function tree(x,y,kind='tree'){sprite(kind,x,y);}
+ function hero(x,y,action,t,facing='down',drag=false){
+   shadow(x,y,9);
+   const moving=action==='walk',frame=moving?'walk_'+facing+'_'+Math.floor(t*6)%4:'idle_'+facing;
+   sprite(frame,x,y);
+   if(action==='water')sprite('cup',x+12,y-12);
+   if(action==='work'){line(x+12,y-8,x+18,y-22+(Math.floor(t*3)%2)*4,'#875741',2);r(x+16,y-22,10,4,'#c5c19c');}
+   if(drag){line(x-18,y-40,x-12,y-34,C.cream);line(x+18,y-40,x+12,y-34,C.cream);}
+ }
+ // A tabby drawn on the same two-pixel grid as the villager.
+ const tabby=[
+   '...........d...d..',
+   '..........dod.dod.',
+   '..dd......dppdppd.',
+   '.doo.....dooooood.',
+   '.do.....doaooaood.',
+   '.doo...doofwwfood.',
+   '..dooddoowwpwwod..',
+   '...doaooaowwwwd...',
+   '....doaoaowwwd....',
+   '....doodddwodd....',
+   '....dwwd.dwwd.....'
+ ];
+ const fur={d:'#513f40',o:'#e8a25f',a:'#b97048',p:'#efa997',w:'#fff0cd',f:'#30383a'};
+ function cat(x,y,action,t,facing='right'){
+   shadow(x,y,13);const mirror=facing==='left',step=action==='walk'&&Math.floor(t*5)%2;
+   tabby.forEach((row,j)=>Array.from(row).forEach((v,i)=>{
+     if(v==='.')return;
+     const foot=j>9&&step?(i<8?1:-1):0;
+     r(x+(mirror?8-i:i-9)*2+foot*2,y+(j-12)*2,2,2,fur[v]);
+   }));
+   if(action==='sleep'){r(x+17,y-27,6,2,C.cream);r(x+19,y-25,2,2,C.cream);r(x+17,y-23,6,2,C.cream);}
+ }
+ function restroom(x,y){
+   shed(x,y);
+   // Mixed-case pixel lettering keeps the Toilet sign readable offline.
+   r(x-27,y-62,54,20,'#493e39');r(x-25,y-60,50,16,'#416b6a');
+   const letters={
+     T:['11111','00100','00100','00100','00100','00100'],
+     o:['000','000','111','101','101','111'],
+     i:['1','0','1','1','1','1'],
+     l:['10','10','10','10','10','11'],
+     e:['000','000','111','101','110','111'],
+     t:['010','010','111','010','010','011']
+   };
+   let left=x-22;
+   for(const letter of 'Toilet'){
+     const rows=letters[letter];
+     rows.forEach((row,j)=>Array.from(row).forEach((v,i)=>{
+       if(v==='1')r(left+i*2,y-58+j*2,2,2,'#fff1c6');
+     }));
+     left+=(rows[0].length+1)*2;
+   }
+   r(x+24,y-32,12,14,'#866751');r(x+26,y-30,8,6,'#b8d9cf');r(x+28,y-24,4,4,'#f4ebc6');
+ }
+ function wall(x,y,text){
+   r(x-36,y-44,4,46,'#694b3a');r(x+32,y-44,4,46,'#694b3a');r(x-38,y-48,76,42,'#79563c');r(x-36,y-46,72,4,'#d6a36c');r(x-34,y-42,68,32,'#314d49');
+   const motif=chalkTheme(text||'心愿');drawChalk(ctx,motif,x-18,y-41,1,text||'');
+   for(let i=0;i<3;i++)r(x-26+i*6,y-8,4,2,['#f1c4af','#b3dacb','#edd688'][i]);
+ }
+ const designs={
+   meeting:['不想开会的对话框',[[3,5,22,5,22,16,12,16,7,21,7,16,3,16,3,5],[11,9,11,11],[15,9,15,11],[2,24,26,2]]],
+   overtime:['长出翅膀的下班钟',[[10,7,14,4,20,4,24,8,24,16,21,20,13,20,9,16,9,9,10,7],[16,7,16,12,21,12],[8,11,2,7,4,13,8,15],[25,11,31,6,29,13,25,15],[12,21,10,24],[21,21,24,24]]],
+   sleep:['枕边的月亮',[[17,2,14,7,15,11,20,13,24,11,21,16,15,16,10,12,10,7,13,3,17,2],[1,19,8,17,16,20,13,24,3,24,1,19],[27,3,27,7],[25,5,29,5]]],
+   trip:['出发的小帆船',[[4,17,28,17,23,23,10,23,4,17],[16,3,16,16,6,16,16,3],[19,6,25,15,19,15,19,6],[2,25,6,24,10,25],[22,25,26,24,30,25]]],
+   money:['发芽的钱袋',[[13,9,9,3,15,4,18,2,22,4,18,9,13,9],[13,10,7,17,8,22,13,24,21,24,25,21,25,17,19,10,13,10],[13,14,16,17,19,14],[13,18,19,18],[16,17,16,21]]],
+   sprout:['新长出的小苗',[[16,22,16,12,20,7,28,5,26,11,21,14,17,14],[15,15,10,14,5,8,11,8,15,12],[7,23,13,21,21,21,26,24]]],
+   star:['有尾巴的许愿星',[[19,2,21,8,28,9,23,14,24,21,18,17,12,20,13,13,8,9,16,8,19,2],[10,16,4,21],[10,20,6,24]]]
+ };
+ function chalkTheme(text){
+   for(const [key,words] of [['meeting',/组会|开会|会议|例会/],['overtime',/加班|下班|打卡/],['sleep',/休息|睡|午休|躺/],['trip',/旅行|旅游|度假|看海/],['money',/工资|发财|奖金|涨薪/],['sprout',/种|花|成长|发芽/]])if(words.test(text))return key;
+   return 'star';
+ }
+ function drawChalk(c,key,x,y,scale,text){
+   let seed=17;for(const ch of text)seed=(seed*31+ch.codePointAt(0))>>>0;
+   const chalk=['#f7d898','#efb8af','#aedaca','#ced0ed'];
+   designs[key][1].forEach((path,k)=>{
+     for(let j=2;j<path.length;j+=2){
+       const ax=path[j-2],ay=path[j-1],dx=path[j]-ax,dy=path[j+1]-ay,n=Math.max(Math.abs(dx),Math.abs(dy));
+       for(let i=0;i<=n;i++){const px=Math.round(ax+dx*i/n),py=Math.round(ay+dy*i/n);c.fillStyle=chalk[(seed+k)%4];c.fillRect(x+px*scale,y+py*scale,scale,scale);}
+     }
+   });
+   for(let i=0;i<5;i++){seed=(Math.imul(seed,1664525)+1013904223)>>>0;c.fillStyle='#c5d7be88';c.fillRect(x+(seed%34)*scale,y+(seed>>>8)%24*scale,scale,scale);}
+ }
+ function bowl(x,y){sprite('bowl',x,y);}
+ function hammock(x,y,sleeping){
+   shadow(x,y-3,32);sprite('hammock',x,y);
+   if(sleeping){
+     const f=M.frames.idle_down,[sx,sy,w,h]=f.atlas;
+     ctx.save();ctx.translate(snap(x),snap(y-22));ctx.rotate(Math.PI/2);ctx.drawImage(image,sx,sy,w,h,-16,-16,w*S,h*S);ctx.restore();
+     // The front of the cloth sits above the sleeper's legs, like the furniture.
+     part('hammock',0,14,64,10,x-64,y-20);
+     r(x+22,y-39,4,2,C.cream);r(x+24,y-37,2,2,C.cream);
+   }
+ }
+ function field(crops,active){
+   r(300,272,136,72,'#815840');r(300,272,136,2,'#e9be7c');r(300,342,136,2,'#bc905d');
+   for(let i=0;i<4;i++){r(300+i*42,270,4,6,'#695241');r(300+i*42,340,4,6,'#695241');}
+   // Water channel and a terracotta pot at the end of the beds.
+   r(436,276,6,62,'#876e50');r(438,278,2,58,'#8ec1b3');
+   r(286,318,12,4,'#e7ae77');r(288,322,8,8,'#af7050');sprite('flowerWhite',291,319);
+   for(let i=0;i<8;i++){const x=304+i%4*32,y=276+Math.floor(i/4)*32;sprite('soil',x,y);
+     for(let j=0;j<3;j++)r(x+4+(i%2)*2,y+6+j*8,20,2,'#7c573c66');
+     if(i===active){ctx.strokeStyle='#ffe3af';ctx.lineWidth=2;ctx.strokeRect(x+1,y+1,30,30);}
+   }
+ }
+ function crop(i,stage,kind){
+   if(!stage)return;
+   const x=320+i%4*32,y=306+Math.floor(i/4)*32;
+   if(stage<2||kind==='wheat'){sprite('crop_'+stage,x,y);return;}
+   const top=y-8-stage*4;
+   r(x,top,2,y-top,'#4a7545');r(x-6,top+10,6,4,'#588446');r(x-8,top+8,4,4,'#85aa54');r(x+2,top+6,6,4,'#728f45');
+   if(stage<3)return;
+   if(kind==='sunflower'){oval(x,top,stage===4?9:5,stage===4?8:4,'#e5a642');oval(x,top-2,5,5,'#ffda6a');oval(x,top,3,3,'#79543b');}
+   else for(const [dx,dy] of [[-5,7],[5,11],[0,2]]){oval(x+dx,top+dy,4,4,stage===4?'#bc5146':'#d7a057');r(x+dx-2,top+dy-2,2,2,'#f5b47d');r(x+dx,top+dy-4,2,2,'#4c7340');}
+ }
+ function catBed(x,y){sprite('catRug',x,y);}
+ function weather(kind,t){
+   if(kind==='night'){r(0,0,640,400,'#24384f66');for(let i=0;i<12;i++)r(30+i*51+Math.sin(t*.25+i)*5,178+(i*41%170),2,2,'#f7e7a8');}
+   if(kind==='warm')r(0,0,640,400,'#efaa5918');
+   if(kind==='rain'){r(0,0,640,400,'#3e617a28');for(let i=0;i<65;i++){const x=(i*107-t*28+6400)%640,y=(i*53+t*130)%430-20;line(x,y,x-2,y+6,'#dde7df88');}}
+ }
+ function indoor(t){
+   r(0,0,640,400,'#475344');
+   // Interior uses the same scale as the yard; a human is still 32 pixels tall.
+   for(let y=112;y<352;y+=32)for(let x=160;x<480;x+=32)part('floorTiles',16,16,16,16,x,y);
+   for(let x=160;x<480;x+=32){part('wallTiles',32,0,16,16,x,80);part('wallTiles',32,64,16,16,x,352);}
+   for(let y=112;y<352;y+=32){part('wallTiles',0,32,16,16,128,y);part('wallTiles',64,32,16,16,480,y);}
+   for(const [sx,sy,x,y] of [[0,0,128,80],[64,0,480,80],[0,64,128,352],[64,64,480,352]])part('wallTiles',sx,sy,16,16,x,y);
+   sprite('rug',320,290);sprite('bookshelf',428,180);sprite('plant',182,184);sprite('bed',212,278);desk(421,263);
+   hero(320,297,'idle',t,'up');cat(351,308,'sleep',t);
+ }
+ function village(t){
+   meadow();roads(true);fence(66,142,486);
+   const items=[{y:136,draw:()=>cottage(162,136)},{y:132,draw:()=>shed(490,132)},
+    {y:180,draw:()=>tree(68,180,'pinkTree')},{y:175,draw:()=>tree(563,175)},
+    {y:324,draw:()=>tree(99,324)},{y:337,draw:()=>tree(547,337,'pinkTree')},
+    {y:256,draw:()=>desk(320,256)},{y:218,draw:()=>{sprite('npc_down',319,218);}},
+    {y:292,draw:()=>hero(291,292,'idle',t,'up')},{y:282,draw:()=>{sprite('npc_left',393,282);}},
+    {y:296,draw:()=>sign(215,296)}];
+   for(const it of FarmCore.depthOrder(items))it.draw();flowers(464,327);flowers(174,329);
+ }
+ root.FarmArt={C,ready,init(c){ctx=c;ctx.imageSmoothingEnabled=false;r(0,0,640,400,C.grass);},base,field,crop,wall,restroom,chalkTheme,drawChalk,designs,catBed,cottage,well,shed,desk,sign,tree,hammock,flowers,hero,cat,bowl,weather,indoor,village,oval,line,r,shadow};
+})(globalThis);
+
+</script>
+<script>
+(function(){
+ 'use strict';
+ const F=FarmCore,A=FarmArt,$=id=>document.getElementById(id),cv=$('scene'),ctx=cv.getContext('2d');A.init(ctx);
+ const SAVE_KEY='aini_farm_v7';let storageHealthy=true;
+ function readKey(key,fallback){try{const v=localStorage.getItem(key);return v===null?fallback:JSON.parse(v);}catch{return fallback;}}
+ const initial=readKey(SAVE_KEY,null);
+ let data=initial?F.cleanSave(initial):F.migrateLegacy((key,d)=>readKey('aini_v2_'+key,d));
+ const hero={x:142,y:205,path:[],facing:'down'},cat={x:181,y:211,path:[],facing:'right'};
+ const game={scene:'farm',zone:'idle',pending:null,actionTime:0,crop:-1,drag:null,time:0,dwell:5,catDwell:5,breathing:0,focusHero:0};
+ let bubbleTimer=0,hoverZone=null;
+ function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(data));storageHealthy=true;}catch{storageHealthy=false;}updateSaveStatus();}
+ function updateSaveStatus(){$('saveStatus').textContent=storageHealthy?'已保存在此浏览器':'暂时无法保存，请导出备份';$('saveStatus').classList.toggle('warning',!storageHealthy);}
+ function say(text){$('bubble').textContent=text;$('bubble').classList.add('show');clearTimeout(bubbleTimer);bubbleTimer=setTimeout(()=>$('bubble').classList.remove('show'),3600);}
+ function setStatus(text){$('state').textContent=text;}
+ function arrive(){
+   const target=game.pending;if(!target)return;game.pending=null;game.zone=target;game.actionTime=0;game.catDwell=0;
+   if(['home','village'].includes(target)){setScene(target==='home'?'indoor':'village');return;}
+   if(target==='desk'){setStatus('整理一下今天的事');$('todoText').focus();say('想做的事，一件一件写下来。');return;}
+   if(target==='work'){
+     game.crop=data.crops.findIndex(c=>c.stage<4);
+     if(game.crop<0){game.zone='idle';setStatus('今天的小菜园已经长好了');say('八格都长好了，歇一会儿吧。');return;}
+     $('cropText').value=data.crops[game.crop].text||data.todos.find(t=>!t.done)?.text||'';
+     $('cropKind').value=data.crops[game.crop].kind;$('cropKind').disabled=data.crops[game.crop].stage>0;
+     $('cropPanel').hidden=false;setStatus('先给这格小苗起个名字');$('cropText').focus();return;
+   }
+   const messages={water:'大水理论：先喝口水。小猫也有自己的水碗。',nap:'在树荫里躺一会儿。',toilet:'去去就回，身体的信号要听。',walk:'看看花草，今天不用着急。'};
+   say(messages[target]||'慢慢来。');setStatus({water:'正在喝水',nap:'正在午休',toilet:'正在上厕所',walk:'在花园里透透气'}[target]||'慢慢过今天');
+   const hour=new Date().getHours(),key=(hour<12?'上午':hour<18?'下午':'晚上')+':'+target;data.learned[key]=(data.learned[key]||0)+1;save();
+ }
+ function setScene(name){
+   game.scene=name;game.pending=null;game.zone='idle';game.actionTime=0;game.crop=-1;hero.path=[];cat.path=[];game.breathing=0;game.drag=null;hoverZone=null;$('cropPanel').hidden=true;
+   $('leaveBtn').hidden=name==='farm';$('sceneName').textContent={farm:'我的小院',indoor:'回家歇歇',village:'村里的会面'}[name];
+   $('leaveBtn').textContent=name==='village'?'散会，回小院':'出门，回小院';
+   if(name==='farm'){hero.x=142;hero.y=205;game.dwell=6;setStatus('在小院里，慢慢来');say('回到小院了。');}
+   else{setStatus(name==='indoor'?'回家歇歇':'在村里坐一会儿');say(name==='indoor'?'放下手里的事，回家歇会儿。':'到村里了，坐下来聊聊。');}
+ }
+ function go(zone,manual=true){
+   if(game.scene!=='farm'||!F.ZONES[zone])return;
+   game.zone='idle';game.pending=zone;game.actionTime=0;game.crop=-1;game.breathing=0;$('cropPanel').hidden=true;
+   const safe=F.nearestFree(hero);hero.x=safe.x;hero.y=safe.y;hero.path=F.route(hero,F.ZONES[zone].stand);game.dwell=6;
+   if(!hero.path.length){game.pending=null;say('这条路暂时走不过去，换个位置试试。');return;}
+   setStatus('慢慢走向'+F.ZONES[zone].label);
+ }
+ function finishAction(){
+   const zone=game.zone;
+   data.journal=F.recordCareAction(data.journal,zone);
+   game.zone='idle';game.actionTime=0;game.crop=-1;game.dwell=7;hero.path=[];$('cropPanel').hidden=true;
+   setStatus({water:'喝水已记录',nap:'午休已记录',toilet:'上厕所已记录'}[zone]||'在小院里，慢慢来');if(zone==='water')say('喝好啦，继续慢慢过今天。');else if(zone==='nap')say('午休好了，伸个懒腰。');else if(zone==='toilet')say('上厕所已记录。');save();renderStats();
+ }
+ function startCrop(){
+   if(game.zone!=='work'||game.crop<0)return;
+   const text=$('cropText').value.trim();if(!text){$('cropText').focus();$('cropHint').textContent='写一件你想慢慢做的事，再开始。';return;}
+   data.crops[game.crop].kind=$('cropKind').value||'wheat';data.crops[game.crop].text=text.slice(0,40);$('cropPanel').hidden=true;game.actionTime=data.crops[game.crop].stage*7.5;
+   const i=game.crop;hero.path=F.route(hero,F.cropStand(i));
+   setStatus('在种「'+text+'」');say('陪这件小事长一会儿。清单是否完成，由你来勾选。');save();
+ }
+ function stopAction(){
+   if(game.drag)cancelDrag();game.zone='idle';game.pending=null;game.crop=-1;game.actionTime=0;game.breathing=0;hero.path=[];game.dwell=8;$('cropPanel').hidden=true;setStatus('已停下');
+ }
+ function advance(o,speed,dt){
+   let budget=speed*dt;
+   while(o.path.length&&budget>0){const p=o.path[0],d=Math.hypot(p.x-o.x,p.y-o.y);if(d<.05){o.path.shift();continue;}o.facing=Math.abs(p.x-o.x)>Math.abs(p.y-o.y)?(p.x<o.x?'left':'right'):(p.y<o.y?'up':'down');const used=Math.min(d,budget);F.moveToward(o,p,used,1);budget-=used;if(used>=d)o.path.shift();}
+ }
+ const wanderSpots=[{x:142,y:225},{x:209,y:240},{x:273,y:258},{x:268,y:325},{x:460,y:337},{x:500,y:240},{x:81,y:253}];
+ const catSpots=[{x:188,y:210},{x:272,y:251},{x:454,y:250},{x:460,y:336},{x:197,y:291}];
+ function update(dt){
+   game.time+=dt;if(game.scene!=='farm')return;
+   const date=F.localDate();if(data.journal.date!==date){data.journal=F.cleanJournal(data.journal,date);save();renderStats();}
+   if(!game.drag){
+     advance(hero,data.pace*(game.pending||game.zone==='work'?1:.78),dt);
+     if(!hero.path.length&&game.pending)arrive();
+     if(!hero.path.length&&!game.pending&&game.zone==='idle'&&data.wander&&game.breathing<=0){
+       game.dwell-=dt;if(game.dwell<=0){const candidates=wanderSpots.filter(p=>Math.hypot(p.x-hero.x,p.y-hero.y)>30);const p=candidates[Math.floor(Math.random()*candidates.length)];hero.path=F.route(hero,p);game.dwell=6+Math.random()*5;}
+     }
+     const durations={water:7,nap:18,toilet:7,walk:10};
+     if(!hero.path.length&&durations[game.zone]){game.actionTime+=dt;if(game.actionTime>=durations[game.zone])finishAction();}
+     if(game.zone==='work'&&game.crop>=0&&!hero.path.length&&$('cropPanel').hidden){
+       game.actionTime+=dt;const crop=data.crops[game.crop],stage=Math.min(4,Math.floor(game.actionTime/7.5));
+       if(stage>crop.stage){crop.stage=stage;save();renderStats();}
+       if(stage===4){data.coins+=8;const name=crop.text;finishAction();say('「'+name+'」的小苗长好了。记得按实际进度勾选清单。');save();renderStats();}
+     }
+   }
+   game.catDwell-=dt;
+   if(game.catDwell<=0){
+     let p;if(game.zone==='water')p={x:416,y:216};else if(game.zone==='nap')p={x:238,y:328};else if(Math.random()<.35)p=F.nearestFree({x:hero.x+23,y:hero.y+7});else p=catSpots[Math.floor(Math.random()*catSpots.length)];
+     cat.path=F.route(cat,p);game.catDwell=5+Math.random()*6;
+   }advance(cat,23,dt);
+   if(game.breathing>0){game.breathing=Math.max(0,game.breathing-dt);if(game.breathing===0){setStatus('慢慢呼吸，回到小院');game.dwell=6;}}
+   if(game.focusHero>0)game.focusHero-=dt;
+ }
+ function drawFarm(){
+   A.base();A.field(data.crops,game.zone==='work'?game.crop:-1,game.time);
+   const items=[
+     {y:176,draw:()=>A.cottage(142,176)},{y:198,draw:()=>A.well(365,198)},{y:214,draw:()=>A.restroom(555,214)},
+     {y:127,draw:()=>A.wall(366,125,data.wishes.at(-1))},
+     {y:190,draw:()=>A.desk(268,190)},{y:296,draw:()=>A.sign(586,296)},
+     {y:331,draw:()=>A.hammock(120,331,game.zone==='nap'&&!hero.path.length&&!game.drag?.moved)},
+     {y:337,draw:()=>A.tree(60,337,'hammockTree')},{y:337,draw:()=>A.tree(181,337,'hammockTree')},
+     {y:228,draw:()=>A.tree(64,228)},{y:112,draw:()=>A.tree(293,112)},
+     {y:159,draw:()=>A.tree(615,159)},{y:193,draw:()=>A.tree(452,193,'pinkTree')},
+     {y:215,draw:()=>A.bowl(416,215)},{y:330,draw:()=>A.catBed(238,330)},
+     {y:cat.y,draw:()=>A.cat(cat.x,cat.y,cat.path.length?'walk':game.zone==='nap'?'sleep':'sit',game.time,cat.facing)}
+   ];
+   data.crops.forEach((c,i)=>items.push({y:306+Math.floor(i/4)*32,draw:()=>A.crop(i,c.stage,c.kind)}));
+   const hidden=(game.zone==='nap'||game.zone==='toilet')&&!hero.path.length&&!game.drag?.moved;
+   if(!hidden)items.push({y:hero.y,draw:()=>A.hero(hero.x,hero.y,game.drag?'idle':hero.path.length?'walk':game.zone==='work'&&$('cropPanel').hidden?'work':game.zone==='water'?'water':'idle',game.time,hero.facing,!!game.drag)});
+   for(const item of F.depthOrder(items))item.draw();
+   if(hoverZone){const z=F.ZONES[hoverZone];ctx.save();ctx.strokeStyle='#faf0ce';ctx.lineWidth=1;ctx.setLineDash([4,3]);ctx.strokeRect(z.box[0],z.box[1],z.box[2],z.box[3]);ctx.restore();}
+   if(game.focusHero>0||game.drag){A.oval(hero.x,hero.y+2,12,5,'#f7edd299');A.line(hero.x,hero.y-35,hero.x,hero.y-29,'#fff3cf',2);A.line(hero.x-3,hero.y-32,hero.x,hero.y-29,'#fff3cf');A.line(hero.x+3,hero.y-32,hero.x,hero.y-29,'#fff3cf');}
+   if(game.breathing>0){const radius=17+Math.sin(game.time*.8)*6;ctx.strokeStyle='#fff0cbaa';ctx.lineWidth=1;ctx.beginPath();ctx.arc(hero.x,hero.y-13,radius,0,Math.PI*2);ctx.stroke();}
+   A.weather(data.weather,game.time);
+ }
+ function draw(){ctx.clearRect(0,0,F.WIDTH,F.HEIGHT);if(game.scene==='farm')drawFarm();else if(game.scene==='indoor')A.indoor(game.time);else A.village(game.time);cv.dataset.heroX=hero.x.toFixed(2);cv.dataset.heroY=hero.y.toFixed(2);cv.dataset.action=game.pending?'walking-'+game.pending:game.zone;cv.dataset.scene=game.scene;}
+ function scenePoint(e){const b=cv.getBoundingClientRect();return {x:(e.clientX-b.left)*F.WIDTH/b.width,y:(e.clientY-b.top)*F.HEIGHT/b.height};}
+ function hideHint(){$('hint').hidden=true;hoverZone=null;}
+ function cancelDrag(){if(!game.drag)return;hero.x=game.drag.origin.x;hero.y=game.drag.origin.y;hero.path=game.drag.path;game.drag=null;cv.classList.remove('grab');hideHint();}
+ cv.addEventListener('pointerdown',e=>{
+   if(e.button!==0||game.scene!=='farm'||(game.zone==='toilet'&&!hero.path.length))return;
+   const p=scenePoint(e);
+   const sleeping=game.zone==='nap'&&!hero.path.length;
+   const onSleeper=sleeping&&p.x>=89&&p.x<=152&&p.y>=283&&p.y<=331;
+   if(!onSleeper&&p.x>=328&&p.x<=404&&p.y>=77&&p.y<=125){openWall();return;}
+   if(!onSleeper&&(sleeping||Math.abs(p.x-hero.x)>16||p.y<hero.y-32||p.y>hero.y+7)){const z=F.zoneAt(p);if(z)say('把小人拖到'+F.ZONES[z].label+'，才会开始。');return;}
+   game.drag={id:e.pointerId,start:p,sleeping,offset:onSleeper?{x:0,y:12}:{x:hero.x-p.x,y:hero.y-p.y},origin:{x:hero.x,y:hero.y},path:hero.path.slice(),moved:false};hero.path=[];cv.setPointerCapture(e.pointerId);cv.classList.add('grab');e.preventDefault();
+ });
+ cv.addEventListener('pointermove',e=>{
+   if(!game.drag||game.drag.id!==e.pointerId)return;const p=scenePoint(e),d=game.drag;
+   if(Math.hypot(p.x-d.start.x,p.y-d.start.y)>4)d.moved=true;
+   if(!d.moved)return;
+   hero.x=Math.max(15,Math.min(625,p.x+d.offset.x));hero.y=Math.max(115,Math.min(380,p.y+d.offset.y));
+   hoverZone=F.zoneAt({x:hero.x,y:hero.y});$('hint').hidden=false;$('hint').textContent=hoverZone?'松手 · '+F.ZONES[hoverZone].label:d.sleeping?'松手，下吊床':'松手回到原来的位置';e.preventDefault();
+ });
+ cv.addEventListener('pointerup',e=>{
+   if(!game.drag||game.drag.id!==e.pointerId)return;
+   const d=game.drag,z=F.zoneAt(hero);game.drag=null;cv.classList.remove('grab');hideHint();if(cv.hasPointerCapture(e.pointerId))cv.releasePointerCapture(e.pointerId);
+   if(!d.moved){hero.path=d.path;return;}
+   // Picking up is a gesture; destinations are reached by walking from the pickup point.
+   hero.x=d.origin.x;hero.y=d.origin.y;
+   if(z)go(z);else if(d.sleeping){stopAction();hero.path=F.route(hero,F.nearestFree(scenePoint(e)));setStatus('下吊床，走一走');}else{hero.path=d.path;say('这里先不做事，回到刚才的位置。');}
+ });
+ cv.addEventListener('pointercancel',cancelDrag);cv.addEventListener('lostpointercapture',()=>{if(game.drag)cancelDrag();});
+ window.addEventListener('blur',cancelDrag);window.addEventListener('keydown',e=>{if(e.key==='Escape'){cancelDrag();$('cropPanel').hidden=true;if(game.zone==='work'&&game.crop>=0)stopAction();}});
+ $('leaveBtn').onclick=()=>setScene('farm');$('stopBtn').onclick=()=>{stopAction();say('今天也可以留一点空白。');};
+ $('findBtn').onclick=()=>{if(game.scene!=='farm')return;game.focusHero=4;say(game.zone==='nap'?'你在吊床里午休。':game.zone==='toilet'?'你在上厕所，稍等一会儿就出来。':'小人头顶亮起来啦，按住就能拖。');};
+ $('wander').checked=data.wander;$('wander').onchange=e=>{data.wander=e.target.checked;if(!data.wander&&game.zone==='idle'&&!game.pending)hero.path=[];game.dwell=6;save();};
+ $('pace').value=String(data.pace);$('pace').onchange=e=>{data.pace=Number(e.target.value);save();};
+ $('weatherBtn').onclick=()=>{const all=['sunny','warm','rain','night'];data.weather=all[(all.indexOf(data.weather)+1)%all.length];save();renderWeather();};
+ $('meetingBtn').onclick=()=>{if(game.scene!=='farm')setScene('farm');go('village');say('模拟日程：村里有个会，慢慢走过去。');};
+ $('salaryBtn').onclick=()=>{data.coins+=50;save();renderStats();say('模拟工资到账，小院多了 50 枚金币。');};
+ $('heartBtn').onclick=()=>{if(game.scene!=='farm')setScene('farm');stopAction();game.breathing=14;setStatus('跟着小圆圈，慢慢呼吸');say('模拟心率事件：先停下来，陪自己呼吸一会儿。');};
+ $('cropStart').onclick=startCrop;$('cropText').onkeydown=e=>{if(e.key==='Enter'&&!e.isComposing)startCrop();};$('cropCancel').onclick=stopAction;
+ $('todoForm').onsubmit=e=>{e.preventDefault();const text=$('todoText').value.trim();if(!text)return;if(data.todos.length>=100){say('清单先留 100 件以内，慢慢来。');return;}data.todos.push({text:text.slice(0,80),done:false});$('todoText').value='';save();renderTodos();};
+ function renderTodos(){
+   $('todoList').replaceChildren();$('todoEmpty').hidden=data.todos.length>0;
+   data.todos.forEach((t,i)=>{
+     const li=document.createElement('li'),label=document.createElement('label'),cb=document.createElement('input'),sp=document.createElement('span'),del=document.createElement('button');
+     cb.type='checkbox';cb.checked=t.done;cb.onchange=()=>{t.done=cb.checked;save();renderTodos();};sp.textContent=t.text;label.classList.toggle('done',t.done);label.append(cb,sp);del.textContent='×';del.className='delete';del.setAttribute('aria-label','删除待办：'+t.text);del.onclick=()=>{data.todos.splice(i,1);save();renderTodos();};li.append(label,del);$('todoList').append(li);
+   });$('todoCount').textContent=`${data.todos.filter(t=>t.done).length} / ${data.todos.length}`;
+ }
+ function renderStats(){$('coins').textContent=data.coins;$('doneN').textContent=data.crops.filter(c=>c.stage===4).length;$('waterN').textContent=data.journal.water;$('restN').textContent=data.journal.rest;$('toiletN').textContent=data.journal.toilet;}
+ function renderWeather(){$('weatherLabel').textContent={sunny:'晴 · 微风',warm:'暖 · 午后',rain:'雨 · 听雨',night:'夜 · 星光'}[data.weather];}
+ function openWall(){renderWall();$('wallStatus').textContent='写在这台设备上，可随小院备份带走。';$('wallDialog').showModal();$('wishText').focus();}
+ function renderWall(){
+   const notes=$('wallNotes');notes.replaceChildren();$('wallEmpty').hidden=data.wishes.length>0;
+   for(const text of data.wishes.slice().reverse()){
+     const entry=document.createElement('div'),picture=document.createElement('canvas'),words=document.createElement('span');
+     entry.className='chalk-note';picture.width=35;picture.height=27;
+     const theme=A.chalkTheme(text);picture.setAttribute('role','img');picture.setAttribute('aria-label',A.designs[theme][0]);
+     A.drawChalk(picture.getContext('2d'),theme,0,0,1,text);words.textContent=text;entry.append(picture,words);notes.append(entry);
+   }
+ }
+ $('wallBtn').onclick=openWall;$('wallClose').onclick=()=>$('wallDialog').close();
+ $('wallForm').onsubmit=e=>{
+   e.preventDefault();const message=$('wishText').value.trim().slice(0,80);
+   if(!message){$('wishText').focus();return;}
+   if(data.wishes.length>=60){$('wallStatus').textContent='墙上已经写满 60 句了。';return;}
+   data.wishes.push(message);save();renderWall();$('chalkboard').scrollTop=0;$('wishText').value='';
+   $('wallStatus').textContent=storageHealthy?'画好了 · '+A.designs[A.chalkTheme(message)][0]:'画好了，浏览器暂时无法保存，请导出备份。';
+ };
+ function renderAll(){renderWall();renderStats();renderTodos();renderWeather();$('wander').checked=data.wander;$('pace').value=String(data.pace);}
+ function exportBackup(){const blob=new Blob([JSON.stringify({format:'aini-laoji',version:7,exportedAt:new Date().toISOString(),data},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='aini-laoji-backup-'+F.localDate()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);say('备份下载好了，换浏览器时可以带上它。');}
+ $('exportBtn').onclick=exportBackup;$('importBtn').onclick=()=>$('backupFile').click();
+ $('backupFile').onchange=async e=>{
+   const file=e.target.files[0];if(!file)return;
+   try{
+     if(file.size>2*1024*1024)throw Error('文件太大了，请选择小院导出的 JSON 备份。');
+     const raw=JSON.parse(await file.text());if(raw.format!=='aini-laoji'||raw.version!==7||!raw.data||!Array.isArray(raw.data.todos)||!Array.isArray(raw.data.crops)||raw.data.crops.length!==8)throw Error('这不是可识别的 v7 小院备份。');
+     const next=F.cleanSave(raw.data);$('restoreSummary').textContent=`将载入 ${next.todos.length} 条清单、${next.crops.filter(c=>c.stage===4).length} 格成熟作物和 ${next.coins} 枚金币。当前小院会先留一份恢复前备份。`;
+     $('restoreDialog').showModal();$('restoreConfirm').onclick=()=>{
+       try{localStorage.setItem(SAVE_KEY+'_before_restore',JSON.stringify(data));localStorage.setItem(SAVE_KEY,JSON.stringify(next));}catch{say('保存没有成功，当前小院未替换。请先导出备份。');$('restoreDialog').close();return;}
+       data=next;stopAction();setScene('farm');renderAll();save();$('restoreDialog').close();say('小院恢复好了。');
+     };
+   }catch(err){say(err.message||'这份备份暂时打不开。');}finally{e.target.value='';}
+ };
+ $('restoreCancel').onclick=()=>$('restoreDialog').close();
+ $('beforeRestoreBtn').onclick=()=>{
+   const old=readKey(SAVE_KEY+'_before_restore',null);if(!old){say('还没有恢复前备份。');return;}
+   const now=data;data=F.cleanSave(old);exportBackup();data=now;
+ };
+ for(const [key,z] of Object.entries(F.ZONES)){
+   const b=document.createElement('button');b.className='quiet-button';b.textContent=z.label;b.onclick=()=>{if(game.scene!=='farm')setScene('farm');go(key);};$('destinations').append(b);
+ }
+ // The old version cleared tasks at UTC midnight. New days reset only daily care counters.
+ document.addEventListener('visibilitychange',()=>{last=0;cancelDrag();});
+ let last=0;
+ function frame(now){
+   let elapsed=last?Math.min(2,Math.max(0,(now-last)/1000)):0;last=now;
+   // Substeps keep low-FPS rendering from slowing movement, while tab returns do not catch up offline time.
+   if(!document.hidden)while(elapsed>0){const dt=Math.min(.05,elapsed);update(dt);elapsed-=dt;}
+   draw();requestAnimationFrame(frame);
+ }
+ function clock(){const d=new Date();$('clock').textContent=d.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit',hour12:false});$('dateLabel').textContent=`${d.getMonth()+1} 月 ${d.getDate()} 日 · `+['星期日','星期一','星期二','星期三','星期四','星期五','星期六'][d.getDay()];}
+ setStatus('在小院里，慢慢来');renderAll();clock();setInterval(clock,15000);save();A.ready.then(()=>requestAnimationFrame(frame)).catch(err=>{setStatus('素材没有加载出来');say(err.message);});
+})();
+
+</script>
+</body></html>

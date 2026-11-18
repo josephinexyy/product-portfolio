@@ -4,7 +4,7 @@
 
 ## 本地开票工作台
 
-**[打开开票工具](https://josie-billing-workspace.coral-ox-0471.chatgpt.site/)** · [先看虚构演示](https://josie-billing-workspace.coral-ox-0471.chatgpt.site/?demo=1) · [下载离线版 ZIP](https://josie-billing-workspace.coral-ox-0471.chatgpt.site/Billing-Workspace-v0.2.0.zip)
+**[打开开票工具](https://josephinexyy.github.io/product-portfolio/billing/)** · [先看虚构演示](https://josephinexyy.github.io/product-portfolio/billing/?demo=1) · [下载离线版 ZIP](https://josephinexyy.github.io/product-portfolio/billing/Billing-Workspace-v0.2.0.zip)
 
 在线版直接打开。离线版：下载 ZIP → 解压 → 用 Chrome 打开 `Billing-Workspace-v0.2.0.html`；保留随包的授权文件。
 
@@ -22,6 +22,8 @@
 ### 换设备、网址或离线文件
 
 **数据不会自动同步，下载软件也不会带回旧账本。**
+
+如果以前在[旧公开网址](https://josie-billing-workspace.coral-ox-0471.chatgpt.site/)使用，请用原来的浏览器打开它。个人专用网址或离线文件的账本，请从当时使用的版本导出。
 
 1. 在仍能读取旧账本的原版本里，进入“备份与导出”，下载完整备份。
 2. 保留原备份与原版本，在新版本选择“导入数据包／合并备份”。

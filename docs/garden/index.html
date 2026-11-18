@@ -59,7 +59,7 @@ body{background:radial-gradient(ellipse at 50% 0,#faf2dc 0,#eeeadd 42%,#e2e7d8 1
 </head>
 <body>
 <main class="shell">
- <header class="masthead"><div class="wordmark"><div class="stamp" aria-hidden="true">己</div><div><div class="brand">爱你老己</div><div class="subbrand">像素小院</div></div></div><span class="version">V0.13.1</span></header>
+ <header class="masthead"><div class="wordmark"><div class="stamp" aria-hidden="true">己</div><div><div class="brand">爱你老己</div><div class="subbrand">像素小院</div></div></div><span class="version">V0.13.2</span></header>
  <section class="intro"><div><h1>慢慢过今天。</h1><p>喝口水，做点小事，也给自己留一点空白。</p></div><div class="today"><span id="dateLabel"></span><strong id="clock">--:--</strong></div></section>
  <section class="workspace" aria-label="我的像素小院">
   <div class="farm-column">
@@ -524,17 +524,19 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    }
  }
  // Frakassets 16px top-down sheet, in its original row order.
+ const CAT_FRAME=16,CAT_SIZE=28;
  const CAT_DIRECTION={down:0,right:1,up:2,left:3};
  const CAT_POSE={happy:[0,6],idle:[4,8],sleep:[8,12],walk:[12,6]};
  function cat(x,y,action,t,facing='right',onPillow=false,distance=0){
    const [row,frames]=CAT_POSE[action];
    const step=action==='walk'?distance/4:t*12;
    const column=Math.floor(step)%frames;
-   if(!onPillow)shadow(x,y,8);
-   ctx.drawImage(petAtlas.png,column*16,(row+CAT_DIRECTION[facing])*16,16,16,
-     Math.round(x)-12,Math.round(y)-21,24,24);
+   if(!onPillow)shadow(x,y,9);
+   // Source feet sit 14 pixels from the top of each frame.
+   ctx.drawImage(petAtlas.png,column*CAT_FRAME,(row+CAT_DIRECTION[facing])*CAT_FRAME,CAT_FRAME,CAT_FRAME,
+     Math.round(x)-CAT_SIZE/2,Math.round(y)-Math.round(14*CAT_SIZE/CAT_FRAME),CAT_SIZE,CAT_SIZE);
    if(action==='sleep'&&!onPillow){
-     r(x+10,y-15,6,2,C.cream);r(x+12,y-13,2,2,C.cream);r(x+10,y-11,6,2,C.cream);
+     r(x+12,y-17,6,2,C.cream);r(x+14,y-15,2,2,C.cream);r(x+12,y-13,6,2,C.cream);
    }
  }
  function restroom(x,y){

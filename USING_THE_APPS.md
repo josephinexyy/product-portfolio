@@ -34,16 +34,16 @@ CSV 不能替代完整备份。不要把真实账本、客户证件、银行资�
 
 ## 爱你老己 · 像素小院
 
-**[进入像素小院](https://josephinexyy.github.io/product-portfolio/garden/)** · [下载离线版 ZIP](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.14.0.zip)
+**[进入像素小院](https://josephinexyy.github.io/product-portfolio/garden/)** · [下载离线版 ZIP](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.15.0.zip)
 
 用过旧网址的玩家，可在原浏览器的旧小院点「带走小院」，再到新网址点「恢复备份」。
 
-在线版直接打开。离线版：下载 ZIP → 解压 → 用 Chrome 打开 `aini-laoji-v0.14.0.html`。
+在线版直接打开。离线版：下载 ZIP → 解压 → 用 Chrome 打开 `aini-laoji-v0.15.0.html`。
 
 | 想做什么 | 去哪里 |
 | --- | --- |
-| 让小人行动 | 点目的地，或按住小人拖过去 |
-| 喝水／午休／开会 | 点水井、吊床、村口路牌，或用画面下的快捷按钮。午休结束时点「结束午休」或把小人拖走 |
+| 让小人行动 | 点地图、拖小人，或在竖排菜单里选。鼠标移到一行后点选，键盘可用上下键和回车 |
+| 喝水／午休／开会 | 点水井、吊床、村口路牌，或用旁边的像素菜单。午休结束时点「结束午休」或把小人拖走 |
 | 结算、写日记 | 把小人带回小屋或点「回家」。日记可回看日期、补记或移除活动。分享图可以选带一句心愿并保存 PNG |
 | 散会 | 到村里的会面后点「散会」，看会议时长并选留一句感受 |
 | 结束模拟心率 | 点呼吸面板上的「结束呼吸」，或按 Esc |

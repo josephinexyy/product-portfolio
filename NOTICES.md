@@ -2,7 +2,9 @@
 
 像素小院的主要美术来自 Pixel-Boy 和 AAA 的 [Ninja Adventure](https://pixel-boy.itch.io/ninja-adventure-asset-pack)，按 CC0 1.0 使用。少量吊床、杯子、土块和麦子等为项目配套补图；部分原素材做了等比缩小和组合。下班日记的像素框和徽章使用 [Kenney 的 UI Pack – Pixel Adventure](https://kenney.nl/assets/ui-pack-pixel-adventure)，同样按 CC0 1.0 使用。离线包附带素材授权与说明。
 
-[四方向橘猫原图](docs/garden/frakassets-orange-cat.png) 来自 Frakassets 的 [Free Pets Pack](https://frakassets.itch.io/free-pets-pack)，按 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 使用。游戏对动画按方向取帧并等比渲染，原图未改色。
+[四方向橘猫原图](docs/garden/frakassets-orange-cat.png) 来自 Frakassets 的 [Free Pets Pack](https://frakassets.itch.io/free-pets-pack)，按 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 使用。游戏保留原图，另用细化描边、毛色与高光的 32 像素衍生图集进行渲染。
+
+界面使用 Yard Pixel，基于 Noto Sans CJK SC 制作。授权为 SIL Open Font License 1.1，全文随离线包和单文件 HTML 分发。
 
 本地开票工作台的公开软件保留发布时的 MIT License，以及字体、PDF、OCR 和其他第三方组件的原有授权。离线包附带 LICENSE、THIRD_PARTY_NOTICES.md 和 licenses/，再分发时请一起保留。
 

@@ -2,7 +2,7 @@
 
 **看见自己，把自己的一天具象化。** 我想做一个和我一起上班的小人。我开会，他就去村口；我午休，他就躺进吊床。看着他过这一天，我也会想起自己上一次喝水是什么时候。
 
-[进入小院](https://josephinexyy.github.io/product-portfolio/garden/) · [离线下载](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.15.0.zip) · [反馈问题或建议](https://github.com/josephinexyy/product-portfolio/issues/new/choose)
+[进入小院](https://josephinexyy.github.io/product-portfolio/garden/) · [离线下载](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.16.0.zip) · [反馈问题或建议](https://github.com/josephinexyy/product-portfolio/issues/new/choose)
 
 ![像素小院早期版本的离线画面](../images/farm-yard.png)
 

@@ -2,7 +2,7 @@
 
 **看见自己，把自己的一天具象化。** 我想做一个和我一起上班的小人。我开会，他就去村口；我午休，他就躺进吊床。看着他过这一天，我也会想起自己上一次喝水是什么时候。
 
-[进入小院](https://josephinexyy.github.io/product-portfolio/garden/) · [下载离线版 v0.17.0](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.17.0.zip) · [反馈问题或建议](https://github.com/josephinexyy/product-portfolio/issues/new/choose)
+[进入小院](https://josephinexyy.github.io/product-portfolio/garden/) · [下载离线版 v0.18.0](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.18.0.zip) · [反馈问题或建议](https://github.com/josephinexyy/product-portfolio/issues/new/choose)
 
 ![像素小院早期版本的离线画面](../images/farm-yard.png)
 
@@ -20,6 +20,10 @@
 | 一天过去了，想回头看看自己都做过什么 | 回家时打开日记，把会议、喝水、午睡和如厕写进同一页。日记可以选心情、留几句给自己，也可以把墙上的一句心愿放进竖版像素小院卡片。下方有时间线，能补记和撤销误触。散会时会留下实际时长和选填的感受。做完一件事，可以让同名作物成熟，再把花收进篮子。写完日记可以去睡觉，小猫会跟着跳上床，蜷在另一只枕头旁边。 |
 
 四个方向的橘猫动画来自 Frakassets。小猫在院里和室内都能顺着行走方向转身，也会跳上枕边蜷睡。[查看游戏中使用的完整橘猫图集](../docs/garden/frakassets-orange-cat.png)
+
+## 回家以后，我想做什么
+
+花可以自己长，开了就留在院里，或者收一朵带回屋。进门后可以从篮子里挑朵花插在床头，也可以写几句日记或直接上床。下次回来，床头的花还在。
 
 ## 接下来想试的两件事
 

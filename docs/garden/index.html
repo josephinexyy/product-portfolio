@@ -317,6 +317,8 @@ dialog .crop-buttons{margin-top:16px}
 .garden-plot.selected{outline:2px solid #6d8a61}.garden-plot[data-stage="4"]{background:#f9eac1;border-color:#b48846}.garden-plot span{font-size:11px;color:#6d5c44}.plot-actions{display:flex;gap:4px;flex-wrap:wrap;margin-top:1px}.plot-actions button{background:#fff8e6;color:#435447;border-color:#c7b794}
 .garden-plot[data-stage="4"] button,#gardenBtn.harvest-ready{background:#f0d886;color:#4e402c;border-color:#a17f4e;font-weight:700}.garden-plot button:hover,#gardenBtn.harvest-ready:hover{background:#eac771}
 #gardenStatus{margin:6px 0 0;min-height:1.45em;color:#536647}
+#vaseFlowers{display:grid;gap:6px;margin-bottom:12px}
+#vaseFlowers button{text-align:left;min-height:36px}
 @media(max-width:430px){#gardenDialog{padding:12px}.garden-plot{padding:6px}}
 .diary-storage{margin:0;color:#75684f;font-size:11px}
 #scene[data-scene="indoor"],#scene[data-scene="village"]{cursor:default}
@@ -352,8 +354,8 @@ dialog .crop-buttons{margin-top:16px}
     </div>
    </div>
    <div id="cropPanel" class="crop-panel" hidden>
-    <div class="crop-fields"><label for="cropText">想种下哪件小事？<input id="cropText" maxlength="40" placeholder="比如：读几页书"></label><label for="cropKind">种什么 <select id="cropKind"><option value="wheat">麦子</option><option value="tomato">番茄</option><option value="sunflower">向日葵</option><option value="rose">玫瑰</option><option value="jasmine">茉莉</option></select></label></div>
-    <p id="cropHint">播种后会自己长。做完这件小事，也能让它马上成熟。</p>
+    <div class="crop-fields"><label for="cropText">想种下哪件小事？<input id="cropText" maxlength="40" placeholder="只想种花，可以留空"></label><label for="cropKind">种什么 <select id="cropKind"><option value="wheat">麦子</option><option value="tomato">番茄</option><option value="sunflower">向日葵</option><option value="rose">玫瑰</option><option value="jasmine">茉莉</option></select></label></div>
+    <p id="cropHint">花可以单独种。填了一件小事，做完时还能催熟它。</p>
     <div class="crop-buttons"><button id="cropCancel" class="quiet-button">取消</button><button id="cropStart" class="primary">开始种下</button></div>
    </div>
    <p id="sceneHelp" class="helper">点空地播种，点闪光的地块收获。也可以拖小人去各处。</p>
@@ -365,7 +367,7 @@ dialog .crop-buttons{margin-top:16px}
     <h2 id="menuTitle">小院菜单</h2>
     <div class="pixel-menu-list">
      <button id="homeBtn" class="menu-option">回家</button><button id="leaveBtn" class="menu-option" hidden>回小院</button>
-     <div id="roomActions" hidden><button id="roomDesk" class="menu-option">到书桌写日记</button><button id="roomBed" class="menu-option">上床睡觉</button></div>
+     <div id="roomActions" hidden><button id="roomVase" class="menu-option">床头插花</button><button id="roomDesk" class="menu-option">到书桌写日记</button><button id="roomBed" class="menu-option">上床睡觉</button></div>
      <button id="gardenBtn" class="menu-option">种花与收获</button><button id="wallBtn" class="menu-option">心愿墙</button><button id="diaryBtn" class="menu-option">日记本</button>
      <button id="stopBtn" class="menu-option" hidden>停一停</button>
      <div id="quickCare" aria-label="小院活动"></div>
@@ -380,7 +382,7 @@ dialog .crop-buttons{margin-top:16px}
  </section>
  <div class="bottom"><span id="saveStatus" role="status">已保存在此浏览器</span><div class="import-tools"><button id="exportBtn" class="text-button">带走小院</button><button id="importBtn" class="text-button">恢复备份</button><input id="backupFile" type="file" accept=".json,application/json" hidden></div></div>
  <details class="extras"><summary>小院设置与演示</summary><div class="extras-body"><div class="farm-settings"><label><input id="wander" type="checkbox" checked> 自己散步</label><label>步速 <select id="pace" aria-label="行走速度"><option value="22">更慢</option><option value="30">慢慢走</option><option value="42">轻快些</option></select></label></div><p>天气和外部事件用于原型演示，尚未连接飞书、Apple Watch 或薪资系统。记录留在当前浏览器；清理浏览器前请先带走备份。</p><div class="extras-actions"><button class="quiet-button" id="weatherBtn">换个天气</button><button class="quiet-button" id="meetingBtn">模拟会议</button><button class="quiet-button" id="salaryBtn">模拟工资</button><button class="quiet-button" id="heartBtn">模拟心率事件</button><button class="quiet-button" id="beforeRestoreBtn">下载恢复前备份</button></div><p style="margin-top:13px">其他目的地</p><div id="destinations" class="extras-actions"></div></div></details>
- <footer class="footer"><span>Josephine Xiang · v0.17.0</span><span>素材 · Pixel-Boy &amp; AAA / Kenney / <a href="https://frakassets.itch.io/free-pets-pack">Frakassets</a> / Yard Pixel</span></footer>
+ <footer class="footer"><span>Josephine Xiang · v0.18.0</span><span>素材 · Pixel-Boy &amp; AAA / Kenney / <a href="https://frakassets.itch.io/free-pets-pack">Frakassets</a> / Yard Pixel</span></footer>
 </main>
 <dialog id="gardenDialog" aria-labelledby="gardenTitle">
  <header class="dialog-header"><h2 id="gardenTitle">小菜园</h2><button type="button" id="gardenClose" class="quiet-button">回小院</button></header>
@@ -388,6 +390,12 @@ dialog .crop-buttons{margin-top:16px}
  <div class="garden-basket"><strong>收获篮</strong><span id="gardenBasket"></span></div>
  <ul id="gardenPlots" aria-label="八块菜地"></ul>
  <p id="gardenStatus" role="status"></p>
+</dialog>
+<dialog id="vaseDialog" aria-labelledby="vaseTitle">
+ <header class="dialog-header"><h2 id="vaseTitle">床头的花瓶</h2><button type="button" id="vaseClose" class="quiet-button" autofocus>关上</button></header>
+ <p id="vaseDescription"></p>
+ <div id="vaseFlowers" role="group" aria-label="收获篮里的花"></div>
+ <button type="button" id="vaseRemove" class="quiet-button" hidden>把花收回篮子</button>
 </dialog>
 <dialog id="wallDialog" aria-labelledby="wallTitle">
  <header class="dialog-header"><h2 id="wallTitle">小院心愿墙</h2><button id="wallClose" class="quiet-button">收起粉笔</button></header>
@@ -486,6 +494,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
     door:{x:321,y:345,box:[303,337,36,43]},
     desk:{x:406,y:279,box:[371,215,102,52]},
     bed:{x:302,y:254,box:[172,167,116,138]},
+    vase:{box:[291,176,29,48]},
     rug:{x:332,y:316}
   };
   const GROW_SECONDS=30;
@@ -496,14 +505,15 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
     return col>=0&&row>=0&&col<FIELD.columns&&row<FIELD.rows?row*FIELD.columns+col:-1;
   }
   function finishCrop(crop){
-    if(crop.stage>=4||!crop.text)return false;
+    if(crop.stage>=4||(!crop.text&&!crop.readyAt))return false;
     crop.stage=4;crop.rewarded=false;
     delete crop.readyAt;
     return true;
   }
   function plantCrop(data,index,text,kind,now=Date.now()){
     const crop=data.crops[index],name=text.trim().slice(0,40);
-    if(!crop||crop.stage>=4||crop.text||!name||!Object.hasOwn(CROP_NAMES,kind))return false;
+    if(!crop||crop.stage>=4||crop.text||crop.readyAt||!Object.hasOwn(CROP_NAMES,kind))return false;
+    if(!name&&!Object.hasOwn(FLOWER_NAMES,kind))return false;
     Object.assign(crop,{text:name,kind,readyAt:now+GROW_MS*(4-crop.stage)/4});
     return true;
   }
@@ -514,7 +524,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
     let changed=false;
     const ripe=[];
     data.crops.forEach((crop,index)=>{
-      if(!crop.readyAt||!crop.text||crop.stage>=4)return;
+      if(!crop.readyAt||crop.stage>=4)return;
       const stage=Math.floor((GROW_MS-cropTimeLeft(crop,now))/(GROW_MS/4));
       if(stage===4&&finishCrop(crop)){ripe.push(index);changed=true;}
       else if(stage>crop.stage){crop.stage=stage;changed=true;}
@@ -522,9 +532,11 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
     return {changed,ripe};
   }
   function finishTaskCrops(data,todo){
-    const matches=data.todos.filter(t=>t.text.trim()===todo.text.trim());
+    const text=todo.text.trim();
+    if(!text)return [];
+    const matches=data.todos.filter(t=>t.text.trim()===text);
     if(!todo.done||matches.length!==1)return [];
-    return data.crops.flatMap((crop,i)=>crop.text.trim()===todo.text.trim()&&finishCrop(crop)?[i]:[]);
+    return data.crops.flatMap((crop,i)=>crop.text.trim()===text&&finishCrop(crop)?[i]:[]);
   }
   function harvestCrop(data,index){
     const crop=data.crops[index];
@@ -534,6 +546,16 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
     data.harvests[crop.kind]=Math.min(100000000,data.harvests[crop.kind]+1);
     data.crops[index]=emptyCrop();
     return {kind:crop.kind,text:crop.text,coins};
+  }
+  function arrangeBedsideFlower(data,kind){
+    const previous=data.bedsideFlower;
+    if(kind===previous)return false;
+    if(kind!==null&&(!Object.hasOwn(FLOWER_NAMES,kind)||!data.harvests[kind]))return false;
+    if(previous&&data.harvests[previous]>=100000000)return false;
+    if(kind!==null)data.harvests[kind]--;
+    if(previous)data.harvests[previous]++;
+    data.bedsideFlower=kind;
+    return true;
   }
   const ZONES={
     home:{label:'回家下班',box:[98,80,128,96],stand:{x:142,y:196}},
@@ -708,9 +730,10 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
       const raw=x.crops?.[i],stage=whole(raw?.stage,4);
       const crop={text:typeof raw?.text==='string'?raw.text.slice(0,40):'',stage,kind:Object.hasOwn(CROP_NAMES,raw?.kind)?raw.kind:'wheat'};
       if(stage===4)crop.rewarded=raw.rewarded!==false;
-      else if(crop.text.trim()){
-        crop.readyAt=Number.isSafeInteger(raw?.readyAt)&&raw.readyAt>0&&raw.readyAt<=now+GROW_MS
-          ?raw.readyAt:now+GROW_MS*(4-stage)/4;
+      else{
+        const readyAt=Number.isSafeInteger(raw?.readyAt)&&raw.readyAt>0&&raw.readyAt<=now+GROW_MS?raw.readyAt:0;
+        if(crop.text.trim())crop.readyAt=readyAt||now+GROW_MS*(4-stage)/4;
+        else if(readyAt&&Object.hasOwn(FLOWER_NAMES,crop.kind))crop.readyAt=readyAt;
       }
       return crop;
     });
@@ -721,6 +744,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
     const previous=/^\d{4}-\d{2}-\d{2}$/.test(x.journal?.date)?x.journal.date:date;
     const wishes=(Array.isArray(x.wishes)?x.wishes:[]).filter(w=>typeof w==='string'&&w.trim()).slice(-WALL_CAPACITY).map(w=>wishCharacters(formatWish(w)).slice(0,80).join(''));
     const data={version:7,wishes,coins:whole(x.coins),todos:(Array.isArray(x.todos)?x.todos:[]).slice(0,100).filter(t=>t&&typeof t.text==='string').map(t=>({text:t.text.slice(0,80),done:t.done===true})),crops,harvests,
+      bedsideFlower:Object.hasOwn(FLOWER_NAMES,x.bedsideFlower)?x.bedsideFlower:null,
       weather:['sunny','rain','night','warm'].includes(x.weather)?x.weather:'sunny',
       pace:[22,30,42].includes(x.pace)?x.pace:30,wander:x.wander!==false,
       journal:cleanJournal(x.journal?.date===previous?x.journal:diaries[previous],previous),diaries,activities,activeMeeting,
@@ -737,7 +761,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
     return cleanSave({coins:read('coins',0),todos:Array.isArray(todos)?todos:[],crops:Array.from({length:8},(_,i)=>({text:texts?.[i]||'',stage:stages?.[i]||0})),weather:['sunny','warm','rain','night'][read('weather',0)]});
   }
   function depthOrder(items){return items.map((x,i)=>({...x,_index:i})).sort((a,b)=>a.y-b.y||a._index-b._index);}
-  const api={WIDTH,HEIGHT,WALL,WISH_LIMIT,WALL_CAPACITY,wishCharacters,formatWish,wallLines,FIELD,cropStand,CROP_NAMES,cropUnit,BEDTIME_SECONDS,ROOM,GROW_SECONDS,plotAt,plantCrop,cropTimeLeft,updateCropStages,finishCrop,finishTaskCrops,harvestCrop,ZONES,OBSTACLES,inside,walkable,moveToward,walkingFacing,nearestFree,route,segmentClear,zoneAt,localDate,MOODS,cleanJournal,switchDay,recordCareAction,diaryFor,putDiary,duration,ACTIVITY_LABELS,MEETING_MOODS,activitiesFor,addActivity,restoreActivity,removeActivity,annotateMeeting,BREATH_LENGTH,breathFrame,cleanSave,migrateLegacy,depthOrder};
+  const api={WIDTH,HEIGHT,WALL,WISH_LIMIT,WALL_CAPACITY,wishCharacters,formatWish,wallLines,FIELD,cropStand,FLOWER_NAMES,CROP_NAMES,cropUnit,BEDTIME_SECONDS,ROOM,GROW_SECONDS,plotAt,plantCrop,cropTimeLeft,updateCropStages,finishCrop,finishTaskCrops,harvestCrop,arrangeBedsideFlower,ZONES,OBSTACLES,inside,walkable,moveToward,walkingFacing,nearestFree,route,segmentClear,zoneAt,localDate,MOODS,cleanJournal,switchDay,recordCareAction,diaryFor,putDiary,duration,ACTIVITY_LABELS,MEETING_MOODS,activitiesFor,addActivity,restoreActivity,removeActivity,annotateMeeting,BREATH_LENGTH,breathFrame,cleanSave,migrateLegacy,depthOrder};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FarmCore=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
 
@@ -1056,10 +1080,10 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    r(x,y-17,2,15,'#456e45');r(x-6,y-9,6,4,'#5a844b');r(x+2,y-12,6,4,'#759b55');
    bloom(kind,x,y-18,true);
  }
- function crop(i,{stage,kind,text}){
+ function crop(i,{stage,kind,text,readyAt}){
    const x=320+i%4*32,y=306+Math.floor(i/4)*32;
    if(!stage){
-     if(text){r(x-4,y-7,8,4,'#b78a5a');r(x-2,y-9,4,4,'#efc581');}
+     if(text||readyAt){r(x-4,y-7,8,4,'#b78a5a');r(x-2,y-9,4,4,'#efc581');}
      return;
    }
    if(stage<2||kind==='wheat'){sprite('crop_'+stage,x,y);return;}
@@ -1119,7 +1143,18 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    r(157,198,9,4,lit?'#f5cc8a':'#a98b6b');
    r(152,207,19,3,lit?'#ffdf9f':'#a98b6b');
  }
- function indoor(t,bedtime,person,kitty){
+ function bedsideVase(kind){
+   const x=305,y=206;
+   r(x-13,y+2,26,12,'#694a44');r(x-14,y,28,5,'#ad7759');r(x-12,y,24,2,'#d6a174');
+   r(x-10,y+12,4,5,'#523c3b');r(x+6,y+12,4,5,'#523c3b');
+   if(kind){
+     r(x,y-23,2,14,'#5e854f');r(x-4,y-16,4,3,'#749657');r(x+2,y-19,4,2,'#86a563');
+     bloom(kind,x,y-26);
+   }
+   r(x-4,y-12,9,3,'#76979a');r(x-6,y-9,13,7,'#507581');r(x-5,y-2,11,3,'#44646e');
+   r(x-4,y-8,2,7,'#a5bab1');r(x-2,y-7,2,2,'#c8d2bb');
+ }
+ function indoor(t,bedtime,person,kitty,flower=null){
    const progress=bedtime===null?0:Math.min(1,bedtime/FarmCore.BEDTIME_SECONDS);
    const tucked=progress>=.72,asleep=progress===1;
    r(0,0,640,400,asleep?'#222a41':'#2d3c42');
@@ -1139,6 +1174,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    ctx.save();const light=ctx.createRadialGradient(321,170,9,321,193,98);light.addColorStop(0,asleep?'#8390cc32':'#ffc58858');light.addColorStop(1,'#ffc58800');ctx.fillStyle=light;ctx.fillRect(190,125,262,185);ctx.restore();
    sprite('rug',335,333);sprite('bookshelf',428,180);sprite('plant',163,181);desk(421,263);
    bedsideLamp(!asleep);
+   bedsideVase(flower);
    gardenFlowers('rose',451,248);gardenFlowers('jasmine',465,249);
    bedFrame();
    if(tucked)sleepingHero();
@@ -1305,6 +1341,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  'use strict';
  const F=FarmCore,A=FarmArt,J=FarmJournal,$=id=>document.getElementById(id),cv=$('scene'),ctx=cv.getContext('2d');A.init(ctx);
  const SAVE_KEY='aini_farm_v7';let storageHealthy=true;
+ const ROOM_HELP='点床头花瓶插花，点书桌写日记，累了就直接上床。';
  function readKey(key,fallback){try{const v=localStorage.getItem(key);return v===null?fallback:JSON.parse(v);}catch{return fallback;}}
  const initial=readKey(SAVE_KEY,null);
  let data=initial?F.cleanSave(initial):F.migrateLegacy((key,d)=>readKey('aini_v2_'+key,d));
@@ -1384,7 +1421,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  }
  function arrive(){
    const target=game.pending;if(!target)return;game.pending=null;game.zone=target;game.actionTime=0;game.catDwell=0;
-   if(target==='home'){setScene('indoor');walkToDesk();return;}
+   if(target==='home'){setScene('indoor');return;}
    if(target==='village'){setScene('village');data.activeMeeting=record('meeting');save();return;}
    if(target==='nap'){data.napStartedAt=Date.now();renderNap();}
    const messages={water:'大水理论：先喝口水。小猫也有自己的水碗。',nap:'在树荫里躺一会儿。',toilet:'去去就回，身体的信号要听。',walk:'看看花草，今天不用着急。'};
@@ -1405,10 +1442,10 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    $('gardenBtn').hidden=name!=='farm';$('leaveBtn').hidden=name==='farm';$('homeBtn').hidden=name!=='farm';$('findBtn').hidden=name!=='farm';$('wallBtn').hidden=name!=='farm';$('sceneName').textContent={farm:'我的小院',indoor:'回到小屋',village:'村里的会面'}[name];
    $('menuTitle').textContent={farm:'小院菜单',indoor:'小屋菜单',village:'村口菜单'}[name];
    $('leaveBtn').textContent=name==='village'?'散会，回小院':'出门，回小院';
-   const descriptions={farm:'像素小院。点想去的地方，或按住小人拖过去。',indoor:'小屋里有书桌、宽床和一只橘猫。',village:'小人坐在村里的会议桌边。'};
+   const descriptions={farm:'像素小院。点想去的地方，或按住小人拖过去。',indoor:'小屋里有书桌、宽床、床头花瓶和一只橘猫。',village:'小人坐在村里的会议桌边。'};
    cv.setAttribute('aria-label',descriptions[name]);cv.classList.remove('room-interact','map-interact');
    hideHint();renderWeather();
-   $('sceneHelp').textContent={farm:'点空地播种，点闪光的地块收获。也可以拖小人去各处。',indoor:'点书桌写日记，点床就寝。',village:'散会后，可以在日记本里回看这次会面。'}[name];
+   $('sceneHelp').textContent={farm:'点空地播种，点闪光的地块收获。也可以拖小人去各处。',indoor:ROOM_HELP,village:'散会后，可以在日记本里回看这次会面。'}[name];
    if(name==='farm'){
      hero.x=142;hero.y=205;game.dwell=6;
      if(leavingRoom)Object.assign(cat,{x:180,y:214,facing:'down'});
@@ -1418,6 +1455,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
      Object.assign(hero,{x:F.ROOM.door.x,y:F.ROOM.door.y,facing:'up'});
      Object.assign(cat,{x:344,y:345,facing:'left'});
      setStatus('回到小屋');
+     say(data.bedsideFlower?'床头的'+F.FLOWER_NAMES[data.bedsideFlower]+'还在。':'回家了，今晚慢慢过。');
    }else{setStatus('在村里坐一会儿');say('到村里了，坐下来聊聊。');}
    updateRoomControls();
  }
@@ -1427,7 +1465,38 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    $('quickCare').hidden=game.scene!=='farm';
    $('roomDesk').disabled=movingToBed;
    $('roomBed').disabled=movingToBed;
+   $('roomVase').disabled=game.bed!==null;
    $('roomBed').textContent=game.bed===null?'上床睡觉':movingToBed?'正在上床…':'起床';
+ }
+ function openVase(){
+   if(game.bed!==null)return;
+   const current=data.bedsideFlower;
+   $('vaseRemove').hidden=!current;
+   $('vaseDescription').textContent=current?'床头放着'+F.FLOWER_NAMES[current]+'。'
+     :Object.keys(F.FLOWER_NAMES).some(kind=>data.harvests[kind])?'从收获篮里挑一朵花。':'先在小院收一朵花，再带回床头。';
+   $('vaseFlowers').replaceChildren(...Object.entries(F.FLOWER_NAMES).map(([kind,name])=>{
+     const button=document.createElement('button');
+     button.type='button';
+     button.className='quiet-button';
+     button.disabled=kind===current||!data.harvests[kind];
+     button.textContent=name+' · '+data.harvests[kind]+' 朵'+(kind===current?'（已插上）':'');
+     button.onclick=()=>setVase(kind);
+     return button;
+   }));
+   $('vaseDialog').showModal();
+ }
+ function setVase(kind){
+   const previous=data.bedsideFlower,harvests={...data.harvests};
+   if(!F.arrangeBedsideFlower(data,kind))return;
+   save();
+   if(!storageHealthy){
+     data.bedsideFlower=previous;
+     data.harvests=harvests;
+     $('vaseDescription').textContent='暂时无法保存插花，请检查浏览器存储后再试。';
+     return;
+   }
+   $('vaseDialog').close();
+   say(kind?'把'+F.FLOWER_NAMES[kind]+'插在床头。':'把花收回了篮子。');
  }
  function walkToDesk(){
    if(game.bed!==null&&!wakeInRoom())return;
@@ -1464,8 +1533,8 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    Object.assign(hero,{x:302,y:254,facing:'down',path:[]});
    Object.assign(cat,{x:310,y:268,facing:'right',path:[]});
    $('sceneName').textContent='我的小屋';
-   $('sceneHelp').textContent='点书桌写日记，点床就寝。';
-   cv.setAttribute('aria-label','小屋里有书桌和宽床，点桌子可以写日记。');
+   $('sceneHelp').textContent=ROOM_HELP;
+   cv.setAttribute('aria-label','小屋里有书桌、宽床和床头花瓶。');
    setStatus('起床了，还在小屋里');
    renderWeather();
    updateRoomControls();return true;
@@ -1510,26 +1579,26 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    syncGrowth();
    const crop=data.crops[index];
    if(crop.stage===4){collectCrop(index);return;}
-   if(crop.text){openGarden(index);return;}
+   if(crop.text||crop.readyAt){openGarden(index);return;}
    if(plantPlot<0){
      $('cropText').value=data.todos.find(t=>!t.done)?.text.slice(0,40)||'';
      $('cropKind').value=crop.stage?crop.kind:'sunflower';
    }
    plantPlot=index;
-   $('cropHint').textContent='播种后会自己长。做完这件小事，也能让它马上成熟。';
+   $('cropHint').textContent='花可以单独种。填了一件小事，做完时还能催熟它。';
    $('cropPanel').hidden=false;
    $('cropText').focus();
  }
  function startCrop(){
    if(game.scene!=='farm'||plantPlot<0)return;
    const index=plantPlot,text=$('cropText').value.trim(),kind=$('cropKind').value;
-   if(!text){$('cropText').focus();$('cropHint').textContent='先写一件想种下的小事。';return;}
+   if(!text&&!Object.hasOwn(F.FLOWER_NAMES,kind)){$('cropText').focus();$('cropHint').textContent='种麦子或番茄时，先写一件小事。';return;}
    if(!F.plantCrop(data,index,text,kind)){closePlanting();openGarden(index);return;}
    closePlanting();endNap();endBreath();
    $('cropStatus').textContent='';
    Object.assign(game,{zone:'work',pending:null,crop:index,actionTime:0});
    hero.path=F.route(hero,F.cropStand(index));
-   setStatus('种下了「'+data.crops[index].text+'」');
+   setStatus('种下了'+(text?'「'+text+'」':F.CROP_NAMES[kind]));
    const checked=data.todos.find(t=>t.done&&t.text.trim()===data.crops[index].text);
    if(checked&&F.finishTaskCrops(data,checked).includes(index))announceRipe([index]);
    else say(F.CROP_NAMES[kind]+'会自己长，可以先去做别的事。');
@@ -1555,7 +1624,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  const catSpots=[{x:188,y:210},{x:272,y:251},{x:454,y:250},{x:460,y:336},{x:197,y:291}];
  function update(dt){
    game.time+=dt;
-   if($('wallDialog').open||$('diaryDialog').open||$('restoreDialog').open||$('meetingDialog').open||$('gardenDialog').open)return;
+   if($('wallDialog').open||$('diaryDialog').open||$('restoreDialog').open||$('meetingDialog').open||$('gardenDialog').open||$('vaseDialog').open)return;
    if(game.breathing!==null){
      game.breathing+=dt;
      if(game.breathing>=F.BREATH_LENGTH)endBreath('呼吸结束，慢慢接着来。');
@@ -1624,7 +1693,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  function draw(){
    ctx.clearRect(0,0,F.WIDTH,F.HEIGHT);
    if(game.scene==='farm')drawFarm();
-   else if(game.scene==='indoor')A.indoor(game.time,game.bed,hero,cat);
+   else if(game.scene==='indoor')A.indoor(game.time,game.bed,hero,cat,data.bedsideFlower);
    else A.village(game.time);
    if(game.scene!=='indoor')A.weather(data.weather,game.time);
    cv.dataset.heroX=hero.x.toFixed(2);cv.dataset.heroY=hero.y.toFixed(2);
@@ -1640,6 +1709,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    const p=scenePoint(e);
    if(game.scene==='indoor'){
      if(F.inside(p,F.ROOM.desk.box))walkToDesk();
+     else if(F.inside(p,F.ROOM.vase.box))openVase();
      else if(F.inside(p,F.ROOM.bed.box))useBed();
      else if(F.inside(p,F.ROOM.door.box))setScene('farm');
      return;
@@ -1661,7 +1731,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  cv.addEventListener('pointermove',e=>{
    if(game.scene==='indoor'){
      const point=scenePoint(e);
-     cv.classList.toggle('room-interact',[F.ROOM.desk.box,F.ROOM.bed.box,F.ROOM.door.box].some(box=>F.inside(point,box)));
+     cv.classList.toggle('room-interact',[F.ROOM.desk.box,F.ROOM.bed.box,F.ROOM.door.box,F.ROOM.vase.box].some(box=>F.inside(point,box)));
      return;
    }
    if(!game.drag){
@@ -1696,6 +1766,9 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  window.addEventListener('blur',cancelDrag);window.addEventListener('keydown',e=>{if(e.key==='Escape'){if(document.querySelector('dialog[open]'))return;if(game.breathing!==null){endBreath('已结束呼吸。');return;}cancelDrag();if(plantPlot>=0)closePlanting();else if(game.zone==='work')stopAction();}});
  $('roomDesk').onclick=walkToDesk;
  $('roomBed').onclick=useBed;
+ $('roomVase').onclick=openVase;
+ $('vaseClose').onclick=()=>$('vaseDialog').close();
+ $('vaseRemove').onclick=()=>setVase(null);
  const menu=$('sceneMenu');
  menu.addEventListener('pointermove',()=>{if(menu.dataset.input!=='pointer')menu.dataset.input='pointer';});
  menu.addEventListener('keydown',e=>{
@@ -1802,8 +1875,8 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
      const box=document.createElement('li'),title=document.createElement('strong'),caption=document.createElement('span'),actions=document.createElement('div');
      const kind=F.CROP_NAMES[crop.kind];
      box.className='garden-plot';box.dataset.plot=index;box.dataset.stage=crop.stage;box.classList.toggle('selected',index===gardenPlot);
-     title.textContent=crop.text|| (crop.stage?kind:'空地');
-     caption.textContent=crop.stage===4?kind+' · 可收获':crop.text?kind+' · '+['已播种','发芽','长叶','快成熟了'][crop.stage]:'可以种一件小事';
+     title.textContent=crop.text||(crop.stage||crop.readyAt?kind:'空地');
+     caption.textContent=crop.stage===4?kind+' · 可收获':crop.text||crop.readyAt?kind+' · '+['已播种','发芽','长叶','快成熟了'][crop.stage]:'可以种花';
      actions.className='plot-actions';
      function button(label,run){
        const el=document.createElement('button');el.className='quiet-button';el.textContent=label;el.onclick=run;actions.append(el);
@@ -1815,7 +1888,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
          if(!F.finishCrop(crop))return;
          save();renderStats();announceRipe([index]);
        });
-     }else{
+     }else if(!crop.readyAt){
        button('开始种',()=>{
          $('gardenDialog').close();
          if(game.scene!=='farm')setScene('farm');

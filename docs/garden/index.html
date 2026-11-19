@@ -5,16 +5,141 @@
 <meta name="description" content="爱你老己：用一座慢慢生活的像素小院，看见今天的自己。">
 <title>爱你老己 · 慢慢过今天</title>
 <style>
-:root{--paper:#f6f3e9;--ink:#404e40;--soft:#7b8373;--line:#dedfd0;--green:#627b59;--cream:#ede5cf;--accent:#ae745c;--serif:"Songti SC","Noto Serif CJK SC","SimSun",serif}
-*{box-sizing:border-box}body{margin:0;background:#ebece1;color:var(--ink);font:14px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--green);outline-offset:4px}button{color:var(--ink)}[hidden]{display:none!important}
-.shell{max-width:1192px;margin:42px auto;padding:0 30px}.masthead{display:flex;justify-content:space-between;align-items:center;margin-bottom:27px}.wordmark{display:flex;align-items:center;gap:12px}.stamp{width:36px;height:36px;display:grid;place-items:center;border:1px solid #87947a;color:var(--green);font:22px var(--serif);border-radius:3px}.brand{font:19px var(--serif);letter-spacing:3px}.subbrand{font:9px/1.7 monospace;letter-spacing:2px;color:var(--soft)}.version{font:11px monospace;color:var(--soft);letter-spacing:1px}.intro{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:25px}h1{font:normal 35px/1.3 var(--serif);letter-spacing:2px;margin:0 0 8px}.intro p{font-size:13px;color:var(--soft);margin:0}.today{text-align:right;font-size:11px;color:var(--soft)}.today strong{font:22px/1.5 monospace;display:block;font-weight:400;color:var(--ink)}
-.workspace{display:grid;grid-template-columns:minmax(0,1fr) 260px;background:var(--paper);border:1px solid #cdd1bd;border-radius:9px;box-shadow:0 9px 30px #52604409;overflow:hidden}.farm-column{min-width:0;border-right:1px solid var(--line)}.scene-bar{display:flex;justify-content:space-between;padding:12px 18px;font-size:11px;letter-spacing:1px;color:var(--soft);background:#f1f0e3}.scene-title{color:var(--ink)}.dot{display:inline-block;width:5px;height:5px;background:#7d9567;border-radius:50%;vertical-align:middle;margin-right:7px}.stage{width:100%;aspect-ratio:8/5;position:relative;background:#a3b783}canvas{display:block;width:100%;height:100%;image-rendering:pixelated;touch-action:none;cursor:grab}canvas.grab{cursor:grabbing}.bubble{position:absolute;top:14px;left:50%;transform:translateX(-50%);background:#fbf6e8ed;border:1px solid #c4c8ad;border-radius:4px;font-size:11px;padding:7px 13px;max-width:78%;text-align:center;pointer-events:none;opacity:0;transition:opacity .2s;box-shadow:0 2px 8px #4558370b}.bubble.show{opacity:1}.hint{position:absolute;bottom:13px;left:50%;transform:translateX(-50%);background:#485943ed;color:#fff7df;font-size:11px;padding:6px 13px;border-radius:4px;pointer-events:none;white-space:nowrap}.scene-back{position:absolute;left:14px;top:14px;border:1px solid #d0d3bb;background:#f7f0df;padding:6px 11px;border-radius:4px;font-size:11px}.toolbar{padding:11px 15px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--line)}.tools{display:flex;align-items:center;gap:8px}.quiet-button{background:none;border:1px solid #d5d8c7;border-radius:4px;padding:5px 9px;font-size:11px}.quiet-button:hover{background:#e9ecdf}.wander{font-size:11px;display:flex;gap:6px;align-items:center;color:var(--soft)}input[type=checkbox]{accent-color:var(--green)}select{font-size:11px;background:transparent;border:0;color:var(--soft);max-width:90px}.helper{font-size:11px;color:var(--soft);margin:0;padding:12px 18px 15px;line-height:1.8}.helper strong{font-weight:500;color:var(--green)}
-.sidebar{padding:22px 22px 18px}.section-label{font-size:10px;letter-spacing:2px;color:var(--soft);margin:0 0 13px}.current{font:19px/1.5 var(--serif);margin:0 0 20px;min-height:57px}.care{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;border-bottom:1px solid var(--line);padding-bottom:22px;margin-bottom:23px}.care span{font-size:10px;color:var(--soft);display:block}.care strong{font:25px monospace;font-weight:400}.care em{font-size:10px;font-style:normal;color:var(--soft);margin-left:5px}.list-title{display:flex;align-items:center;justify-content:space-between}.list-title small{font:11px monospace;color:var(--soft)}#todoList{list-style:none;margin:0;padding:0;max-height:194px;overflow:auto}#todoList li{display:flex;align-items:start;justify-content:space-between;padding:9px 0;gap:4px;border-bottom:1px solid #e5e6d9;font-size:12px}#todoList label{display:flex;align-items:start;gap:8px;min-width:0;overflow-wrap:anywhere}#todoList input{margin:4px 0 0}.done span{text-decoration:line-through;color:#9caa92}.delete{background:none;border:0;color:#a3a68f;font-size:17px;line-height:1.1;padding:2px 0 2px 6px}.empty{font-size:11px;color:#949d88;line-height:1.9;margin:4px 0 20px}#todoForm{display:flex;gap:5px;margin-top:12px}#todoText{min-width:0;width:100%;font-size:11px;background:#f0f0e4;border:1px solid #dadfca;padding:7px 8px;border-radius:3px;color:var(--ink)}.add{border:1px solid var(--green);background:var(--green);color:#fff;padding:1px 9px;border-radius:3px}.harvest{display:flex;justify-content:space-between;gap:10px;margin-top:25px;padding-top:16px;border-top:1px solid var(--line);font-size:10px;color:var(--soft)}.harvest strong{font-weight:500;color:#826c4c}.bottom{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:var(--soft);padding:15px 2px}.bottom .warning{color:#a56447}.footer{display:flex;justify-content:space-between;gap:15px;border-top:1px solid #d7dccb;padding-top:18px;margin-top:24px;color:#89917f;font-size:10px;letter-spacing:.5px}.footer em{font:15px var(--serif);font-style:normal;color:#718064}
-.extras{margin-top:18px;border:1px solid #d4d9c5;border-radius:5px;font-size:11px;color:var(--soft)}summary{cursor:pointer;padding:10px 14px}.extras-body{padding:0 14px 14px}.extras-body p{font-size:10px;line-height:1.9;margin:0 0 10px}.extras-actions{display:flex;gap:8px;flex-wrap:wrap}.import-tools{display:flex;gap:7px;align-items:center}.text-button{background:none;border:0;padding:0;color:var(--soft);font-size:10px;text-decoration:underline;text-underline-offset:3px}.crop-panel{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);width:min(290px,90%);background:#f8f4e7;border:1px solid #b8c3a4;padding:15px;border-radius:5px;box-shadow:0 8px 20px #4558371a}.crop-panel label{font-size:12px;display:block;margin-bottom:9px}.crop-panel input{width:100%;border:1px solid #ced2bb;border-radius:3px;background:#fffdf4;font-size:12px;padding:8px}.crop-panel p{font-size:10px;color:var(--soft);margin:8px 0}.crop-buttons{display:flex;justify-content:end;gap:7px}.primary{background:var(--green);color:#fff9e8;border:0;padding:7px 12px;border-radius:3px;font-size:11px}dialog{border:1px solid #c5cdb7;border-radius:8px;padding:24px;width:min(400px,90%);background:var(--paper);color:var(--ink)}dialog::backdrop{background:#23382255}dialog h2{font:23px var(--serif);margin:0 0 12px}dialog p{font-size:12px;line-height:1.9}dialog .crop-buttons{margin-top:20px}
-@media(min-width:1400px){.shell{margin-top:55px}}@media(max-width:900px){.shell{padding:0 18px;margin:24px auto}.workspace{grid-template-columns:minmax(0,1fr) 220px}.sidebar{padding:19px 16px}.toolbar{padding:9px;gap:7px}.tools{gap:5px}h1{font-size:30px}}@media(max-width:700px){.workspace{display:block}.farm-column{border-right:0}.sidebar{display:grid;grid-template-columns:1fr 1.2fr;gap:0 22px;border-top:1px solid var(--line)}.care-block{grid-column:1}.todo-block{grid-column:2;grid-row:1 / span 2}.care{margin-bottom:0;border-bottom:0;padding-bottom:10px}.current{font-size:17px;margin-bottom:10px;min-height:44px}.harvest{grid-column:1 / -1;margin-top:8px}.intro{align-items:center}.intro p{font-size:11px}.today{font-size:10px;min-width:100px}.today strong{font-size:18px}h1{font-size:27px;letter-spacing:1px}.masthead{margin-bottom:24px}.brand{font-size:16px}.toolbar{align-items:center}.helper{padding:10px 12px}.bottom{gap:10px;align-items:start}.footer em{font-size:13px}.version{font-size:9px}.wordmark{gap:8px}.import-tools{gap:9px}}
+/* The yard, its activity bar, and the paper notebook share one frame. */
+:root{
+ --paper:#fff3da;--ink:#2d4034;--soft:#5c6450;--line:#d6c5a3;--green:#355643;
+ --dark:#20332d;--cream:#fff2d5;--serif:"Songti SC","Noto Serif CJK SC","SimSun",serif
+}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 26% 0,#435647 0%,#283f34 38%,#1d302a 83%);color:var(--ink);font:1rem/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+button,summary{cursor:pointer}
+button:disabled{cursor:default}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid #b5653c;outline-offset:3px}
+[hidden]{display:none!important}
+.shell{max-width:1300px;margin:auto;padding:20px 28px 28px}
+.masthead{display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--cream);margin-bottom:16px}
+.wordmark{display:flex;align-items:center;gap:12px;min-width:0}
+.stamp{width:46px;height:46px;display:grid;place-items:center;flex:none;background:#e5ad73;color:#322b22;border:2px solid #f6cf97;box-shadow:inset 0 0 0 2px #a36145;font:700 24px var(--serif)}
+.brand{margin:0;font:700 clamp(24px,3vw,34px)/1.12 var(--serif);letter-spacing:.07em}
+.subbrand{margin:4px 0 0;font-size:13px;letter-spacing:.16em;color:#e5cfab}
+.today{text-align:right;font-size:13px;color:#e5cfab}
+.today strong{display:block;color:var(--cream);font:22px/1.2 monospace}
+.workspace{display:grid;grid-template-columns:minmax(0,1fr) 278px;align-items:start;gap:16px}
+.farm-column{min-width:0;overflow:hidden;background:var(--paper);border:1px solid #b48661;border-radius:12px;box-shadow:0 14px 36px #14251fb0}
+.scene-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:8px 16px;color:#f5e0be;background:#514033;border-bottom:2px solid #a77957;font-size:14px}
+.scene-title{font:700 21px/1.3 var(--serif);color:#fff3d7}
+.scene-meta{display:flex;align-items:center;gap:10px}
+.scene-meta button{min-height:32px;border-color:#b28d6e;background:#69513e;color:#fff3d7;font-size:13px}
+.scene-meta button:hover{background:#7b5e46}
+.stage{width:100%;aspect-ratio:8/5;position:relative;background:#779353;isolation:isolate}
+canvas{display:block;width:100%;height:100%;image-rendering:pixelated;touch-action:none}
+#scene{cursor:grab}
+#scene.grab{cursor:grabbing}
+#scene.map-interact{cursor:pointer}
+.bubble,.hint{position:absolute;z-index:1;text-align:center;pointer-events:none;border-radius:5px;font-size:14px}
+.bubble{top:12px;left:50%;transform:translateX(-50%);background:#fff3db;color:var(--ink);border:1px solid #ab8158;padding:7px 12px;width:max-content;max-width:84%;opacity:0;transition:opacity .2s;box-shadow:0 3px 0 #493b3666}
+.bubble.show{opacity:1}
+.hint{bottom:10px;left:50%;transform:translateX(-50%);background:#263c31;color:var(--cream);padding:5px 10px;width:max-content;max-width:92%}
+.toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:11px 14px 10px}
+.toolbar label,.farm-settings{font-size:14px}
+.toolbar .primary,.toolbar .quiet-button{min-height:42px}
+.quiet-button,.primary,.add,.scene-back{min-height:34px;padding:5px 11px;border-radius:5px;font-size:14px;font-weight:600}
+.quiet-button{border:1px solid #b9aa88;background:#fff7e6}
+.quiet-button:hover{background:#e7eacb}
+.primary,.add{border:1px solid var(--green);background:var(--green);color:#fff7e4}
+.primary:hover,.add:hover{background:#284336}
+.scene-back{margin-right:4px}
+.quick-care{display:flex;flex-wrap:wrap;gap:8px;padding:0 14px 10px}
+.quick-care .quiet-button{border-color:#cbbc9a;background:#f4e8cb}
+.quick-care .quiet-button:hover{background:#e7eacb}
+#roomActions{display:contents}
+#roomActions[hidden]{display:none!important}
+.helper{font-size:13px;color:#595c45;margin:0;padding:0 14px 11px}
+.nap-strip{position:absolute;bottom:10px;left:10px;z-index:1;display:flex;align-items:center;gap:8px;max-width:calc(100% - 20px);border:1px solid #b19a6d;border-radius:5px;background:#fff0ce;padding:5px 8px;font-size:14px}
+.nap-strip button{white-space:nowrap}
+.sidebar{overflow:hidden;background:var(--paper);border:1px solid #b48661;border-radius:10px;box-shadow:0 10px 28px #16272175}
+.care-block,.todo-block{padding:15px 16px}
+.care-block{background:#f4e5c6;border-bottom:1px solid var(--line)}
+.section-label{font:700 18px/1.4 var(--serif);margin:0}
+.current{margin:6px 0 13px;color:#4c5d43;font-size:14px}
+.care{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.care div{background:#fff5df;border:1px solid #e0cfaa;border-radius:5px;padding:6px 8px;min-width:0}
+.care span{display:block;font-size:13px;color:var(--soft)}
+.care strong{font:22px/1.25 monospace}
+.care em{font-size:12px;font-style:normal;color:var(--soft);margin-left:4px}
+#napTotal{display:block;font-size:12px;color:var(--soft)}
+.list-title{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.list-title small{white-space:nowrap;font:13px monospace;color:var(--soft)}
+#todoList{list-style:none;margin:0;padding:0;max-height:205px;overflow:auto}
+#todoList li{display:flex;align-items:start;justify-content:space-between;padding:7px 0;gap:5px;border-bottom:1px solid var(--line);font-size:14px}
+#todoList label{display:flex;align-items:start;gap:8px;min-width:0;overflow-wrap:anywhere}
+#todoList input{margin:5px 0 0}
+.done span{text-decoration:line-through;color:var(--soft)}
+.delete{background:none;border:0;color:#765c46;font-size:21px;line-height:1;padding:1px 2px 2px 7px}
+.empty{font-size:13px;color:var(--soft);margin:6px 0 11px}
+#todoForm{display:flex;gap:6px;margin-top:10px}
+#todoText{min-width:0;width:100%;border:1px solid #b9aa88;background:#fffaf0;padding:7px 8px;border-radius:5px;font-size:14px}
+.harvest{display:flex;justify-content:space-between;flex-wrap:wrap;gap:5px 10px;padding:11px 16px;border-top:1px solid var(--line);font-size:13px;color:var(--soft)}
+.harvest strong{color:#775330}
+.bottom,.footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 16px;color:#ecdfc2;font-size:13px}
+.bottom{padding:12px 0}
+.footer{margin-top:14px;padding-top:12px;border-top:1px solid #e9d6b847}
+.footer a,.text-button{color:inherit;text-underline-offset:3px}
+.bottom .warning{color:#ffcd9d}
+.extras{border:1px solid #b29d756e;border-radius:5px;color:#ecdfc2;font-size:14px}
+summary{padding:9px 13px}
+.extras-body{padding:0 13px 13px}
+.extras-body p{font-size:13px;margin:0 0 9px}
+.extras-actions,.import-tools,.farm-settings{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.farm-settings{padding:0 0 9px}
+.farm-settings select{background:#fff7e6;border:1px solid #b9aa88;border-radius:4px;padding:3px}
+.farm-settings label:has(select){display:flex;align-items:center;gap:5px}
+input[type=checkbox]{accent-color:var(--green)}
+.text-button{background:none;border:0;padding:0;text-decoration:underline}
+.crop-panel{padding:12px 14px;background:#efe5c5;border-bottom:1px solid var(--line);display:grid;gap:8px}
+.crop-fields{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:8px}
+.crop-fields label{display:grid;gap:3px;font-size:14px}
+.crop-panel input,.crop-panel select{width:100%;min-width:0;background:#fffaf0;border:1px solid #b9aa88;border-radius:5px;padding:6px 8px;font-size:16px}
+.crop-panel p{font-size:13px;color:var(--soft);margin:0}
+.crop-buttons,.dialog-header{display:flex;align-items:center;gap:8px}
+.crop-buttons{justify-content:end}
+dialog{border:1px solid #9e7954;border-radius:9px;padding:18px;width:min(430px,92vw);background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:#162520ad}
+dialog h2{font:700 24px var(--serif);margin:0 0 10px}
+dialog p{font-size:14px;line-height:1.55}
+dialog .crop-buttons{margin-top:16px}
+.dialog-header{justify-content:space-between;margin-bottom:12px}
+.dialog-header h2{margin:0}
+@media(max-width:900px){
+ .shell{padding-inline:15px}
+ .workspace{grid-template-columns:minmax(0,1fr) 232px;gap:10px}
+ .care-block,.todo-block{padding:11px}
+}
+@media(max-width:700px){
+ .shell{padding:11px 10px 20px}
+ .workspace{grid-template-columns:minmax(0,1fr)}
+ .masthead{margin-bottom:10px}
+ .stamp{width:36px;height:36px;font-size:20px}
+ .scene-bar{min-height:38px;padding:6px 10px}
+ .scene-title{font-size:17px}
+ .toolbar,.quick-care{gap:6px;padding-inline:9px}
+ .toolbar .primary,.toolbar .quiet-button,.quick-care .quiet-button{min-height:42px;padding-inline:9px}
+ .helper{padding-inline:9px}
+ .sidebar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ .care-block{border-bottom:0;border-right:1px solid var(--line)}
+ .harvest{grid-column:1/-1}
+ .care{gap:4px}
+ .care div{padding:3px 5px}
+ .care strong{font-size:18px}
+ .bottom,.footer{font-size:12px}
+}
+@media(max-width:380px){
+ .sidebar{grid-template-columns:minmax(0,1fr)}
+ .care-block{border-right:0;border-bottom:1px solid var(--line)}
+ .care{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
-body{background:radial-gradient(ellipse at 50% 0,#faf2dc 0,#eeeadd 42%,#e2e7d8 100%);min-height:100vh}.workspace{box-shadow:0 14px 38px #4a463519}.scene-bar{background:#efe9d6}.stage{border-block:1px solid #41574c3d}#scene[data-scene="indoor"],#scene[data-scene="village"]{cursor:default}
-.shell{margin-top:31px}.masthead{margin-bottom:19px}.intro{margin-bottom:19px}.quick-care{display:flex;gap:7px;flex-wrap:wrap;padding:9px 15px 0}.quick-care .quiet-button{background:#eeeadb}.quick-care .quiet-button:hover{background:#e2e8d2}.toolbar .tools:first-child{flex-wrap:wrap}.primary:hover{background:#4f694e}.home-action{padding:6px 11px}.care{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:12px}#napTotal{display:block;color:#56634d;margin:0;font-size:10px}.nap-strip{position:absolute;bottom:12px;left:12px;display:flex;align-items:center;gap:8px;max-width:calc(100% - 24px);border:1px solid #b9ad83;border-radius:4px;background:#f8edcf;padding:5px 8px;font-size:11px}.nap-strip button{white-space:nowrap}.dialog-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.dialog-header h2{margin:0}
 #wallDialog{--chalk-grain:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAABCUlEQVR42o1UwXEDMQjcZFyMf2klP391lUSpxF9KcBm6DtzJ+hHkYAycduZGEtIBYleA5CDZ+QfhK5p+Q9fD2KPzBN8hC3MbxAYIHXoMt+7WgccJMX4BnAHcdH0FsOl419GfB4A7gujdzCO06gZIfmzGPriGRlJgCi5FFjabaK97UnrgqC1k1Vdkw6KOsxSSRUByLUnqmen1afsEsCvlm45fAC46359y+N+f9lsgtwvcE8uyqJgWK3YcHOQBSeL1iIqx4vlJlr0XdsTuWMg0ZFkKpr0jmS/DB/0gyaJBTPygxq7q2JHUbyTXk6M6RxnOzL416mxbs6Wd1R5hg4vQdRwBIT3p1i+kPQDzTe7uClttoAAAAABJRU5ErkJggg==);--chalk-font:"Kaiti SC",KaiTi,STKaiti,"Noto Serif CJK SC","Songti SC",serif;width:min(720px,95vw);max-height:92dvh;overflow:auto;border:2px solid #95815d;background:#f7efd9;box-shadow:0 18px 55px #19252753}
 .chalk-surface{background-color:#314947;background-image:radial-gradient(ellipse at 20% 8%,#506b63,#314847 70%);color:#fff0c9;border:6px ridge #ad805e;box-shadow:inset 0 0 25px #152c2be0}
 #wallForm{margin:0 0 13px}.chalk-draft-head,.wall-collections,.chalk-actions{display:flex;justify-content:space-between;align-items:center;gap:8px}.chalk-draft-head{margin-bottom:7px}.chalk-draft-head label{font-weight:600}.chalk-counter,.wall-collections small{font-size:12px;font-variant-numeric:tabular-nums;color:#665a47}.chalk-counter.limit{color:#9c4037;font-weight:700}
@@ -53,47 +178,64 @@ body{background:radial-gradient(ellipse at 50% 0,#faf2dc 0,#eeeadd 42%,#e2e7d8 1
 #gardenStatus{margin:6px 0 0;min-height:1.45em;color:#536647}
 @media(max-width:430px){#gardenDialog{padding:12px}.garden-plot{padding:6px}}
 .diary-storage{margin:0;color:#75684f;font-size:11px}
-#scene[data-scene="indoor"]{cursor:default}
-#scene[data-scene="indoor"].room-interact{cursor:pointer}
+#scene[data-scene="indoor"],#scene[data-scene="village"]{cursor:default}
+#scene.map-interact,#scene.room-interact{cursor:pointer}
+.crop-progress{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:0 14px 11px;font-size:13px}
+.crop-progress progress{width:92px;accent-color:var(--green)}
+.journal-right{gap:10px}.diary-sharing{border-top:1px solid var(--line)}
+.diary-sharing summary{padding:7px 0;font-size:14px}.diary-sharing button{margin-top:6px}
+#diaryNote{min-height:157px;font-size:16px}#diaryStatus{font-size:13px}
+.garden-plot.selected{outline-offset:1px}
+@media(max-width:560px){.journal-right{grid-row:1}.journal-left{border-top:1px solid var(--line);border-bottom:0}}
 </style>
 </head>
 <body>
 <main class="shell">
- <header class="masthead"><div class="wordmark"><div class="stamp" aria-hidden="true">己</div><div><div class="brand">爱你老己</div><div class="subbrand">像素小院</div></div></div><span class="version">V0.13.2</span></header>
- <section class="intro"><div><h1>慢慢过今天。</h1><p>喝口水，做点小事，也给自己留一点空白。</p></div><div class="today"><span id="dateLabel"></span><strong id="clock">--:--</strong></div></section>
+ <header class="masthead">
+  <div class="wordmark"><span class="stamp" aria-hidden="true">己</span><div><h1 class="brand">爱你老己</h1><p class="subbrand">像素小院</p></div></div>
+  <div class="today"><span id="dateLabel"></span><strong id="clock">--:--</strong></div>
+ </header>
  <section class="workspace" aria-label="我的像素小院">
   <div class="farm-column">
-   <div class="scene-bar"><span class="scene-title"><span class="dot"></span><span id="sceneName">我的小院</span></span><span id="weatherLabel">晴 · 微风</span></div>
+   <div class="scene-bar"><span class="scene-title" id="sceneName">我的小院</span><div class="scene-meta"><span id="weatherLabel">晴 · 微风</span><button id="findBtn" class="quiet-button">找小人</button></div></div>
    <div class="stage">
-    <canvas id="scene" width="640" height="400" role="img" aria-label="像素小院。按住戴绿头巾的小人，将其拖到水井、吊床、菜园、小屋或村口。也可以用下方目的地按钮。"></canvas>
-    <button id="leaveBtn" class="scene-back" hidden>回小院</button><div id="bubble" class="bubble" role="status" aria-live="polite"></div><div id="hint" class="hint" hidden></div>
+    <canvas id="scene" width="640" height="400" role="img" aria-label="像素小院。点想去的地方，或按住小人拖过去。"></canvas>
+    <div id="bubble" class="bubble" role="status" aria-live="polite"></div><div id="hint" class="hint" hidden></div>
     <div id="wakeBtn" class="nap-strip" hidden><span>午休 <strong id="napElapsed">0 秒</strong></span><button type="button" class="quiet-button">结束午休</button></div>
     <div id="breathPanel" class="breath-panel" role="group" aria-label="呼吸练习" hidden>
      <div class="breath-dial" aria-hidden="true"><div id="breathOrb" class="breath-orb"></div></div>
      <div class="breath-copy"><strong id="breathPhase" aria-live="polite"></strong><small>还剩 <span id="breathTime"></span> 秒</small></div>
      <button id="breathStop" class="quiet-button" type="button">结束呼吸</button>
     </div>
-    <div id="cropPanel" class="crop-panel" hidden><label for="cropText">今天，想让哪件小事长出来？</label><input id="cropText" maxlength="40" placeholder="比如：写好这一页周报"><label for="cropKind">种什么 <select id="cropKind"><option value="wheat">麦子</option><option value="tomato">番茄</option><option value="sunflower">向日葵</option><option value="rose">玫瑰</option><option value="jasmine">茉莉</option></select></label><p id="cropHint">在菜地培育 30 秒，做完也可以直接确认成熟。</p><div class="crop-buttons"><button id="cropCancel" class="quiet-button">先歇歇</button><button id="cropStart" class="primary">开始种下</button></div></div>
    </div>
-   <div class="toolbar"><div class="tools"><button id="homeBtn" class="primary home-action">回家下班</button><button id="diaryBtn" class="quiet-button">下班日记</button><button id="wallBtn" class="quiet-button">心愿墙</button><button id="gardenBtn" class="quiet-button">小菜园</button><button id="findBtn" class="quiet-button">找找小人</button><button id="stopBtn" class="quiet-button">停一停</button></div><div class="tools"><label class="wander"><input id="wander" type="checkbox" checked>自己散步</label><label class="wander">步速 <select id="pace" aria-label="行走速度"><option value="22">更慢</option><option value="30">慢慢走</option><option value="42">轻快些</option></select></label></div></div>
-   <div class="quick-care" id="roomActions" aria-label="小屋活动" hidden>
-    <button id="roomDesk" class="quiet-button">走到书桌</button>
-    <button id="roomBed" class="quiet-button">上床睡觉</button>
-   </div><div class="quick-care" id="quickCare" aria-label="小院活动"></div><p class="helper"><strong>按住小人，拖到想去的地方。</strong>松手后，小人会慢慢走过去。<br>喝水、午休和开会由你主动开始。回家后，到书桌边写日记。也可以点床睡觉。</p>
+   <div id="cropPanel" class="crop-panel" hidden>
+    <div class="crop-fields"><label for="cropText">想种下哪件小事？<input id="cropText" maxlength="40" placeholder="比如：读几页书"></label><label for="cropKind">种什么 <select id="cropKind"><option value="wheat">麦子</option><option value="tomato">番茄</option><option value="sunflower">向日葵</option><option value="rose">玫瑰</option><option value="jasmine">茉莉</option></select></label></div>
+    <p id="cropHint">培育 30 秒，或做完小事后在菜园确认成熟。</p>
+    <div class="crop-buttons"><button id="cropCancel" class="quiet-button">取消</button><button id="cropStart" class="primary">开始种下</button></div>
+   </div>
+   <nav class="toolbar" aria-label="场景操作">
+    <button id="homeBtn" class="primary">回家</button><button id="leaveBtn" class="quiet-button scene-back" hidden>回小院</button>
+    <div id="roomActions" hidden><button id="roomDesk" class="quiet-button">到书桌写日记</button><button id="roomBed" class="primary">上床睡觉</button></div>
+    <button id="gardenBtn" class="quiet-button">种花与收获</button><button id="wallBtn" class="quiet-button">心愿墙</button><button id="diaryBtn" class="quiet-button">日记本</button>
+    <button id="stopBtn" class="quiet-button" hidden>停一停</button>
+   </nav>
+   <div class="quick-care" id="quickCare" aria-label="小院活动"></div>
+   <p id="sceneHelp" class="helper">点想去的地方，也可以把小人拖过去。</p>
+   <div id="cropProgress" class="crop-progress" hidden><label for="growthMeter" id="growthLabel"></label><progress id="growthMeter" max="30" value="0"></progress></div>
   </div>
   <aside class="sidebar" aria-label="今天的记录">
-   <div class="care-block"><p class="section-label">此刻的自己</p><p class="current" id="state" aria-live="polite">在小院里，慢慢来</p><div class="care"><div><span>开会</span><strong id="meetingN">0</strong><em>次</em></div><div><span>喝水</span><strong id="waterN">0</strong><em>次</em></div><div><span>午休</span><strong id="restN">0</strong><em>次</em><small id="napTotal"></small></div><div><span>上厕所</span><strong id="toiletN">0</strong><em>次</em></div></div></div>
-   <div class="todo-block"><div class="list-title"><p class="section-label">今天想做的事</p><small id="todoCount">0 / 0</small></div><ul id="todoList"></ul><p id="todoEmpty" class="empty">不用把一天排得很满。<br>从一件小事开始就好。</p><form id="todoForm"><input id="todoText" aria-label="添加一件今天想做的事" maxlength="80" placeholder="写一件小事…" autocomplete="off"><button class="add" aria-label="添加待办" type="submit">+</button></form></div>
-   <div class="harvest"><span>待收获 <strong><span id="doneN">0</span> / 8</strong></span><span>小院金币 <strong id="coins">0</strong></span></div>
+   <section class="care-block"><h2 class="section-label">今天的记录</h2><p class="current" id="state" aria-live="polite">在小院里，慢慢来</p><div class="care"><div><span>喝水</span><strong id="waterN">0</strong><em>次</em></div><div><span>午休</span><strong id="restN">0</strong><em>次</em><small id="napTotal"></small></div><div><span>开会</span><strong id="meetingN">0</strong><em>次</em></div><div><span>上厕所</span><strong id="toiletN">0</strong><em>次</em></div></div></section>
+   <section class="todo-block"><div class="list-title"><h2 class="section-label">想做的小事</h2><small id="todoCount">0 / 0</small></div><ul id="todoList"></ul><p id="todoEmpty" class="empty">今天想做什么？</p><form id="todoForm"><input id="todoText" aria-label="添加一件今天想做的事" maxlength="80" placeholder="写一件小事…" autocomplete="off"><button class="add" aria-label="添加待办" type="submit">+</button></form></section>
+   <div class="harvest"><span>待收获 <strong id="doneN">0</strong></span><span>小院金币 <strong id="coins">0</strong></span></div>
   </aside>
  </section>
  <div class="bottom"><span id="saveStatus" role="status">已保存在此浏览器</span><div class="import-tools"><button id="exportBtn" class="text-button">带走小院</button><button id="importBtn" class="text-button">恢复备份</button><input id="backupFile" type="file" accept=".json,application/json" hidden></div></div>
- <details class="extras"><summary>更多：天气、演示事件与键盘操作</summary><div class="extras-body"><p>天气和外部事件用于原型演示，尚未连接飞书、Apple Watch 或薪资系统。记录留在当前浏览器；清理浏览器前请先带走备份。</p><div class="extras-actions"><button class="quiet-button" id="weatherBtn">换个天气</button><button class="quiet-button" id="meetingBtn">模拟会议</button><button class="quiet-button" id="salaryBtn">模拟工资</button><button class="quiet-button" id="heartBtn">模拟心率事件</button><button class="quiet-button" id="beforeRestoreBtn">下载恢复前备份</button></div><p style="margin-top:13px">其他目的地</p><div id="destinations" class="extras-actions"></div></div></details>
- <footer class="footer"><em>看见自己，也照顾自己。</em><span>Josephine Xiang</span><span>素材 · Pixel-Boy &amp; AAA / Kenney / <a href="https://frakassets.itch.io/free-pets-pack" style="color:inherit">Frakassets</a></span></footer>
+ <details class="extras"><summary>小院设置与演示</summary><div class="extras-body"><div class="farm-settings"><label><input id="wander" type="checkbox" checked> 自己散步</label><label>步速 <select id="pace" aria-label="行走速度"><option value="22">更慢</option><option value="30">慢慢走</option><option value="42">轻快些</option></select></label></div><p>天气和外部事件用于原型演示，尚未连接飞书、Apple Watch 或薪资系统。记录留在当前浏览器；清理浏览器前请先带走备份。</p><div class="extras-actions"><button class="quiet-button" id="weatherBtn">换个天气</button><button class="quiet-button" id="meetingBtn">模拟会议</button><button class="quiet-button" id="salaryBtn">模拟工资</button><button class="quiet-button" id="heartBtn">模拟心率事件</button><button class="quiet-button" id="beforeRestoreBtn">下载恢复前备份</button></div><p style="margin-top:13px">其他目的地</p><div id="destinations" class="extras-actions"></div></div></details>
+ <footer class="footer"><span>Josephine Xiang · v0.14.0</span><span>素材 · Pixel-Boy &amp; AAA / Kenney / <a href="https://frakassets.itch.io/free-pets-pack" style="color:inherit">Frakassets</a></span></footer>
 </main>
 <dialog id="gardenDialog" aria-labelledby="gardenTitle">
  <header class="dialog-header"><h2 id="gardenTitle">小菜园</h2><button type="button" id="gardenClose" class="quiet-button">回小院</button></header>
- <p id="gardenRules">培育满 30 秒、勾选同名清单，或点「我做完了」，作物就会成熟。闪光时就能收获。</p>
+ <p id="gardenRules">照料 30 秒，或完成对应的小事，作物就会成熟。成熟后点「收获」。</p>
  <div class="garden-basket"><strong>收获篮</strong><span id="gardenBasket"></span></div>
  <ul id="gardenPlots" aria-label="八块菜地"></ul>
  <p id="gardenStatus" role="status"></p>
@@ -132,10 +274,13 @@ body{background:radial-gradient(ellipse at 50% 0,#faf2dc 0,#eeeadd 42%,#e2e7d8 1
     <label>今天的心情 <select id="diaryMood"><option value="">先留空</option></select></label>
     <label for="diaryNote" class="diary-note-label">写给老己</label>
     <textarea id="diaryNote" maxlength="240" placeholder="今天哪一刻，有好好照顾自己？"></textarea>
-    <p class="diary-storage">在这台设备上按日期回看。</p><p id="diaryStatus" role="status"></p>
+    <p id="diaryStatus" role="status"></p>
    </form>
-   <fieldset class="share-settings"><legend>分享到图片</legend><label><input id="shareNote" type="checkbox"> 带上日记正文</label><label><input id="shareToilet" type="checkbox"> 显示上厕所次数</label><label class="share-wish-label">带一句心愿 <select id="shareWish"></select></label></fieldset>
-   <div class="journal-actions"><button type="submit" form="diaryForm" class="primary" id="diarySave">保存日记</button><button type="submit" form="diaryForm" id="diaryBedSave" class="primary" hidden>保存日记并睡觉</button><button type="button" class="quiet-button" id="previewShare">预览分享图</button></div>
+   <div class="journal-actions"><button type="submit" form="diaryForm" class="primary" id="diarySave">保存日记</button><button type="submit" form="diaryForm" class="primary" id="diaryBedSave" hidden>保存日记并睡觉</button></div>
+   <details class="diary-sharing"><summary>制作分享图</summary>
+    <fieldset class="share-settings"><legend>分享内容</legend><label><input id="shareNote" type="checkbox"> 带上日记正文</label><label><input id="shareToilet" type="checkbox"> 显示上厕所次数</label><label class="share-wish-label">带一句心愿 <select id="shareWish"></select></label></fieldset>
+    <button type="button" class="quiet-button" id="previewShare">预览分享图</button>
+   </details>
   </section>
  </div>
  <section class="diary-timeline" aria-labelledby="activityTitle">
@@ -418,7 +563,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
 </script>
 <script>
 /* CC0 Ninja Adventure sprites + documented small extensions; see ASSET_CREDITS.md.
-   Every sprite is rendered at 2x its native resolution, with explicit foot anchors. */
+   Scenery uses the atlas grid. Actors keep explicit foot anchors. */
 (function(root){
  'use strict';
  const M=FarmAssets.manifest,S=M.scale,C={grass:'#79a74a',cream:'#ffe3af',ink:'#493d3c'};
@@ -468,17 +613,36 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  }
  function meadow(){
    for(let y=0;y<400;y+=32)for(let x=0;x<640;x+=32)sprite('grass',x,y);
+   r(0,0,640,400,'#566a4030');
+   for(const [x,y,w,h] of [[67,75,92,44],[251,110,108,42],[563,82,84,38],[74,254,77,49],[234,312,67,55],[551,339,80,30]]){
+     oval(x,y,w,h,'#3b6c4830');
+   }
    for(let i=0;i<49;i++){
      const x=(i*97+21)%640,y=(i*107+22)%400;
-     r(x,y,6,2,'#6a963d');r(x+2,y-2,2,4,'#a4ba57');
-     if(i%4===0)r(x+8,y+2,4,2,'#acc661');
+     r(x,y,6,2,'#577d44');r(x+2,y-2,2,4,'#92ab63');
+     if(i%4===0)r(x+8,y+2,4,2,'#b9b76b');
    }
  }
  function flowers(x,y){sprite('flowerWhite',x-12,y);sprite('flowerRed',x+12,y+6);sprite('flowerYellow',x+2,y-10);}
+ function pond(){
+   oval(487,75,47,38,'#405b48');
+   oval(484,73,43,35,'#b0ad73');
+   oval(484,72,38,30,'#587d6d');
+   oval(484,71,35,27,'#427f80');
+   oval(486,76,30,20,'#569e9c');
+   for(const [x,y,w] of [[465,58,22],[482,64,16],[474,80,22],[496,88,12]])r(x,y,w,2,'#86bab0');
+   for(const [x,y] of [[461,79],[494,56],[509,73]]){
+     oval(x,y,7,4,'#5f8a59');r(x-4,y-2,6,2,'#9caa66');r(x+2,y,6,2,'#477b79');
+   }
+   r(459,75,4,3,'#e9a4a0');r(461,73,2,3,'#ffe0b9');
+   for(const [x,y] of [[446,86],[461,102],[514,88],[520,54]]){
+     r(x,y-8,2,8,'#4c7044');r(x-3,y-4,2,6,'#9d9d59');r(x+1,y-9,2,3,'#8b6a4b');
+   }
+ }
  function makeGround(){
    ground=document.createElement('canvas');ground.width=640;ground.height=400;
    const old=ctx;ctx=ground.getContext('2d');ctx.imageSmoothingEnabled=false;meadow();roads();
-   sprite('pond',484,118);
+   pond();
    fence(242,126,164);fence(538,114,76);fence(282,370,176);fence(504,370,88);
    flowers(70,248);flowers(260,220);flowers(486,226);flowers(232,346);
    for(let i=0;i<10;i++)sprite('shrub',i*64+12,36+(i%2)*4);
@@ -524,19 +688,19 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    }
  }
  // Frakassets 16px top-down sheet, in its original row order.
- const CAT_FRAME=16,CAT_SIZE=28;
+ const CAT_FRAME=16,CAT_SIZE=32;
  const CAT_DIRECTION={down:0,right:1,up:2,left:3};
  const CAT_POSE={happy:[0,6],idle:[4,8],sleep:[8,12],walk:[12,6]};
  function cat(x,y,action,t,facing='right',onPillow=false,distance=0){
    const [row,frames]=CAT_POSE[action];
    const step=action==='walk'?distance/4:t*12;
    const column=Math.floor(step)%frames;
-   if(!onPillow)shadow(x,y,9);
+   if(!onPillow)shadow(x,y,11);
    // Source feet sit 14 pixels from the top of each frame.
    ctx.drawImage(petAtlas.png,column*CAT_FRAME,(row+CAT_DIRECTION[facing])*CAT_FRAME,CAT_FRAME,CAT_FRAME,
      Math.round(x)-CAT_SIZE/2,Math.round(y)-Math.round(14*CAT_SIZE/CAT_FRAME),CAT_SIZE,CAT_SIZE);
    if(action==='sleep'&&!onPillow){
-     r(x+12,y-17,6,2,C.cream);r(x+14,y-15,2,2,C.cream);r(x+12,y-13,6,2,C.cream);
+     r(x+14,y-19,6,2,C.cream);r(x+16,y-17,2,2,C.cream);r(x+14,y-15,6,2,C.cream);
    }
  }
  function restroom(x,y){
@@ -741,11 +905,19 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    part('idle_down',0,0,16,10,190,200);
    r(200,212,4,2,'#704e45');r(210,212,4,2,'#704e45');
  }
+ function bedsideLamp(lit){
+   r(151,221,23,16,'#59433d');r(150,219,25,6,'#94634e');r(153,220,20,2,'#c08b68');
+   r(160,209,3,10,'#795746');r(156,216,10,3,'#ae7950');
+   if(lit)oval(161,207,25,19,'#e5ac5635');
+   r(154,201,15,8,lit?'#eabe7f':'#947659');
+   r(157,198,9,4,lit?'#f5cc8a':'#a98b6b');
+   r(152,207,19,3,lit?'#ffdf9f':'#a98b6b');
+ }
  function indoor(t,bedtime,person,kitty){
    const progress=bedtime===null?0:Math.min(1,bedtime/FarmCore.BEDTIME_SECONDS);
    const tucked=progress>=.72,asleep=progress===1;
    r(0,0,640,400,asleep?'#222a41':'#2d3c42');
-   r(120,70,400,322,'#1f2e35');
+   r(114,65,412,328,'#192b3280');r(120,70,400,322,'#1f2e35');
    for(let y=112;y<352;y+=32)for(let x=160;x<480;x+=32)part('floorTiles',16,16,16,16,x,y);
    for(let x=160;x<480;x+=32){part('wallTiles',32,0,16,16,x,80);part('wallTiles',32,64,16,16,x,352);}
    for(let y=112;y<352;y+=32){part('wallTiles',0,32,16,16,128,y);part('wallTiles',64,32,16,16,480,y);}
@@ -759,7 +931,8 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    else r(292,139,58,14,'#b67578');
    r(318,120,4,38,asleep?'#b48872':'#ffca91');r(282,136,76,4,asleep?'#b48872':'#ffca91');r(276,156,88,6,'#e7a873');
    ctx.save();const light=ctx.createRadialGradient(321,170,9,321,193,98);light.addColorStop(0,asleep?'#8390cc32':'#ffc58858');light.addColorStop(1,'#ffc58800');ctx.fillStyle=light;ctx.fillRect(190,125,262,185);ctx.restore();
-   sprite('rug',335,333);sprite('bookshelf',428,180);sprite('plant',162,188);desk(421,263);
+   sprite('rug',335,333);sprite('bookshelf',428,180);sprite('plant',163,181);desk(421,263);
+   bedsideLamp(!asleep);
    gardenFlowers('rose',451,248);gardenFlowers('jasmine',465,249);
    bedFrame();
    if(tucked)sleepingHero();
@@ -936,7 +1109,20 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(data));storageHealthy=true;}catch{storageHealthy=false;}updateSaveStatus();}
  function updateSaveStatus(){$('saveStatus').textContent=storageHealthy?'已保存在此浏览器':'暂时无法保存，请导出备份';$('saveStatus').classList.toggle('warning',!storageHealthy);}
  function say(text){$('bubble').textContent=text;$('bubble').classList.add('show');clearTimeout(bubbleTimer);bubbleTimer=setTimeout(()=>$('bubble').classList.remove('show'),3600);}
- function setStatus(text){$('state').textContent=text;}
+ function setStatus(text){
+   $('state').textContent=text;
+   $('stopBtn').hidden=game.scene!=='farm'||(!game.pending&&game.zone==='idle'&&game.breathing===null);
+ }
+ function renderGrowth(){
+   const growing=game.scene==='farm'&&game.zone==='work'&&game.crop>=0&&$('cropPanel').hidden;
+   if($('cropProgress').hidden===growing)$('cropProgress').hidden=!growing;
+   if(!growing)return;
+   const remaining=Math.ceil(F.GROW_SECONDS-game.actionTime);
+   const label=F.CROP_NAMES[data.crops[game.crop].kind]+' · '+(hero.path.length?'走到菜地后开始':'还需照料 '+remaining+' 秒');
+   if($('growthLabel').textContent===label)return;
+   $('growthMeter').value=F.GROW_SECONDS-remaining;
+   $('growthLabel').textContent=label;
+ }
  function record(action,seconds=0,at=Date.now()){
    F.switchDay(data);
    const date=F.localDate(new Date(at)),item=F.addActivity(data,date,action,at,seconds);
@@ -1006,7 +1192,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
      const crop=data.crops[index];
      $('cropText').value=crop.text||data.todos.find(t=>!t.done)?.text||'';
      $('cropText').readOnly=!!crop.text;
-     $('cropKind').value=crop.kind;$('cropKind').disabled=!!crop.text;
+     $('cropKind').value=crop.text||crop.stage?crop.kind:'sunflower';$('cropKind').disabled=!!crop.text;
      $('cropStart').textContent=crop.text?'继续培育':'开始种下';
      $('cropHint').textContent='在菜地培育 30 秒，或做完这件事后在菜园确认，即可成熟。';
      $('cropPanel').hidden=false;setStatus(crop.text?'回到「'+crop.text+'」':'先给这格小苗起个名字');
@@ -1026,10 +1212,12 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    game.bed=null;game.roomTarget=null;
    endNap();
    game.scene=name;game.pending=null;game.zone='idle';game.actionTime=0;game.crop=-1;game.plotTarget=-1;hero.path=[];cat.path=[];game.drag=null;hoverZone=null;$('cropPanel').hidden=true;
-   $('gardenBtn').hidden=name!=='farm';$('leaveBtn').hidden=name==='farm';$('homeBtn').hidden=name==='indoor';$('findBtn').hidden=name!=='farm';$('stopBtn').hidden=name!=='farm';$('sceneName').textContent={farm:'我的小院',indoor:'下班到家',village:'村里的会面'}[name];
+   $('gardenBtn').hidden=name!=='farm';$('leaveBtn').hidden=name==='farm';$('homeBtn').hidden=name!=='farm';$('findBtn').hidden=name!=='farm';$('wallBtn').hidden=name!=='farm';$('sceneName').textContent={farm:'我的小院',indoor:'回到小屋',village:'村里的会面'}[name];
    $('leaveBtn').textContent=name==='village'?'散会，回小院':'出门，回小院';
-   const descriptions={farm:'像素小院。按住戴绿头巾的小人拖往目的地，也可以用下方按钮。',indoor:'下班到家的小屋，有书桌和铺着被子的宽床。',village:'小人坐在村里的会议桌边。'};
-   cv.setAttribute('aria-label',descriptions[name]);cv.classList.remove('room-interact');
+   const descriptions={farm:'像素小院。点想去的地方，或按住小人拖过去。',indoor:'小屋里有书桌、宽床和一只橘猫。',village:'小人坐在村里的会议桌边。'};
+   cv.setAttribute('aria-label',descriptions[name]);cv.classList.remove('room-interact','map-interact');
+   hideHint();renderWeather();
+   $('sceneHelp').textContent={farm:'点想去的地方，也可以把小人拖过去。',indoor:'点书桌写日记，点床就寝。',village:'散会后，可以在日记本里回看这次会面。'}[name];
    if(name==='farm'){
      hero.x=142;hero.y=205;game.dwell=6;
      if(leavingRoom)Object.assign(cat,{x:180,y:214,facing:'down'});
@@ -1045,7 +1233,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  function updateRoomControls(){
    const inside=game.scene==='indoor',movingToBed=game.bed!==null&&game.bed<F.BEDTIME_SECONDS;
    $('roomActions').hidden=!inside;
-   $('quickCare').hidden=inside;
+   $('quickCare').hidden=game.scene!=='farm';
    $('roomDesk').disabled=movingToBed;
    $('roomBed').disabled=movingToBed;
    $('roomBed').textContent=game.bed===null?'上床睡觉':movingToBed?'正在上床…':'起床';
@@ -1060,8 +1248,10 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  }
  function finishBedtime(){
    $('sceneName').textContent='晚安，老己';
+   $('sceneHelp').textContent='小猫睡在枕头旁。点床或「起床」继续。';
    cv.setAttribute('aria-label','老己睡在宽床上，小猫蜷在右边的枕头旁。');
    setStatus('老己和小猫一起睡觉');
+   renderWeather();
    updateRoomControls();
  }
  function beginBedtime(alreadyAsleep=false){
@@ -1083,8 +1273,10 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    Object.assign(hero,{x:302,y:254,facing:'down',path:[]});
    Object.assign(cat,{x:310,y:268,facing:'right',path:[]});
    $('sceneName').textContent='我的小屋';
+   $('sceneHelp').textContent='点书桌写日记，点床就寝。';
    cv.setAttribute('aria-label','小屋里有书桌和宽床，点桌子可以写日记。');
    setStatus('起床了，还在小屋里');
+   renderWeather();
    updateRoomControls();return true;
  }
  function useBed(){
@@ -1246,7 +1438,9 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    if(!onSleeper&&(sleeping||Math.abs(p.x-hero.x)>16||p.y<hero.y-39||p.y>hero.y+7)){
      const plot=F.plotAt(p);
      if(plot>=0){e.preventDefault();openGarden(plot);return;}
-     const z=F.zoneAt(p);if(z)say('把小人拖到'+F.ZONES[z].label+'，才会开始。');return;
+     const z=F.zoneAt(p);
+     if(z){e.preventDefault();go(z);}
+     return;
    }
    game.drag={id:e.pointerId,start:p,sleeping,offset:onSleeper?{x:0,y:12}:{x:hero.x-p.x,y:hero.y-p.y},origin:{x:hero.x,y:hero.y},path:hero.path.slice(),moved:false};hero.path=[];cv.setPointerCapture(e.pointerId);cv.classList.add('grab');e.preventDefault();
  });
@@ -1256,7 +1450,15 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
      cv.classList.toggle('room-interact',[F.ROOM.desk.box,F.ROOM.bed.box,F.ROOM.door.box].some(box=>F.inside(point,box)));
      return;
    }
-   if(!game.drag||game.drag.id!==e.pointerId)return;const p=scenePoint(e),d=game.drag;
+   if(!game.drag){
+     if(game.scene==='farm'){
+       const p=scenePoint(e);
+       const onHero=Math.abs(p.x-hero.x)<=16&&p.y>=hero.y-39&&p.y<=hero.y+7;
+       cv.classList.toggle('map-interact',!onHero&&Boolean(F.inside(p,F.WALL)||F.plotAt(p)>=0||F.zoneAt(p)));
+     }
+     return;
+   }
+   if(game.drag.id!==e.pointerId)return;const p=scenePoint(e),d=game.drag;
    if(Math.hypot(p.x-d.start.x,p.y-d.start.y)>4)d.moved=true;
    if(!d.moved)return;
    hero.x=Math.max(15,Math.min(625,p.x+d.offset.x));hero.y=Math.max(115,Math.min(380,p.y+d.offset.y));
@@ -1290,7 +1492,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  $('meetingSkip').onclick=()=>$('meetingDialog').close();
  $('meetingDialog').addEventListener('close',()=>{closingMeeting=null;setScene('farm');});
  $('wakeBtn').querySelector('button').onclick=()=>{if(game.zone==='nap')finishAction();};
- $('homeBtn').onclick=()=>{if(game.scene!=='farm')setScene('farm');go('home');};
+ $('homeBtn').onclick=()=>go('home');
  $('diaryBtn').onclick=()=>openDiary(F.localDate());$('stopBtn').onclick=()=>{
    if(game.breathing!==null){endBreath('已结束呼吸。');return;}
    stopAction();say('今天也可以留一点空白。');
@@ -1334,13 +1536,19 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    gardenPlot=index;
    $('gardenStatus').textContent='';
    renderGarden();
-   if(!$('gardenDialog').open)$('gardenDialog').showModal();
+   if(!$('gardenDialog').open){
+     $('gardenDialog').showModal();
+     const target=index>=0?index:data.crops.findIndex(crop=>crop.stage===4);
+     if(target>=0)$('gardenPlots').querySelector('[data-plot="'+target+'"] button')?.focus();
+   }
  }
  function renderGarden(){
    const list=$('gardenPlots');
    list.replaceChildren();
    $('gardenBasket').textContent=Object.entries(data.harvests).map(([kind,n])=>F.CROP_NAMES[kind]+' '+n+' '+F.cropUnit(kind)).join(' · ');
-   data.crops.forEach((crop,index)=>{
+   const plots=data.crops.map((crop,index)=>({crop,index}));
+   plots.sort((a,b)=>Number(b.crop.stage===4)-Number(a.crop.stage===4));
+   plots.forEach(({crop,index})=>{
      const box=document.createElement('li'),title=document.createElement('strong'),caption=document.createElement('span'),actions=document.createElement('div');
      const kind=F.CROP_NAMES[crop.kind];
      box.className='garden-plot';box.dataset.plot=index;box.dataset.stage=crop.stage;box.classList.toggle('selected',index===gardenPlot);
@@ -1355,7 +1563,8 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
          const result=F.harvestCrop(data,index);if(!result)return;
          const name=F.CROP_NAMES[result.kind];
          save();renderStats();renderGarden();
-         list.querySelector('[data-plot="'+index+'"] button')?.focus();
+         const next=list.querySelector('[data-stage="4"] button')||list.querySelector('[data-plot="'+index+'"] button');
+         next?.focus();
          $('gardenStatus').textContent='已收进篮子 · '+name+' 1 '+F.cropUnit(result.kind)+(result.coins?' · +'+result.coins+' 金币':'');
        });
      }else{
@@ -1369,6 +1578,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
          $('gardenDialog').close();
          if(game.scene!=='farm')setScene('farm');
          go('work',index);
+         if(game.pending==='work')arrive();
        });
      }
      box.append(title,caption,actions);list.append(box);
@@ -1381,11 +1591,15 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    $('napTotal').textContent=data.journal.napSeconds?F.duration(data.journal.napSeconds):'';
    $('coins').textContent=data.coins;
    const ripe=data.crops.filter(c=>c.stage===4).length;
-   $('doneN').textContent=ripe;$('gardenBtn').textContent=ripe?'去收获 · '+ripe:'小菜园';
+   $('doneN').textContent=ripe;$('gardenBtn').textContent=ripe?'收获 · '+ripe:'种花与收获';
    $('gardenBtn').classList.toggle('harvest-ready',ripe>0);
    $('waterN').textContent=data.journal.water;$('restN').textContent=data.journal.rest;$('toiletN').textContent=data.journal.toilet;
  }
- function renderWeather(){$('weatherLabel').textContent={sunny:'晴 · 微风',warm:'暖 · 午后',rain:'雨 · 听雨',night:'夜 · 星光'}[data.weather];}
+ function renderWeather(){
+   $('weatherLabel').textContent=game.scene==='indoor'
+     ?game.bed===F.BEDTIME_SECONDS?'灯已熄':'灯还亮着'
+     :{sunny:'晴 · 微风',warm:'暖 · 午后',rain:'雨 · 听雨',night:'夜 · 星光'}[data.weather];
+ }
  function openWall(){
    if($('wallDialog').open)return;
    erasedWish=null;$('undoWish').hidden=true;$('wallStatus').textContent='';
@@ -1554,6 +1768,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    $('shareNote').checked=false;$('shareToilet').checked=false;
    $('shareWish').replaceChildren(new Option('不带心愿',''),...data.wishes.slice().reverse().map((text,index)=>new Option(text,String(data.wishes.length-index-1))));
    $('shareWish').value='';$('shareWish').disabled=!data.wishes.length;
+   $('diaryDialog').querySelector('.diary-sharing').open=false;
    $('diaryDialog').showModal();
  }
  function persistDiary(settled,sleep=false){
@@ -1572,7 +1787,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    const sleep=e.submitter===$('diaryBedSave')&&game.scene==='indoor'&&game.bed===null&&diaryDate===F.localDate();
    if(persistDiary(true,sleep)&&sleep){
      $('diaryDialog').close();beginBedtime();
-     say('日记已保存。');$('leaveBtn').focus({preventScroll:true});
+     say('日记已保存。');$('diaryBtn').focus({preventScroll:true});
    }
  };
  $('diaryNote').oninput=()=>persistDiary(false);
@@ -1622,7 +1837,11 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    const now=data;data=F.cleanSave(old);exportBackup();data=now;
  };
  for(const [key,z] of Object.entries(F.ZONES)){
-   const b=document.createElement('button');b.className='quiet-button';b.dataset.destination=key;b.textContent=z.label;b.onclick=()=>{if(game.scene!=='farm')setScene('farm');go(key);};$(['water','nap','toilet','village'].includes(key)?'quickCare':'destinations').append(b);
+   const b=document.createElement('button');
+   b.className='quiet-button';b.dataset.destination=key;
+   b.textContent={water:'喝水',nap:'午休',toilet:'上厕所',village:'去村里开会'}[key]||z.label;
+   b.onclick=()=>{if(game.scene!=='farm')setScene('farm');go(key);};
+   $(['water','nap','toilet','village'].includes(key)?'quickCare':'destinations').append(b);
  }
  // Date changes archive the previous day's activity and leave tasks and crops intact.
  document.addEventListener('visibilitychange',()=>{last=0;cancelDrag();});
@@ -1631,7 +1850,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    let elapsed=last?Math.min(2,Math.max(0,(now-last)/1000)):0;last=now;
    // Substeps keep low-FPS rendering from slowing movement, while tab returns do not catch up offline time.
    if(!document.hidden)while(elapsed>0){const dt=Math.min(.05,elapsed);update(dt);elapsed-=dt;}
-   draw();requestAnimationFrame(frame);
+   renderGrowth();draw();requestAnimationFrame(frame);
  }
  function clock(){if(F.switchDay(data)){save();renderStats();}renderNap();const d=new Date();$('clock').textContent=d.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit',hour12:false});$('dateLabel').textContent=`${d.getMonth()+1} 月 ${d.getDate()} 日 · `+['星期日','星期一','星期二','星期三','星期四','星期五','星期六'][d.getDay()];}
  resumeScene();updateRoomControls();renderAll();clock();setInterval(clock,1000);save();A.ready.then(()=>{

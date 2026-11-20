@@ -1,6 +1,11 @@
 # 爱你老己 · 更新历史
 
-[在线试玩](https://josephinexyy.github.io/product-portfolio/garden/) · [下载最新版 v0.22.0](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.22.0.zip) · [查看玩法](aini-laoji.md)
+[在线试玩](https://josephinexyy.github.io/product-portfolio/garden/) · [下载最新版 v0.23.0](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.23.0.zip) · [查看玩法](aini-laoji.md)
+
+## v0.23.0 · 松树与花圃
+
+- 重画松树并保留一棵作为院角的高点，拉开背景灌木、池边高草和路旁矮草的层次。
+- 向日葵、玫瑰和茉莉的花苞与花头使用同一像素网格，花圃按株高与间距重新种植。
 
 ## v0.22.0 · 小院的浅绿树荫
 

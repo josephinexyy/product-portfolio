@@ -1,6 +1,12 @@
 # 爱你老己 · 更新历史
 
-[在线试玩](https://josephinexyy.github.io/product-portfolio/garden/) · [下载最新版 v0.19.2](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.19.2.zip) · [查看玩法](aini-laoji.md)
+[在线试玩](https://josephinexyy.github.io/product-portfolio/garden/) · [下载最新版 v0.20.0](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.20.0.zip) · [查看玩法](aini-laoji.md)
+
+## v0.20.0 · 黄昏回家
+
+- 向日葵沿篱笆种成一排，玫瑰挨着石径，茉莉开在小屋的窗下。心愿墙搬到了门廊旁。
+- 点池塘可以沿着踏脚石走到岸边。水面有波纹，Milky 会坐在岸边看水。
+- 点「看黄昏」可以在白天和黄昏间切换。走回家时，窗灯会亮起来，Milky 会先在台阶旁等候。
 
 ## v0.19.2 · 闭眼睡觉
 

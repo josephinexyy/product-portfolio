@@ -129,6 +129,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .scene-meta{display:flex;align-items:center;gap:10px}
 .scene-meta button{min-height:32px;border-color:#b28d6e;background:#69513e;color:#fff3d7;font-size:13px}
 .scene-meta button:hover{background:#7b5e46}
+@media(max-width:430px){.scene-meta{gap:5px}.scene-meta button{padding-inline:6px}}
 .stage{width:100%;aspect-ratio:8/5;position:relative;background:#779353;isolation:isolate}
 canvas{display:block;width:100%;height:100%;image-rendering:pixelated;touch-action:none}
 #scene{cursor:grab}
@@ -342,7 +343,7 @@ dialog .crop-buttons{margin-top:16px}
  </header>
  <section class="workspace" aria-label="我的像素小院">
   <div class="farm-column">
-   <div class="scene-bar"><span class="scene-title" id="sceneName">我的小院</span><div class="scene-meta"><span id="weatherLabel">晴 · 微风</span><button id="findBtn" class="quiet-button">找小人</button></div></div>
+   <div class="scene-bar"><span class="scene-title" id="sceneName">我的小院</span><div class="scene-meta"><span id="weatherLabel">晴 · 微风</span><button id="duskBtn" class="quiet-button" type="button">看黄昏</button><button id="findBtn" class="quiet-button">找小人</button></div></div>
    <div class="stage">
     <canvas id="scene" width="640" height="400" role="img" aria-label="像素小院。点想去的地方，或按住小人拖过去。"></canvas>
     <div id="bubble" class="bubble" role="status" aria-live="polite"></div><div id="hint" class="hint" hidden></div>
@@ -358,7 +359,7 @@ dialog .crop-buttons{margin-top:16px}
     <p id="cropHint">花可以单独种。填了一件小事，做完时还能催熟它。</p>
     <div class="crop-buttons"><button id="cropCancel" class="quiet-button">取消</button><button id="cropStart" class="primary">开始种下</button></div>
    </div>
-   <p id="sceneHelp" class="helper">点空地播种，点闪光的地块收获。也可以拖小人去各处。</p>
+   <p id="sceneHelp" class="helper">点空地播种，点闪光的地块收获。也可以点池塘去看水。</p>
    <div id="cropProgress" class="crop-progress" hidden><label for="growthMeter" id="growthLabel"></label><progress id="growthMeter" max="30" value="0"></progress></div>
    <div id="cropStatus" class="crop-status" role="status"></div>
   </div>
@@ -382,7 +383,7 @@ dialog .crop-buttons{margin-top:16px}
  </section>
  <div class="bottom"><span id="saveStatus" role="status">已保存在此浏览器</span><div class="import-tools"><button id="exportBtn" class="text-button">带走小院</button><button id="importBtn" class="text-button">恢复备份</button><input id="backupFile" type="file" accept=".json,application/json" hidden></div></div>
  <details class="extras"><summary>小院设置与演示</summary><div class="extras-body"><div class="farm-settings"><label><input id="wander" type="checkbox" checked> 自己散步</label><label>步速 <select id="pace" aria-label="行走速度"><option value="22">更慢</option><option value="30">慢慢走</option><option value="42">轻快些</option></select></label></div><p>天气和外部事件用于原型演示，尚未连接飞书、Apple Watch 或薪资系统。记录留在当前浏览器；清理浏览器前请先带走备份。</p><div class="extras-actions"><button class="quiet-button" id="weatherBtn">换个天气</button><button class="quiet-button" id="meetingBtn">模拟会议</button><button class="quiet-button" id="salaryBtn">模拟工资</button><button class="quiet-button" id="heartBtn">模拟心率事件</button><button class="quiet-button" id="beforeRestoreBtn">下载恢复前备份</button></div><p style="margin-top:13px">其他目的地</p><div id="destinations" class="extras-actions"></div></div></details>
- <footer class="footer"><span>Josephine Xiang · v0.19.2</span><span>素材 · Pixel-Boy &amp; AAA / Kenney / <a href="https://not-a-kappa-games.itch.io/farming-sim-character-base">The Game Smith</a> / <a href="https://revouger.itch.io/milky-cat">Revouger</a> / Yard Pixel</span></footer>
+ <footer class="footer"><span>Josephine Xiang · v0.20.0</span><span>素材 · Pixel-Boy &amp; AAA / Kenney / <a href="https://not-a-kappa-games.itch.io/farming-sim-character-base">The Game Smith</a> / <a href="https://revouger.itch.io/milky-cat">Revouger</a> / Yard Pixel</span></footer>
 </main>
 <dialog id="gardenDialog" aria-labelledby="gardenTitle">
  <header class="dialog-header"><h2 id="gardenTitle">小菜园</h2><button type="button" id="gardenClose" class="quiet-button">回小院</button></header>
@@ -470,7 +471,17 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
   const WIDTH=640, HEIGHT=400;
   // Bounding boxes are visible art; obstacles are only the solid ground footprints.
   // A 16px native tile becomes 32px in the world. Feet are the actor anchor.
-  const WALL=[298,49,136,76];
+  const WALL=[222,91,118,76];
+  const POND={
+    bank:[
+      [48,464,506],[56,448,522],[64,440,530],[72,434,534],
+      [80,428,534],[88,426,530],[96,426,524],[104,432,518],
+      [112,440,514],[120,450,510],[128,462,506],[136,472,498]
+    ],
+    cat:{x:483,y:153},
+    stand:{x:490,y:175}
+  };
+  const PORCH_CAT={x:168,y:182};
   const WALL_LINE_LENGTH=5,WALL_LINES=3,WISH_LIMIT=WALL_LINE_LENGTH*WALL_LINES,WALL_CAPACITY=60;
   const segmenter=typeof Intl.Segmenter==='function'?new Intl.Segmenter('zh',{granularity:'grapheme'}):null;
   function wishCharacters(text){
@@ -563,13 +574,15 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
     toilet:{label:'洗手间',box:[507,118,96,96],stand:{x:555,y:228}},
     nap:{label:'吊床',box:[56,283,128,48],stand:{x:120,y:339}},
     work:{label:'小菜园',box:[304,276,128,64],stand:{x:320,y:354}},
-    walk:{label:'花园',box:[44,218,53,38],stand:{x:80,y:267}},
+    walk:{label:'花园',box:[228,183,72,40],stand:{x:260,y:232}},
+    pond:{label:'去池边坐坐',box:[426,48,108,100],stand:POND.stand},
     village:{label:'去村里开会',box:[570,232,32,64],stand:{x:586,y:310}}
   };
   const OBSTACLES=[
     [98,145,128,31],[337,177,56,21],[511,179,88,35],
     [82,309,76,12],[58,208,12,20],[54,315,12,22],[175,315,12,22],
-    [442,54,84,58],[286,92,13,20],[609,139,13,20],[445,173,14,20]
+    [226,148,108,16],[609,139,13,20],[394,145,14,17],[452,156,26,8],
+    ...POND.bank.map(([y,left,right])=>[left+6,y,right-left-12,8])
   ];
   const inside=(p,r,pad=0)=>p.x>=r[0]-pad&&p.x<=r[0]+r[2]+pad&&p.y>=r[1]-pad&&p.y<=r[1]+r[3]+pad;
   function walkable(p){return p.x>=20&&p.x<=620&&p.y>=115&&p.y<=379&&!OBSTACLES.some(r=>inside(p,r,4));}
@@ -761,7 +774,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
     return cleanSave({coins:read('coins',0),todos:Array.isArray(todos)?todos:[],crops:Array.from({length:8},(_,i)=>({text:texts?.[i]||'',stage:stages?.[i]||0})),weather:['sunny','warm','rain','night'][read('weather',0)]});
   }
   function depthOrder(items){return items.map((x,i)=>({...x,_index:i})).sort((a,b)=>a.y-b.y||a._index-b._index);}
-  const api={WIDTH,HEIGHT,WALL,WISH_LIMIT,WALL_CAPACITY,wishCharacters,formatWish,wallLines,FIELD,cropStand,FLOWER_NAMES,CROP_NAMES,cropUnit,BEDTIME_SECONDS,ROOM,GROW_SECONDS,plotAt,plantCrop,cropTimeLeft,updateCropStages,finishCrop,finishTaskCrops,harvestCrop,arrangeBedsideFlower,ZONES,OBSTACLES,inside,walkable,moveToward,walkingFacing,nearestFree,route,segmentClear,zoneAt,localDate,MOODS,cleanJournal,switchDay,recordCareAction,diaryFor,putDiary,duration,ACTIVITY_LABELS,MEETING_MOODS,activitiesFor,addActivity,restoreActivity,removeActivity,annotateMeeting,BREATH_LENGTH,breathFrame,cleanSave,migrateLegacy,depthOrder};
+  const api={WIDTH,HEIGHT,WALL,POND,PORCH_CAT,WISH_LIMIT,WALL_CAPACITY,wishCharacters,formatWish,wallLines,FIELD,cropStand,FLOWER_NAMES,CROP_NAMES,cropUnit,BEDTIME_SECONDS,ROOM,GROW_SECONDS,plotAt,plantCrop,cropTimeLeft,updateCropStages,finishCrop,finishTaskCrops,harvestCrop,arrangeBedsideFlower,ZONES,OBSTACLES,inside,walkable,moveToward,walkingFacing,nearestFree,route,segmentClear,zoneAt,localDate,MOODS,cleanJournal,switchDay,recordCareAction,diaryFor,putDiary,duration,ACTIVITY_LABELS,MEETING_MOODS,activitiesFor,addActivity,restoreActivity,removeActivity,annotateMeeting,BREATH_LENGTH,breathFrame,cleanSave,migrateLegacy,depthOrder};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FarmCore=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
 
@@ -821,7 +834,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  }
  function meadow(){
    for(let y=0;y<400;y+=32)for(let x=0;x<640;x+=32)sprite('grass',x,y);
-   r(0,0,640,400,'#566a4030');
+   r(0,0,640,400,'#566a4024');
    for(const [x,y,w,h] of [[67,75,92,44],[251,110,108,42],[563,82,84,38],[74,254,77,49],[234,312,67,55],[551,339,80,30]]){
      oval(x,y,w,h,'#3b6c4830');
    }
@@ -833,41 +846,72 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  }
  function flowers(x,y){sprite('flowerWhite',x-12,y);sprite('flowerRed',x+12,y+6);sprite('flowerYellow',x+2,y-10);}
  function pond(){
-   oval(487,75,47,38,'#405b48');
-   oval(484,73,43,35,'#b0ad73');
-   oval(484,72,38,30,'#587d6d');
-   oval(484,71,35,27,'#427f80');
-   oval(486,76,30,20,'#569e9c');
-   for(const [x,y,w] of [[465,58,22],[482,64,16],[474,80,22],[496,88,12]])r(x,y,w,2,'#86bab0');
-   for(const [x,y] of [[461,79],[494,56],[509,73]]){
-     oval(x,y,7,4,'#5f8a59');r(x-4,y-2,6,2,'#9caa66');r(x+2,y,6,2,'#477b79');
+   const {bank}=FarmCore.POND;
+   for(const [y,left,right] of bank)r(left-2,y+4,right-left+6,8,'#45644c');
+   for(const [y,left,right] of bank)r(left,y,right-left,8,'#b3af79');
+   for(const [y,left,right] of bank.slice(1,-1)){
+     r(left+4,y,right-left-8,8,'#6a9a85');
+     r(left+10,y,right-left-20,8,y<96?'#437e81':'#4c9291');
    }
-   r(459,75,4,3,'#e9a4a0');r(461,73,2,3,'#ffe0b9');
-   for(const [x,y] of [[446,86],[461,102],[514,88],[520,54]]){
-     r(x,y-8,2,8,'#4c7044');r(x-3,y-4,2,6,'#9d9d59');r(x+1,y-9,2,3,'#8b6a4b');
+   for(const [x,y] of [[457,102],[495,69],[511,90]]){
+     oval(x,y,7,4,'#5f8a59');r(x-4,y-2,6,2,'#a9b576');r(x+2,y,6,2,'#477b79');
    }
+   r(455,98,4,4,'#e9a4a0');r(457,96,2,4,'#ffe0b9');
+ }
+ function pondRipples(t,still){
+   for(const [x,y,width,phase] of [[462,70,12,0],[484,80,20,1],[455,90,16,4],[487,101,14,2],[473,113,10,3],[488,120,8,1]]){
+     const step=still?0:(Math.floor(t*2.5)+phase)%6;
+     r(x+step*2,y,width-2*Math.abs(step-2),2,step===5?'#87bbb080':'#9ac9b6ac');
+   }
+ }
+ function reed(x,y){
+   r(x,y-18,2,18,'#526e46');r(x-4,y-12,2,12,'#83985b');
+   r(x+5,y-14,2,14,'#9eaa68');r(x-1,y-20,4,6,'#815b45');
+   r(x-4,y-4,12,2,'#4c794f');
+ }
+ function steppingStone(x,y,width){
+   oval(x+2,y+2,width+1,4,'#56744d');
+   oval(x,y,width,4,'#9f9f83');r(x-width+4,y-2,width+2,2,'#d0c7a4');
+ }
+ function pondShelf(){
+   shadow(465,163,15);
+   r(450,150,30,6,'#795544');r(448,148,34,4,'#c48c5d');
+   r(452,156,4,8,'#694d3e');r(474,156,4,8,'#694d3e');
+   r(454,151,22,2,'#e0ac71');
+ }
+ function flowerBed(kind,x,y,width){
+   oval(x,y,width,11,'#4f7047');
+   oval(x,y-2,width-3,9,'#8d6e4e');
+   for(let shift=-width+10;shift<width-4;shift+=12){
+     gardenFlowers(kind,x+shift,y+(shift%3)*2,kind==='sunflower');
+   }
+ }
+ function porch(){
+   r(100,174,124,20,'#684839');r(102,170,120,18,'#ba865a');
+   for(let y=174;y<=186;y+=4)r(104,y,116,2,'#a3704b');
+   r(122,190,42,4,'#d1a174');r(118,194,50,4,'#ae815b');
+   r(134,178,26,8,'#925d4d');r(136,178,22,2,'#d89969');
+   r(222,154,118,14,'#794f41');r(224,154,114,8,'#ba875e');
+   r(229,160,104,2,'#e3b07b');
+   for(const x of [122,205])r(x,183,8,2,'#dbab74');
  }
  function makeGround(){
    ground=document.createElement('canvas');ground.width=640;ground.height=400;
    const old=ctx;ctx=ground.getContext('2d');ctx.imageSmoothingEnabled=false;meadow();roads();
    pond();
-   fence(242,126,164);fence(538,114,76);fence(282,370,176);fence(504,370,88);
-   flowers(70,248);flowers(486,226);flowers(232,346);
-   // A short garden footpath replaces the old outdoor desk spur.
-   for(const [x,y] of [[268,213],[262,198],[271,184],[280,171],[278,156]]){
-     oval(x+1,y+1,8,4,'#507c4d');oval(x,y,7,3,'#b5b799');r(x-2,y-2,6,2,'#d2c9a8');
-   }
+   fence(244,64,156);fence(546,114,68);fence(282,370,176);fence(504,370,88);
+   flowers(70,248);flowers(438,231);flowers(232,346);
+   for(const [x,y,w] of [
+     [144,213,9],[141,221,8],[233,236,8],[253,238,10],[275,237,8],[266,218,8],
+     [264,205,9],[274,191,7],[282,179,9],[287,172,7],
+     [465,218,10],[477,206,8],[483,194,10],[492,181,8],[483,169,9]
+   ])steppingStone(x,y,w);
+   oval(488,164,34,14,'#51754852');
    for(let i=0;i<10;i++)sprite('shrub',i*64+12,36+(i%2)*4);
    for(const [x,y,kind] of [[28,104,'pinkTree'],[250,69,'tree'],[569,68,'tree'],[628,73,'pinkTree']])tree(x,y,kind);
-   for(const [x,y] of [[34,174],[246,140],[464,137],[560,97],[512,332],[115,369],[610,346]])flowers(x,y);
-   for(const [kind,x,y] of [
-      ['sunflower',30,262],['rose',43,275],['jasmine',62,279],
-      ['rose',200,185],['jasmine',220,186],['sunflower',238,189],
-      ['rose',239,211],['jasmine',251,178],['rose',303,185],['jasmine',311,198],
-      ['jasmine',194,374],['rose',211,378],['sunflower',227,374],['jasmine',244,379],
-      ['rose',504,349],['jasmine',520,355],['sunflower',538,353],
-      ['sunflower',607,302],['jasmine',621,308],['rose',602,318]
-   ])gardenFlowers(kind,x,y);
+   for(const [x,y] of [[447,83],[428,104],[532,89],[515,122],[464,132],[501,142]])reed(x,y);
+   for(const [x,y] of [[34,174],[393,147],[560,97],[515,328],[115,369],[610,346]])flowers(x,y);
+   for(const [kind,x,y] of [['jasmine',194,374],['rose',211,378],['sunflower',227,374],['jasmine',244,379],['rose',602,318]])gardenFlowers(kind,x,y);
    for(let i=0;i<13;i++){
      const x=34+(i*67)%580,y=110+(i*31)%253;
      r(x,y,2,2,'#bed06a');r(x+2,y+2,4,2,'#719947');
@@ -875,6 +919,28 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    ctx=old;
  }
  function base(){if(!ground)makeGround();ctx.drawImage(ground,0,0);}
+ function yardDusk(level,t){
+   if(level<=0)return;
+   ctx.save();
+   ctx.globalAlpha=level;
+   r(0,0,640,400,'#3434566e');
+   const sky=ctx.createLinearGradient(0,0,525,280);
+   sky.addColorStop(0,'#39335257');sky.addColorStop(1,'#eeb28712');
+   ctx.fillStyle=sky;ctx.fillRect(0,0,640,400);
+   for(const [x,y,w,h] of [[166,145,126,88],[474,89,105,56]]){
+     const glow=ctx.createRadialGradient(x,y,2,x,y,w*.52);
+     glow.addColorStop(0,x<300?'#ffc57865':'#dca6ae40');glow.addColorStop(1,'#ffbe7000');
+     ctx.fillStyle=glow;ctx.fillRect(x-w/2,y-h/2,w,h);
+   }
+   r(184,146,26,18,'#8c5447');r(188,148,18,14,'#ffcb80');
+   r(195,148,3,14,'#b76f52');r(188,154,18,2,'#b76f52');r(188,148,5,2,'#fff2bd');
+   r(168,138,9,12,'#644638');r(170,140,5,8,'#ffca76');r(171,141,2,4,'#fff0b0');
+   for(const [i,[x,y]] of [[260,175],[395,139],[491,124],[525,137],[460,192],[533,325],[245,331]].entries()){
+     const n=Math.floor(t*2+i*3)%7;
+     if(n<4)r(x+n*2,y-n,2,2,n===2?'#ffe3a2':'#d9ba7880');
+   }
+   ctx.restore();
+ }
  function cottage(x,y){shadow(x+18,y,58);sprite('cottage',x,y);}
  function well(x,y){shadow(x,y,25);sprite('fountain',x,y);}
  function shed(x,y){shadow(x,y,40);sprite('shed',x,y);}
@@ -981,7 +1047,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    r(x,y+8,w,h-16,'#6f4b46');r(x+2,y+3,w-4,10,'#b48162');r(x+6,y,w-12,4,'#e0b282');
    r(x+4,y+12,w-8,h-24,'#2d473e');r(x+6,y+14,w-12,2,'#718a70');
    ctx.fillStyle='#b5c8a324';
-   for(let i=0;i<46;i++)ctx.fillRect(x+8+(i*31)%120,y+17+(i*17)%42,1,1);
+   for(let i=0;i<46;i++)ctx.fillRect(x+8+(i*31)%(w-16),y+17+(i*17)%42,1,1);
    ctx.save();
    ctx.font=pixelFont;ctx.fillStyle='#f8ecc7';
    if(!wishes.length){
@@ -993,10 +1059,10 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
      wishes.slice(-3,-1).forEach((older,i)=>drawChalk(ctx,chalkTheme(older),x+9+i*14,y+49,.4));
      ctx.textAlign='left';ctx.fillStyle='#f8ecc7';
      const top=y+28+(3-lines.length)*8;
-     lines.forEach((line,i)=>ctx.fillText(line,x+42,top+i*16,84));
+     lines.forEach((line,i)=>ctx.fillText(line,x+36,top+i*16,w-42));
    }
    ctx.restore();
-   r(x+10,y+h-8,w-20,4,'#95704e');r(x+91,y+h-10,10,2,'#f1c4af');r(x+104,y+h-10,8,2,'#b3dacb');
+   r(x+10,y+h-8,w-20,4,'#95704e');r(x+w-42,y+h-10,10,2,'#f1c4af');r(x+w-28,y+h-10,8,2,'#b3dacb');
  }
  const designs={
    meeting:['不想开会的对话框',[
@@ -1104,9 +1170,10 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    const pixel=mini?1:2,rows=flowerHeads[kind];
    paintPixels(ctx,rows,flowerInk,snap(x)-4*pixel,snap(y)-4*pixel,pixel);
  }
- function gardenFlowers(kind,x,y){
-   r(x,y-17,2,15,'#456e45');r(x-6,y-9,6,4,'#5a844b');r(x+2,y-12,6,4,'#759b55');
-   bloom(kind,x,y-18,true);
+ function gardenFlowers(kind,x,y,tall=false){
+   const height=kind==='sunflower'&&tall?26:kind==='jasmine'?12:17;
+   r(x,y-height,2,height-2,'#456e45');r(x-6,y-9,6,4,'#5a844b');r(x+2,y-12,6,4,'#759b55');
+   bloom(kind,x,y-height,!(tall&&kind==='sunflower'));
  }
  function crop(i,{stage,kind,text,readyAt}){
    const x=320+i%4*32,y=306+Math.floor(i/4)*32;
@@ -1278,7 +1345,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  function iconUrl(name){
    const canvas=document.createElement('canvas');canvas.width=16;canvas.height=16;ui(canvas.getContext('2d'),name,0,0,16);return canvas.toDataURL();
  }
- root.FarmArt={C,ready,postcard,ui,iconUrl,init(c){ctx=c;ctx.imageSmoothingEnabled=false;r(0,0,640,400,C.grass);},base,field,crop,cropReady,wall,restroom,chalkTheme,drawChalk,designs,catBed,cottage,well,shed,desk,sign,tree,hammock,flowers,hero,cat,bowl,weather,indoor,village,oval,line,r,shadow};
+ root.FarmArt={C,ready,postcard,ui,iconUrl,init(c){ctx=c;ctx.imageSmoothingEnabled=false;r(0,0,640,400,C.grass);},base,pondRipples,pondShelf,flowerBed,porch,yardDusk,field,crop,cropReady,wall,restroom,chalkTheme,drawChalk,designs,catBed,cottage,well,shed,desk,sign,tree,hammock,flowers,hero,cat,bowl,weather,indoor,village,oval,line,r,shadow};
 })(globalThis);
 
 </script>
@@ -1374,7 +1441,8 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  const initial=readKey(SAVE_KEY,null);
  let data=initial?F.cleanSave(initial):F.migrateLegacy((key,d)=>readKey('aini_v2_'+key,d));
  const hero={x:142,y:205,path:[],facing:'down',distance:0},cat={x:181,y:211,path:[],facing:'right',distance:0};
- const game={scene:'farm',zone:'idle',pending:null,actionTime:0,crop:-1,drag:null,time:0,dwell:5,catDwell:5,breathing:null,focusHero:0,bed:null,roomTarget:null};
+ const game={scene:'farm',zone:'idle',pending:null,actionTime:0,crop:-1,drag:null,time:0,dwell:5,catDwell:5,breathing:null,focusHero:0,bed:null,roomTarget:null,dusk:false,light:0,homePause:0};
+ const motion=window.matchMedia?.('(prefers-reduced-motion: reduce)');
  let bubbleTimer=0,hoverZone=null,diaryDate=null,shareUrl=null,landscapeReady=false;
  let composingWish=false,erasedWish=null,erasedActivity=null,closingMeeting=null,gardenPlot=-1,plantPlot=-1;
  function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(data));storageHealthy=true;}catch{storageHealthy=false;}updateSaveStatus();}
@@ -1452,8 +1520,10 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    if(target==='home'){setScene('indoor');return;}
    if(target==='village'){setScene('village');data.activeMeeting=record('meeting');save();return;}
    if(target==='nap'){data.napStartedAt=Date.now();renderNap();}
-   const messages={water:'大水理论：先喝口水。小猫也有自己的水碗。',nap:'在树荫里躺一会儿。',toilet:'去去就回，身体的信号要听。',walk:'看看花草，今天不用着急。'};
-   say(messages[target]||'慢慢来。');setStatus({water:'正在喝水',nap:'正在午休',toilet:'正在上厕所',walk:'在花园里透透气'}[target]||'慢慢过今天');
+   if(target==='pond')hero.facing='up';
+   const messages={water:'大水理论：先喝口水。小猫也有自己的水碗。',nap:'在树荫里躺一会儿。',toilet:'去去就回，身体的信号要听。',walk:'看看花草，今天不用着急。',pond:'在池边坐一会儿。Milky 也来看看水。'};
+   say(messages[target]||'慢慢来。');setStatus({water:'正在喝水',nap:'正在午休',toilet:'正在上厕所',walk:'在花园里透透气',pond:'在池边看水'}[target]||'慢慢过今天');
+   if(target==='pond')return;
    const hour=new Date().getHours(),key=(hour<12?'上午':hour<18?'下午':'晚上')+':'+target;data.learned[key]=(data.learned[key]||0)+1;save();
  }
  function setScene(name){
@@ -1466,6 +1536,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    game.bed=null;game.roomTarget=null;
    endNap();
    game.scene=name;game.pending=null;game.zone='idle';game.actionTime=0;game.crop=-1;hero.path=[];hero.distance=0;cat.path=[];game.drag=null;hoverZone=null;
+   game.homePause=0;game.catDwell=4;
    closePlanting();$('cropStatus').textContent='';renderGrowth();
    $('gardenBtn').hidden=name!=='farm';$('leaveBtn').hidden=name==='farm';$('homeBtn').hidden=name!=='farm';$('findBtn').hidden=name!=='farm';$('wallBtn').hidden=name!=='farm';$('sceneName').textContent={farm:'我的小院',indoor:'回到小屋',village:'村里的会面'}[name];
    $('menuTitle').textContent={farm:'小院菜单',indoor:'小屋菜单',village:'村口菜单'}[name];
@@ -1473,7 +1544,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    const descriptions={farm:'像素小院。点想去的地方，或按住小人拖过去。',indoor:'小屋里有书桌、宽床、床头花瓶和一只奶油色猫。',village:'小人坐在村里的会议桌边。'};
    cv.setAttribute('aria-label',descriptions[name]);cv.classList.remove('room-interact','map-interact');
    hideHint();renderWeather();
-   $('sceneHelp').textContent={farm:'点空地播种，点闪光的地块收获。也可以拖小人去各处。',indoor:ROOM_HELP,village:'散会后，可以在日记本里回看这次会面。'}[name];
+   $('sceneHelp').textContent={farm:'点空地播种，点闪光的地块收获。也可以点池塘去看水。',indoor:ROOM_HELP,village:'散会后，可以在日记本里回看这次会面。'}[name];
    if(name==='farm'){
      hero.x=142;hero.y=205;game.dwell=6;
      if(leavingRoom)Object.assign(cat,{x:180,y:214,facing:'down'});
@@ -1545,8 +1616,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  function beginBedtime(alreadyAsleep=false){
    if(game.bed!==null)return;
    game.roomTarget=null;
-   const reducedMotion=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-   game.bed=alreadyAsleep||reducedMotion?F.BEDTIME_SECONDS:0;
+   game.bed=alreadyAsleep||motion?.matches?F.BEDTIME_SECONDS:0;
    if(game.bed===F.BEDTIME_SECONDS){finishBedtime();return;}
    hero.path=[{x:F.ROOM.bed.x,y:Math.max(hero.y,278)},F.ROOM.bed];
    cat.path=[{x:311,y:Math.max(cat.y,280)},{x:297,y:264}];
@@ -1590,7 +1660,12 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    game.zone='idle';game.pending=zone;game.actionTime=0;game.crop=-1;endBreath();closePlanting();
    const safe=F.nearestFree(hero);hero.x=safe.x;hero.y=safe.y;hero.path=F.route(hero,F.ZONES[zone].stand);game.dwell=6;
    if(!hero.path.length){game.pending=null;say('这条路暂时走不过去，换个位置试试。');return;}
-   setStatus('慢慢走向'+F.ZONES[zone].label);
+   if(zone==='home'){
+     game.dusk=true;game.homePause=0;
+     cat.path=F.route(cat,F.PORCH_CAT);
+     renderWeather();
+   }else if(zone==='pond')cat.path=F.route(cat,F.POND.cat);
+   setStatus({home:'沿着小径回家',pond:'沿着踏脚石走去池边'}[zone]||'慢慢走向'+F.ZONES[zone].label);
  }
  function finishAction(){
    const zone=game.zone;
@@ -1652,6 +1727,10 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  const catSpots=[{x:188,y:210},{x:272,y:251},{x:454,y:250},{x:460,y:336},{x:197,y:291}];
  function update(dt){
    game.time+=dt;
+   const targetLight=Number(game.dusk);
+   const lightStep=dt*.62;
+   game.light=motion?.matches||Math.abs(targetLight-game.light)<lightStep
+     ?targetLight:game.light+Math.sign(targetLight-game.light)*lightStep;
    if($('wallDialog').open||$('diaryDialog').open||$('restoreDialog').open||$('meetingDialog').open||$('gardenDialog').open||$('vaseDialog').open)return;
    if(game.breathing!==null){
      game.breathing+=dt;
@@ -1674,39 +1753,57 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
      return;
    }
    if(game.scene!=='farm')return;
+   const goingHome=game.pending==='home',byPond=game.pending==='pond'||game.zone==='pond';
+   if(goingHome||byPond){
+     advance(cat,goingHome?76:54,dt);
+     if(!cat.path.length)cat.facing=goingHome?'down':'up';
+   }
    if(!game.drag){
      advance(hero,data.pace*(game.pending||game.zone==='work'?1:.78),dt);
      if(!hero.path.length&&game.pending){
-       arrive();
+       if(goingHome){
+         game.homePause+=dt;
+         const lightsReady=!game.dusk||game.light>=.95;
+         if(motion?.matches||game.homePause>=6||(!cat.path.length&&lightsReady&&game.homePause>=1.2))arrive();
+       }else arrive();
        if(game.scene!=='farm')return;
      }
      if(!hero.path.length&&!game.pending&&game.zone==='idle'&&data.wander){
        game.dwell-=dt;if(game.dwell<=0){const candidates=wanderSpots.filter(p=>Math.hypot(p.x-hero.x,p.y-hero.y)>30);const p=candidates[Math.floor(Math.random()*candidates.length)];hero.path=F.route(hero,p);game.dwell=6+Math.random()*5;}
      }
-     const durations={water:7,toilet:7,walk:10,work:1.2};
+     const durations={water:7,toilet:7,walk:10,pond:9,work:1.2};
      if(!hero.path.length&&durations[game.zone]){
        if(game.zone==='work')hero.facing='left';
        game.actionTime+=dt;
        if(game.actionTime>=durations[game.zone])finishAction();
      }
    }
-   game.catDwell-=dt;
-   if(game.catDwell<=0){
-     let p;if(game.zone==='water')p={x:416,y:216};else if(game.zone==='nap')p={x:238,y:328};else p=catSpots[Math.floor(Math.random()*catSpots.length)];
-     cat.path=F.route(cat,p);game.catDwell=5+Math.random()*6;
-   }advance(cat,23,dt);
+   if(!goingHome&&!byPond){
+     game.catDwell-=dt;
+     if(game.catDwell<=0){
+       let p;if(game.zone==='water')p={x:416,y:216};else if(game.zone==='nap')p={x:238,y:328};else p=catSpots[Math.floor(Math.random()*catSpots.length)];
+       cat.path=F.route(cat,p);game.catDwell=5+Math.random()*6;
+     }
+     advance(cat,23,dt);
+   }
    if(game.focusHero>0)game.focusHero-=dt;
  }
  function drawFarm(){
-   A.base();A.field(data.crops,plantPlot>=0?plantPlot:game.crop);
+   A.base();A.pondRipples(game.time,motion?.matches);A.porch();
+   A.field(data.crops,plantPlot>=0?plantPlot:game.crop);
    const items=[
      {y:176,draw:()=>A.cottage(142,176)},{y:198,draw:()=>A.well(365,198)},{y:214,draw:()=>A.restroom(555,214)},
-     {y:127,draw:()=>A.wall(data.wishes)},
+     {y:164,draw:()=>A.wall(data.wishes)},{y:163,draw:()=>A.pondShelf()},
+     {y:184,draw:()=>A.flowerBed('jasmine',113,184,18)},
+     {y:184,draw:()=>A.flowerBed('jasmine',207,184,21)},
+     {y:211,draw:()=>A.flowerBed('rose',254,211,26)},
+     {y:199,draw:()=>A.flowerBed('rose',301,199,20)},
+     {y:90,draw:()=>A.flowerBed('sunflower',362,90,52)},
      {y:296,draw:()=>A.sign(586,296)},
      {y:331,draw:()=>A.hammock(120,331,game.zone==='nap'&&!hero.path.length&&!game.drag?.moved)},
      {y:337,draw:()=>A.tree(60,337,'hammockTree')},{y:337,draw:()=>A.tree(181,337,'hammockTree')},
-     {y:228,draw:()=>A.tree(64,228)},{y:112,draw:()=>A.tree(293,112)},
-     {y:159,draw:()=>A.tree(615,159)},{y:193,draw:()=>A.tree(452,193,'pinkTree')},
+     {y:228,draw:()=>A.tree(64,228)},{y:159,draw:()=>A.tree(615,159)},
+     {y:158,draw:()=>A.tree(401,158,'pinkTree')},
      {y:215,draw:()=>A.bowl(416,215)},{y:330,draw:()=>A.catBed(238,330)},
      {y:cat.y,draw:()=>A.cat(cat.x,cat.y,cat.path.length?'walk':game.zone==='nap'?'sleep':'idle',game.time,cat.facing,false,cat.distance)}
    ];
@@ -1714,6 +1811,8 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    const hidden=(game.zone==='nap'||game.zone==='toilet')&&!hero.path.length&&!game.drag?.moved;
    if(!hidden)items.push({y:hero.y,draw:()=>A.hero(hero.x,hero.y,game.drag?'idle':hero.path.length?'walk':game.zone==='work'?'work':game.zone==='water'?'water':'idle',game.time,hero.facing,!!game.drag,hero.distance)});
    for(const item of F.depthOrder(items))item.draw();
+   A.weather(data.weather,game.time);
+   A.yardDusk(game.light,motion?.matches?0:game.time);
    data.crops.forEach((crop,i)=>{if(crop.stage===4)A.cropReady(i,game.time);});
    if(hoverZone){const z=F.ZONES[hoverZone];ctx.save();ctx.strokeStyle='#faf0ce';ctx.lineWidth=1;ctx.setLineDash([4,3]);ctx.strokeRect(z.box[0],z.box[1],z.box[2],z.box[3]);ctx.restore();}
    if(game.focusHero>0||game.drag){A.oval(hero.x,hero.y+2,12,5,'#f7edd299');A.line(hero.x,hero.y-43,hero.x,hero.y-37,'#fff3cf',2);A.line(hero.x-3,hero.y-40,hero.x,hero.y-37,'#fff3cf');A.line(hero.x+3,hero.y-40,hero.x,hero.y-37,'#fff3cf');}
@@ -1722,10 +1821,10 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    ctx.clearRect(0,0,F.WIDTH,F.HEIGHT);
    if(game.scene==='farm')drawFarm();
    else if(game.scene==='indoor')A.indoor(game.time,game.bed,hero,cat,data.bedsideFlower);
-   else A.village(game.time);
-   if(game.scene!=='indoor')A.weather(data.weather,game.time);
+   else{A.village(game.time);A.weather(data.weather,game.time);}
    cv.dataset.heroX=hero.x.toFixed(2);cv.dataset.heroY=hero.y.toFixed(2);
-   cv.dataset.catFacing=cat.facing;
+   cv.dataset.catFacing=cat.facing;cv.dataset.catX=cat.x.toFixed(2);cv.dataset.catY=cat.y.toFixed(2);
+   cv.dataset.light=game.light.toFixed(2);
    cv.dataset.action=game.pending?'walking-'+game.pending:game.zone;cv.dataset.scene=game.scene;
    cv.dataset.bedtime=game.bed===null?'awake':game.bed<F.BEDTIME_SECONDS?'settling':'asleep';
  }
@@ -1821,6 +1920,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  $('meetingDialog').addEventListener('close',()=>{closingMeeting=null;setScene('farm');});
  $('wakeBtn').querySelector('button').onclick=()=>{if(game.zone==='nap')finishAction();};
  $('homeBtn').onclick=()=>go('home');
+ $('duskBtn').onclick=()=>{game.dusk=!game.dusk;renderWeather();};
  $('diaryBtn').onclick=()=>openDiary(F.localDate());$('stopBtn').onclick=()=>{
    if(game.breathing!==null){endBreath('已结束呼吸。');return;}
    stopAction();say('今天也可以留一点空白。');
@@ -1940,9 +2040,12 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    renderGrowth();
  }
  function renderWeather(){
+   $('duskBtn').hidden=game.scene!=='farm';
+   $('duskBtn').textContent=game.dusk?'看白天':'看黄昏';
    $('weatherLabel').textContent=game.scene==='indoor'
      ?game.bed===F.BEDTIME_SECONDS?'灯已熄':'灯还亮着'
-     :{sunny:'晴 · 微风',warm:'暖 · 午后',rain:'雨 · 听雨',night:'夜 · 星光'}[data.weather];
+     :game.scene==='farm'&&game.dusk?'黄昏 · 小屋亮灯'
+       :{sunny:'晴 · 微风',warm:'暖 · 午后',rain:'雨 · 听雨',night:'夜 · 星光'}[data.weather];
  }
  function openWall(){
    if($('wallDialog').open)return;
@@ -2183,7 +2286,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    const now=data;data=F.cleanSave(old);exportBackup();data=now;
  };
  for(const [key,z] of Object.entries(F.ZONES)){
-   const inMenu=['water','nap','toilet','village'].includes(key);
+   const inMenu=['pond','water','nap','toilet','village'].includes(key);
    const b=document.createElement('button');
    b.className=inMenu?'menu-option':'quiet-button';b.dataset.destination=key;
    b.textContent={water:'喝水',nap:'午休',toilet:'上厕所',village:'去村里开会'}[key]||z.label;

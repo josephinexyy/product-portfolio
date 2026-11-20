@@ -1,6 +1,11 @@
 # 爱你老己 · 更新历史
 
-[在线试玩](https://josephinexyy.github.io/product-portfolio/garden/) · [下载离线版 v0.25.0](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.25.0.zip) · [查看玩法](aini-laoji.md)
+[在线试玩](https://josephinexyy.github.io/product-portfolio/garden/) · [下载离线版 v0.28.0](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.28.0.zip) · [查看玩法](aini-laoji.md)
+
+## v0.28.0 · 翻翻这周
+
+- 点小屋里的书架，或选「翻翻这周」，可以按日期回看最近七天的日记。
+- 在院里或屋里点「留张照片」，预览当前画面后，可选一张放进当天的日记。照片会随小院一起备份。
 
 ## v0.27.0 · 顺着小路逛一逛
 

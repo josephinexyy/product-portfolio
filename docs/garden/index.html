@@ -338,6 +338,18 @@ dialog .crop-buttons{margin-top:16px}
 .home-note h3{font:700 15px/1.3 var(--serif);color:#634b3a;margin:0}
 .home-note p{margin:0;white-space:pre-line;color:#594c3d;font-size:14px;line-height:1.55}
 .home-note button{justify-self:start}
+.shelf-dialog,.photo-dialog{width:min(550px,94vw);padding:14px;border:1px solid #cbb386;background:#f4e7c4;color:#463b31}
+.shelf-dates{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;margin:4px 0 12px}
+.shelf-date{min-height:44px;padding:3px 2px;border:1px solid #bba67e;border-radius:3px;background:#f6edd5;color:#574839;font:600 13px/1.2 var(--serif)}
+.shelf-date.has-entry{background:#e3e8c8;color:#3d5141}
+.shelf-date[aria-pressed=true]{outline:2px solid #526854;outline-offset:1px;background:#cfdcba}
+.shelf-page{padding:10px 12px;background:#fff6df;border:1px solid #dac8a7;border-left:4px solid #b58060}
+.shelf-page h3{font:700 16px/1.3 var(--serif);margin:0 0 6px}
+.shelf-page p{margin:4px 0;color:#5b4c3c;line-height:1.55}
+#shelfNote{white-space:pre-wrap;overflow-wrap:anywhere}
+.photo-preview{display:block;width:100%;height:auto;image-rendering:pixelated;border:1px solid #bda682}
+.shelf-dialog .journal-actions,.photo-dialog .journal-actions{margin-top:10px}
+@media(max-width:450px){.shelf-dates{grid-template-columns:repeat(4,minmax(0,1fr))}}
 .garden-plot.selected{outline-offset:1px}
 @media(max-width:560px){.journal-right{grid-row:1}.journal-left{border-top:1px solid var(--line);border-bottom:0}}
 </style>
@@ -376,8 +388,8 @@ dialog .crop-buttons{margin-top:16px}
     <h2 id="menuTitle">小院菜单</h2>
     <div class="pixel-menu-list">
      <button id="homeBtn" class="menu-option">回家</button><button id="leaveBtn" class="menu-option" hidden>回小院</button>
-     <div id="roomActions" hidden><button id="roomVase" class="menu-option">床头插花</button><button id="roomPaper" type="button" class="menu-option" hidden>看回家小纸条</button><button id="roomDesk" class="menu-option">到书桌写日记</button><button id="roomBed" class="menu-option">上床睡觉</button></div>
-     <button id="gardenBtn" class="menu-option">种花与收获</button><button id="wallBtn" class="menu-option">心愿墙</button><button id="diaryBtn" class="menu-option">日记本</button>
+     <div id="roomActions" hidden><button id="roomVase" class="menu-option">床头插花</button><button id="roomPaper" type="button" class="menu-option" hidden>看回家小纸条</button><button id="roomDesk" class="menu-option">到书桌写日记</button><button id="roomShelf" type="button" class="menu-option">翻翻这周</button><button id="roomBed" class="menu-option">上床睡觉</button></div>
+     <button id="gardenBtn" class="menu-option">种花与收获</button><button id="wallBtn" class="menu-option">心愿墙</button><button id="diaryBtn" class="menu-option">日记本</button><button id="photoBtn" type="button" class="menu-option">留张照片</button>
      <button id="stopBtn" class="menu-option" hidden>停一停</button>
      <div id="quickCare" aria-label="小院活动"></div>
     </div>
@@ -391,7 +403,7 @@ dialog .crop-buttons{margin-top:16px}
  </section>
  <div class="bottom"><span id="saveStatus" role="status">已保存在此浏览器</span><div class="import-tools"><button id="exportBtn" class="text-button">带走小院</button><button id="importBtn" class="text-button">恢复备份</button><input id="backupFile" type="file" accept=".json,application/json" hidden></div></div>
  <details class="extras"><summary>小院设置与演示</summary><div class="extras-body"><div class="farm-settings"><label><input id="wander" type="checkbox" checked> 自己散步</label><label>步速 <select id="pace" aria-label="行走速度"><option value="22">更慢</option><option value="30">慢慢走</option><option value="42">轻快些</option></select></label></div><p>天气和外部事件用于原型演示，尚未连接飞书、Apple Watch 或薪资系统。记录留在当前浏览器；清理浏览器前请先带走备份。</p><div class="extras-actions"><button class="quiet-button" id="weatherBtn">换个天气</button><button class="quiet-button" id="meetingBtn">模拟会议</button><button class="quiet-button" id="salaryBtn">模拟工资</button><button class="quiet-button" id="heartBtn">模拟心率事件</button><button class="quiet-button" id="beforeRestoreBtn">下载恢复前备份</button></div><p style="margin-top:13px">其他目的地</p><div id="destinations" class="extras-actions"></div></div></details>
- <footer class="footer"><span>Josephine Xiang · v0.27.0</span><span>素材 · <a href="https://pixel-boy.itch.io/ninja-adventure-asset-pack">Pixel-Boy &amp; AAA</a> / Kenney / <a href="https://not-a-kappa-games.itch.io/farming-sim-character-base">The Game Smith</a> / <a href="https://revouger.itch.io/milky-cat">Revouger</a> / Yard Pixel</span></footer>
+ <footer class="footer"><span>Josephine Xiang · v0.28.0</span><span>素材 · <a href="https://pixel-boy.itch.io/ninja-adventure-asset-pack">Pixel-Boy &amp; AAA</a> / Kenney / <a href="https://not-a-kappa-games.itch.io/farming-sim-character-base">The Game Smith</a> / <a href="https://revouger.itch.io/milky-cat">Revouger</a> / Yard Pixel</span></footer>
 </main>
 <dialog id="gardenDialog" aria-labelledby="gardenTitle">
  <header class="dialog-header"><h2 id="gardenTitle">小菜园</h2><button type="button" id="gardenClose" class="quiet-button">回小院</button></header>
@@ -426,6 +438,7 @@ dialog .crop-buttons{margin-top:16px}
  <div class="journal-layout">
   <section class="journal-left">
    <canvas id="journalLandscape" class="journal-cover" width="640" height="230" role="img" aria-label="黄昏的像素小院，老己和小猫一起回家"></canvas>
+   <img id="diaryPhoto" class="journal-cover photo-preview" alt="这一天选的小院照片" hidden>
    <div class="journal-heading"><img data-ui-icon="journalSeal" alt=""><h2 id="diaryTitle">下班了，欢迎回家。</h2></div>
    <p class="journal-meta"><time id="diaryDateLabel" class="journal-date"></time> · 今天怎么过的</p>
    <dl class="journal-stats">
@@ -462,6 +475,22 @@ dialog .crop-buttons{margin-top:16px}
   </details>
   <p id="activityStatus" role="status"></p>
  </section>
+</dialog>
+<dialog id="shelfDialog" class="shelf-dialog" aria-labelledby="shelfTitle">
+ <div class="dialog-header"><h2 id="shelfTitle">翻翻这周</h2><button id="shelfClose" type="button" class="quiet-button">关上书架</button></div>
+ <div id="shelfDates" class="shelf-dates" role="group" aria-label="最近七天"></div>
+ <article class="shelf-page" aria-labelledby="shelfDay">
+  <h3 id="shelfDay"></h3><p id="shelfMood" hidden></p><p id="shelfNote" hidden></p>
+  <img id="shelfPhoto" class="photo-preview" alt="那天选的小院照片" hidden>
+ </article>
+ <div class="journal-actions"><button id="shelfOpenDiary" type="button" class="quiet-button">打开这天的日记</button></div>
+</dialog>
+<dialog id="photoDialog" class="photo-dialog" aria-labelledby="photoTitle">
+ <div class="dialog-header"><h2 id="photoTitle">留张照片</h2><button id="photoCancel" type="button" class="quiet-button">再看看</button></div>
+ <p><time id="photoDay"></time></p>
+ <img id="photoPreview" class="photo-preview" alt="刚拍下的小院画面">
+ <div class="journal-actions"><button id="photoKeep" type="button" class="primary">放进今天的日记</button></div>
+ <p id="photoStatus" role="status"></p>
 </dialog>
 <dialog id="meetingDialog" aria-labelledby="meetingTitle">
  <h2 id="meetingTitle">散会啦。</h2>
@@ -519,6 +548,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
     door:{x:321,y:345,box:[303,337,36,43]},
     desk:{x:406,y:279,box:[371,215,102,52]},
     paper:{box:[393,229,33,24]},
+    shelf:{box:[396,120,64,64]},
     bed:{x:302,y:254,box:[172,167,116,138]},
     vase:{box:[291,176,29,48]},
     rug:{x:332,y:316}
@@ -686,6 +716,24 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
     return found[0]?.[0]||null;
   }
   function localDate(d=new Date()){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
+  function recentDiaryDates(date=localDate()){
+    const noon=Date.parse(date+'T12:00:00Z');
+    if(!Number.isFinite(noon))return [];
+    return Array.from({length:7},(_,i)=>new Date(noon-i*86400000).toISOString().slice(0,10));
+  }
+  const diaryDateKey=/^\d{4}-\d{2}-\d{2}$/;
+  function isDiaryPhoto(src){
+    return typeof src==='string'&&src.length<=110000&&/^data:image\/(png|webp);base64,[A-Za-z0-9+/]+={0,2}$/.test(src);
+  }
+  function cleanDiaryPhotos(raw){
+    if(!raw||typeof raw!=='object'||Array.isArray(raw))return {};
+    return Object.fromEntries(Object.entries(raw).filter(([date,src])=>diaryDateKey.test(date)&&isDiaryPhoto(src)));
+  }
+  function putDiaryPhoto(data,date,src){
+    if(!diaryDateKey.test(date)||!isDiaryPhoto(src))return false;
+    data.diaryPhotos={...data.diaryPhotos,[date]:src};
+    return true;
+  }
   const MOODS=['平静','开心','有点累','松了口气','有点烦'];
   const count=v=>Number.isSafeInteger(v)&&v>=0&&v<=100000000?v:0;
   function cleanJournal(raw,date=localDate()){
@@ -816,7 +864,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
     const activeMeeting=reference&&Object.hasOwn(activities,reference.date)&&activities[reference.date].some(item=>item.type==='meeting'&&item.id===reference.id&&item.at<=Date.now())?{date:reference.date,id:reference.id}:null;
     const previous=/^\d{4}-\d{2}-\d{2}$/.test(x.journal?.date)?x.journal.date:date;
     const wishes=(Array.isArray(x.wishes)?x.wishes:[]).filter(w=>typeof w==='string'&&w.trim()).slice(-WALL_CAPACITY).map(w=>wishCharacters(formatWish(w)).slice(0,80).join(''));
-    const data={version:7,wishes,coins:whole(x.coins),todos:(Array.isArray(x.todos)?x.todos:[]).slice(0,100).filter(t=>t&&typeof t.text==='string').map(t=>({text:t.text.slice(0,80),done:t.done===true})),crops,harvests,lastHarvest,
+    const data={version:7,wishes,coins:whole(x.coins),todos:(Array.isArray(x.todos)?x.todos:[]).slice(0,100).filter(t=>t&&typeof t.text==='string').map(t=>({text:t.text.slice(0,80),done:t.done===true})),crops,harvests,lastHarvest,diaryPhotos:cleanDiaryPhotos(x.diaryPhotos),
       bedsideFlower:Object.hasOwn(FLOWER_NAMES,x.bedsideFlower)?x.bedsideFlower:null,
       weather:['sunny','rain','night','warm'].includes(x.weather)?x.weather:'sunny',
       pace:[22,30,42].includes(x.pace)?x.pace:30,wander:x.wander!==false,
@@ -834,7 +882,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
     return cleanSave({coins:read('coins',0),todos:Array.isArray(todos)?todos:[],crops:Array.from({length:8},(_,i)=>({text:texts?.[i]||'',stage:stages?.[i]||0})),weather:['sunny','warm','rain','night'][read('weather',0)]});
   }
   function depthOrder(items){return items.map((x,i)=>({...x,_index:i})).sort((a,b)=>a.y-b.y||a._index-b._index);}
-  const api={WIDTH,HEIGHT,WALL,POND,PORCH_CAT,NAP_CAT,WISH_LIMIT,WALL_CAPACITY,wishCharacters,formatWish,wallLines,FIELD,cropStand,FLOWER_NAMES,CROP_NAMES,cropUnit,BEDTIME_SECONDS,ROOM,GROW_SECONDS,plotAt,plantCrop,cropTimeLeft,updateCropStages,finishCrop,finishTaskCrops,harvestCrop,arrangeBedsideFlower,ZONES,YARD_TRAIL,nearbyYardSpot,OBSTACLES,inside,walkable,moveToward,walkingFacing,nearestFree,route,routeAlongYardTrail,segmentClear,zoneAt,localDate,MOODS,cleanJournal,switchDay,recordCareAction,diaryFor,putDiary,duration,homeNote,ACTIVITY_LABELS,MEETING_MOODS,activitiesFor,addActivity,restoreActivity,removeActivity,annotateMeeting,BREATH_LENGTH,breathFrame,cleanSave,migrateLegacy,depthOrder};
+  const api={WIDTH,HEIGHT,WALL,POND,PORCH_CAT,NAP_CAT,WISH_LIMIT,WALL_CAPACITY,wishCharacters,formatWish,wallLines,FIELD,cropStand,FLOWER_NAMES,CROP_NAMES,cropUnit,BEDTIME_SECONDS,ROOM,GROW_SECONDS,plotAt,plantCrop,cropTimeLeft,updateCropStages,finishCrop,finishTaskCrops,harvestCrop,arrangeBedsideFlower,ZONES,YARD_TRAIL,nearbyYardSpot,OBSTACLES,inside,walkable,moveToward,walkingFacing,nearestFree,route,routeAlongYardTrail,segmentClear,zoneAt,localDate,recentDiaryDates,isDiaryPhoto,putDiaryPhoto,MOODS,cleanJournal,switchDay,recordCareAction,diaryFor,putDiary,duration,homeNote,ACTIVITY_LABELS,MEETING_MOODS,activitiesFor,addActivity,restoreActivity,removeActivity,annotateMeeting,BREATH_LENGTH,breathFrame,cleanSave,migrateLegacy,depthOrder};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.FarmCore=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
 
@@ -1644,7 +1692,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  'use strict';
  const F=FarmCore,A=FarmArt,J=FarmJournal,$=id=>document.getElementById(id),cv=$('scene'),ctx=cv.getContext('2d');A.init(ctx);
  const SAVE_KEY='aini_farm_v7';let storageHealthy=true;
- const ROOM_HELP='点床头花瓶插花，点书桌写日记，累了就直接上床。';
+ const ROOM_HELP='点书桌写日记，点书架翻看这周。床头可以插花，也可以直接上床。';
  function readKey(key,fallback){try{const v=localStorage.getItem(key);return v===null?fallback:JSON.parse(v);}catch{return fallback;}}
  const initial=readKey(SAVE_KEY,null);
  let data=initial?F.cleanSave(initial):F.migrateLegacy((key,d)=>readKey('aini_v2_'+key,d));
@@ -1653,6 +1701,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  const motion=window.matchMedia?.('(prefers-reduced-motion: reduce)');
  let bubbleTimer=0,hoverZone=null,diaryDate=null,shareUrl=null,landscapeReady=false;
  let shownSpot=null;
+ let shelfDate=null,photoDraft=null;
  let composingWish=false,erasedWish=null,erasedActivity=null,closingMeeting=null,gardenPlot=-1,plantPlot=-1;
  function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(data));storageHealthy=true;}catch{storageHealthy=false;}updateSaveStatus();}
  function updateSaveStatus(){$('saveStatus').textContent=storageHealthy?'已保存在此浏览器':'暂时无法保存，请导出备份';$('saveStatus').classList.toggle('warning',!storageHealthy);}
@@ -1770,6 +1819,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  function updateRoomControls(){
    const inside=game.scene==='indoor',movingToBed=game.bed!==null&&game.bed<F.BEDTIME_SECONDS;
    $('roomActions').hidden=!inside;
+   $('photoBtn').hidden=game.scene==='village';
    $('quickCare').hidden=game.scene!=='farm';
    $('roomDesk').disabled=movingToBed;
    $('roomBed').disabled=movingToBed;
@@ -1953,7 +2003,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    const lightStep=dt*.62;
    game.light=motion?.matches||Math.abs(targetLight-game.light)<lightStep
      ?targetLight:game.light+Math.sign(targetLight-game.light)*lightStep;
-   if($('wallDialog').open||$('diaryDialog').open||$('restoreDialog').open||$('meetingDialog').open||$('gardenDialog').open||$('vaseDialog').open)return;
+   if($('wallDialog').open||$('diaryDialog').open||$('restoreDialog').open||$('meetingDialog').open||$('gardenDialog').open||$('vaseDialog').open||$('shelfDialog').open||$('photoDialog').open)return;
    if(game.breathing!==null){
      game.breathing+=dt;
      if(game.breathing>=F.BREATH_LENGTH)endBreath('呼吸结束，慢慢接着来。');
@@ -2081,6 +2131,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    const p=scenePoint(e);
    if(game.scene==='indoor'){
      if(!$('roomPaper').hidden&&F.inside(p,F.ROOM.paper.box))walkToDesk(true);
+     else if(F.inside(p,F.ROOM.shelf.box))openShelf();
      else if(F.inside(p,F.ROOM.desk.box))walkToDesk();
      else if(F.inside(p,F.ROOM.vase.box))openVase();
      else if(F.inside(p,F.ROOM.bed.box))useBed();
@@ -2105,7 +2156,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  cv.addEventListener('pointermove',e=>{
    if(game.scene==='indoor'){
      const point=scenePoint(e);
-     cv.classList.toggle('room-interact',[F.ROOM.desk.box,F.ROOM.bed.box,F.ROOM.door.box,F.ROOM.vase.box].some(box=>F.inside(point,box)));
+     cv.classList.toggle('room-interact',[F.ROOM.desk.box,F.ROOM.bed.box,F.ROOM.door.box,F.ROOM.vase.box,F.ROOM.shelf.box].some(box=>F.inside(point,box)));
      return;
    }
    if(!game.drag){
@@ -2139,6 +2190,8 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  cv.addEventListener('pointercancel',cancelDrag);cv.addEventListener('lostpointercapture',()=>{if(game.drag)cancelDrag();});
  window.addEventListener('blur',cancelDrag);window.addEventListener('keydown',e=>{if(e.key==='Escape'){if(document.querySelector('dialog[open]'))return;if(game.breathing!==null){endBreath('已结束呼吸。');return;}cancelDrag();if(plantPlot>=0)closePlanting();else if(game.zone==='work')stopAction();}});
  $('roomDesk').onclick=()=>walkToDesk();
+ $('roomShelf').onclick=openShelf;
+ $('photoBtn').onclick=takePhoto;
  $('roomPaper').onclick=()=>walkToDesk(true);
  $('roomBed').onclick=useBed;
  $('roomVase').onclick=openVase;
@@ -2466,6 +2519,85 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    $('activityStatus').textContent=storageHealthy?'已恢复记录。':'已恢复，浏览器暂时无法保存。';
    $('activityEditor').querySelector('summary').focus();
  };
+ function setDiaryImage(id,src){
+   const img=$(id);
+   img.hidden=!src;
+   if(src)img.src=src;
+   else img.removeAttribute('src');
+ }
+ function showShelfDate(date){
+   shelfDate=date;
+   const entry=F.diaryFor(data,date),photo=data.diaryPhotos[date];
+   $('shelfDay').textContent=date===F.localDate()?'今天 · '+date:date;
+   $('shelfMood').hidden=!entry.mood;
+   $('shelfMood').textContent=entry.mood;
+   const note=entry.note||(!photo&&!entry.mood?'空白页':'');
+   $('shelfNote').hidden=!note;
+   $('shelfNote').textContent=note;
+   setDiaryImage('shelfPhoto',photo);
+   for(const button of $('shelfDates').children)button.setAttribute('aria-pressed',String(button.dataset.date===date));
+ }
+ function openShelf(){
+   if(game.scene!=='indoor'||$('shelfDialog').open)return;
+   if(F.switchDay(data))save();
+   const today=F.localDate(),dates=F.recentDiaryDates(today);
+   let latest;
+   $('shelfDates').replaceChildren(...dates.map(date=>{
+     const entry=F.diaryFor(data,date);
+     const hasEntry=Boolean(entry.note||entry.mood||data.diaryPhotos[date]);
+     if(hasEntry&&!latest)latest=date;
+     const button=document.createElement('button');
+     button.type='button';
+     button.dataset.date=date;
+     button.className=hasEntry?'shelf-date has-entry':'shelf-date';
+     button.textContent=date===today?'今天':date.slice(5).replace('-','/');
+     button.setAttribute('aria-label',date+(hasEntry?' 有留存':''));
+     button.onclick=()=>showShelfDate(date);
+     return button;
+   }));
+   showShelfDate(latest||today);
+   $('shelfDialog').showModal();
+ }
+ $('shelfClose').onclick=()=>$('shelfDialog').close();
+ $('shelfOpenDiary').onclick=()=>{
+   const date=shelfDate;
+   $('shelfDialog').close();
+   if(date)openDiary(date);
+ };
+ function takePhoto(){
+   if(game.scene==='village'||$('photoDialog').open)return;
+   try{
+     const picture=document.createElement('canvas');picture.width=320;picture.height=200;
+     const camera=picture.getContext('2d');camera.imageSmoothingEnabled=false;
+     camera.drawImage(cv,0,0,picture.width,picture.height);
+     let src=picture.toDataURL('image/png');
+     if(!F.isDiaryPhoto(src))src=picture.toDataURL('image/webp',.9);
+     if(!F.isDiaryPhoto(src))throw Error('照片太大');
+     photoDraft={date:F.localDate(),src};
+   }catch{say('这张照片还没拍好，稍后再试。');return;}
+   $('photoDay').textContent=photoDraft.date;
+   $('photoPreview').src=photoDraft.src;
+   $('photoStatus').textContent='';
+   $('photoKeep').textContent=data.diaryPhotos[photoDraft.date]?'替换今天的照片':'放进今天的日记';
+   $('photoDialog').showModal();
+ }
+ $('photoCancel').onclick=()=>$('photoDialog').close();
+ $('photoDialog').addEventListener('close',()=>{
+   photoDraft=null;$('photoPreview').removeAttribute('src');
+ });
+ $('photoKeep').onclick=()=>{
+   if(!photoDraft)return;
+   if(photoDraft.date!==F.localDate()){$('photoStatus').textContent='已经是新的一天了，可以重新取景。';return;}
+   const previous=data.diaryPhotos;
+   if(!F.putDiaryPhoto(data,photoDraft.date,photoDraft.src))return;
+   save();
+   if(!storageHealthy){
+     data.diaryPhotos=previous;
+     $('photoStatus').textContent='浏览器暂时无法保存照片，可以稍后再试。';
+     return;
+   }
+   $('photoDialog').close();say('把这一幕留在今天的日记里了。');
+ };
  function showDiaryDate(date){
    diaryDate=date;erasedActivity=null;
    $('activityTime').value=date===F.localDate()?timeFormatter.format(Date.now()):'12:00';
@@ -2474,6 +2606,9 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    const entry=F.diaryFor(data,date);
    $('diaryNote').value=entry.note;
    $('diaryMood').value=entry.mood;
+   const photo=data.diaryPhotos[date];
+   setDiaryImage('diaryPhoto',photo);
+   $('journalLandscape').hidden=Boolean(photo);
    $('diaryStatus').textContent=entry.note||entry.mood?'这页日记已保存在此浏览器。':'';
    updateDiaryStats();
  }
@@ -2484,7 +2619,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
      const entry=F.diaryFor(data,date);
      F.putDiary(data,date,entry.note,entry.mood,true);save();
    }
-   const dates=[...new Set([date,...Object.keys(data.diaries),...Object.keys(data.activities)])].sort().reverse();
+   const dates=[...new Set([date,...Object.keys(data.diaries),...Object.keys(data.activities),...Object.keys(data.diaryPhotos)])].sort().reverse();
    $('diaryDate').replaceChildren(...dates.map(d=>new Option(d,d)));
    $('diaryDate').value=date;
    showDiaryDate(date);

@@ -1,6 +1,10 @@
 # 爱你老己 · 更新历史
 
-[在线试玩](https://josephinexyy.github.io/product-portfolio/garden/) · [下载最新版 v0.21.0](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.21.0.zip) · [查看玩法](aini-laoji.md)
+[在线试玩](https://josephinexyy.github.io/product-portfolio/garden/) · [下载最新版 v0.22.0](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.22.0.zip) · [查看玩法](aini-laoji.md)
+
+## v0.22.0 · 小院的浅绿树荫
+
+- 改用浅鼠尾草绿和嫩橄榄绿重画树冠。池边是一棵枝叶垂下来的树，院角是短松，吊床两棵树有各自的轮廓。
 
 ## v0.21.0 · 林边的小屋
 

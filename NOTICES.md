@@ -4,6 +4,8 @@
 
 现版人物使用 [The Game Smith 的免费 Legacy 人物](https://not-a-kappa-games.itch.io/farming-sim-character-base)。Milky 的朝向、步态和跳跃基于 [Revouger 的免费样例](https://revouger.itch.io/milky-cat)，枕边蜷睡由项目绘制。历史版本的[四方向橘猫原图](docs/garden/frakassets-orange-cat.png)来自 Frakassets 的 [Free Pets Pack](https://frakassets.itch.io/free-pets-pack)，按 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 使用。
 
+现版小屋外观由项目绘制。阔叶树、松树和树篱来自 [The Game Smith 的 TopDown Decorations](https://not-a-kappa-games.itch.io/topdown-decorations)。项目对松树调色，并组合了吊床树的树冠和树干。
+
 界面使用 Yard Pixel，基于 Noto Sans CJK SC 制作。授权为 SIL Open Font License 1.1，全文随离线包和单文件 HTML 分发。
 
 本地开票工作台的公开软件保留发布时的 MIT License，以及字体、PDF、OCR 和其他第三方组件的原有授权。离线包附带 LICENSE、THIRD_PARTY_NOTICES.md 和 licenses/，再分发时请一起保留。

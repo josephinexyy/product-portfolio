@@ -1,6 +1,11 @@
 # 爱你老己 · 更新历史
 
-[在线试玩](https://josephinexyy.github.io/product-portfolio/garden/) · [下载最新版 v0.20.0](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.20.0.zip) · [查看玩法](aini-laoji.md)
+[在线试玩](https://josephinexyy.github.io/product-portfolio/garden/) · [下载最新版 v0.21.0](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.21.0.zip) · [查看玩法](aini-laoji.md)
+
+## v0.21.0 · 林边的小屋
+
+- 小屋重画为灰绿色瓦顶、奶油色墙面和木门，黄昏灯光对应新窗格。日记插画也换上了同一座小屋。
+- 院内用 The Game Smith 的 TopDown Decorations 改画树木。池岸用大树，院角用深绿松树，吊床两侧加高树干。
 
 ## v0.20.0 · 黄昏回家
 

@@ -5,9 +5,9 @@
 | 作品 | 在线使用 | 离线版 |
 | --- | --- | --- |
 | 本地开票工作台 | [打开工具](https://josephinexyy.github.io/product-portfolio/billing/) · [试用演示账本](https://josephinexyy.github.io/product-portfolio/billing/?demo=1) | [下载 ZIP](https://josephinexyy.github.io/product-portfolio/billing/Billing-Workspace-v0.2.0.zip) |
-| 爱你老己 · 像素小院 | [进入小院](https://josephinexyy.github.io/product-portfolio/garden/) | [下载 v0.20.0 ZIP](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.20.0.zip) |
+| 爱你老己 · 像素小院 | [进入小院](https://josephinexyy.github.io/product-portfolio/garden/) | [下载 v0.21.0 ZIP](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.21.0.zip) |
 
-像素小院 v0.20.0 可以沿踏脚石去池边看水，和 Milky 一起走过黄昏回家。在小屋里，可以从收获篮挑一枝花插在床头、写日记或睡觉。[查看小院更新历史](cases/aini-laoji-changelog.md)
+像素小院 v0.21.0 换上了灰绿色瓦顶和奶油色墙面。沿踏脚石去池边看水，和 Milky 一起走过黄昏回家。[查看小院更新历史](cases/aini-laoji-changelog.md)
 
 离线版解压后，用浏览器打开里面的 HTML 文件。换设备前先导出自己的账本或小院存档。
 

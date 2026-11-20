@@ -1,6 +1,16 @@
 # 爱你老己 · 更新历史
 
-[在线试玩](https://josephinexyy.github.io/product-portfolio/garden/) · [下载最新版 v0.25.0](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.25.0.zip) · [查看玩法](aini-laoji.md)
+[在线试玩](https://josephinexyy.github.io/product-portfolio/garden/) · [下载离线版 v0.25.0](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.25.0.zip) · [查看玩法](aini-laoji.md)
+
+## v0.27.0 · 顺着小路逛一逛
+
+- 门廊到池边换成弯曲的碎石路。回家和去池边看水时，小人会沿路走。
+- 点路面或草地可以走过去。靠近长椅、心愿墙和吊床时会出现可点的操作提示。
+
+## v0.26.0 · 回家小纸条
+
+- 当天有午休、收成等记录时，书桌上会放一张由一两件小事组成的纸条。点纸条打开当天日记。
+- 点「收进日记」可把内容接在正文后面，再改成自己的话。小屋里也可以直接上床。
 
 ## v0.25.0 · 墙面和木地板
 

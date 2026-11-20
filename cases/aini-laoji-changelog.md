@@ -1,6 +1,12 @@
 # 爱你老己 · 更新历史
 
-[在线试玩](https://josephinexyy.github.io/product-portfolio/garden/) · [下载最新版 v0.23.0](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.23.0.zip) · [查看玩法](aini-laoji.md)
+[在线试玩](https://josephinexyy.github.io/product-portfolio/garden/) · [下载最新版 v0.24.0](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.24.0.zip) · [查看玩法](aini-laoji.md)
+
+## v0.24.0 · 吊床边的小猫与屋内家具
+
+- Milky 会走到吊床旁的猫垫上再睡，猫垫始终绘制在小猫下方，恢复午休存档时也会回到垫子上。
+- 收窄并挪开黑板两侧的玫瑰花圃，露出整条踏脚石小路。
+- 从 Ninja Adventure 导入矮斗柜、书桌椅和茶桌小景。
 
 ## v0.23.0 · 松树与花圃
 

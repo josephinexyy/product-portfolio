@@ -383,7 +383,7 @@ dialog .crop-buttons{margin-top:16px}
  </section>
  <div class="bottom"><span id="saveStatus" role="status">已保存在此浏览器</span><div class="import-tools"><button id="exportBtn" class="text-button">带走小院</button><button id="importBtn" class="text-button">恢复备份</button><input id="backupFile" type="file" accept=".json,application/json" hidden></div></div>
  <details class="extras"><summary>小院设置与演示</summary><div class="extras-body"><div class="farm-settings"><label><input id="wander" type="checkbox" checked> 自己散步</label><label>步速 <select id="pace" aria-label="行走速度"><option value="22">更慢</option><option value="30">慢慢走</option><option value="42">轻快些</option></select></label></div><p>天气和外部事件用于原型演示，尚未连接飞书、Apple Watch 或薪资系统。记录留在当前浏览器；清理浏览器前请先带走备份。</p><div class="extras-actions"><button class="quiet-button" id="weatherBtn">换个天气</button><button class="quiet-button" id="meetingBtn">模拟会议</button><button class="quiet-button" id="salaryBtn">模拟工资</button><button class="quiet-button" id="heartBtn">模拟心率事件</button><button class="quiet-button" id="beforeRestoreBtn">下载恢复前备份</button></div><p style="margin-top:13px">其他目的地</p><div id="destinations" class="extras-actions"></div></div></details>
- <footer class="footer"><span>Josephine Xiang · v0.24.0</span><span>素材 · <a href="https://pixel-boy.itch.io/ninja-adventure-asset-pack">Pixel-Boy &amp; AAA</a> / Kenney / <a href="https://not-a-kappa-games.itch.io/farming-sim-character-base">The Game Smith</a> / <a href="https://revouger.itch.io/milky-cat">Revouger</a> / Yard Pixel</span></footer>
+ <footer class="footer"><span>Josephine Xiang · v0.25.0</span><span>素材 · <a href="https://pixel-boy.itch.io/ninja-adventure-asset-pack">Pixel-Boy &amp; AAA</a> / Kenney / <a href="https://not-a-kappa-games.itch.io/farming-sim-character-base">The Game Smith</a> / <a href="https://revouger.itch.io/milky-cat">Revouger</a> / Yard Pixel</span></footer>
 </main>
 <dialog id="gardenDialog" aria-labelledby="gardenTitle">
  <header class="dialog-header"><h2 id="gardenTitle">小菜园</h2><button type="button" id="gardenClose" class="quiet-button">回小院</button></header>
@@ -786,7 +786,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
 (function(root){
  'use strict';
  const M=FarmAssets.manifest,S=M.scale,C={grass:'#79a74a',cream:'#ffe3af',ink:'#493d3c'};
- let ctx,ground;
+ let ctx,ground,roomShell;
  function loadPng(src){
    const png=new Image();
    const loaded=new Promise((resolve,reject)=>{png.onload=resolve;png.onerror=()=>reject(Error('小院素材加载失败，请重新打开文件。'));});
@@ -1313,19 +1313,64 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
  // Cropped from the original Ninja Adventure element sheet, at native scale.
  function drawRoomFurniture(){
    for(const [sx,w,h,x,y] of [
-     [16,32,32,222,156], [0,16,16,421,238],
+     [16,32,32,221,176], [0,16,16,421,238],
      [48,16,16,457,326], [64,16,16,452,311], [80,16,16,462,310]
    ])ctx.drawImage(roomFurniture.png,sx,0,w,h,snap(x-w*S/2),snap(y-h*S),w*S,h*S);
+ }
+ function drawRoomShell(){
+   if(!roomShell){
+     roomShell=document.createElement('canvas');roomShell.width=640;roomShell.height=400;
+     const old=ctx;ctx=roomShell.getContext('2d');ctx.imageSmoothingEnabled=false;
+     r(114,66,412,326,'#17292d70');
+     r(124,75,392,306,'#435149');
+
+     // Stagger the end joints across the warm floorboards.
+     const floorLeft=152,floorRight=488,floorTop=174,floorBottom=354;
+     const wood=['#bf9873','#cba67e','#c39d77','#d1ad84'];
+     r(floorLeft,floorTop,floorRight-floorLeft,floorBottom-floorTop,'#a38363');
+     for(let y=floorTop,row=0;y<floorBottom;y+=20,row++){
+       let col=0;
+       for(let x=floorLeft-((row*26)%78);x<floorRight;x+=78,col++){
+         const left=Math.max(floorLeft,x),right=Math.min(floorRight,x+76);
+         if(right<=left)continue;
+         const width=right-left;
+         r(left,y,width,18,wood[(row+col*3)%wood.length]);
+         if(width>=22){
+           r(left+6,y+2,Math.min(width-8,42),2,'#e6c29978');
+           r(left+12,y+12,Math.min(width-14,26),2,'#956d521f');
+         }
+       }
+     }
+
+     // Taller back wall, low cutaway edges, and a separate shadow on the floor.
+     r(144,88,352,84,'#c1cfb0');
+     r(144,88,352,9,'#b0c0a3');
+     r(145,99,350,4,'#d5ddbf');
+     r(144,147,352,25,'#9eb19a');
+     for(let x=153;x<489;x+=24){
+       r(x,149,2,20,'#839882');r(x+2,149,2,20,'#b5c5ac');
+     }
+     r(144,145,352,3,'#d7dec3');r(144,169,352,3,'#c3cdb2');
+     r(144,172,352,5,'#5e6c5b');r(152,178,336,6,'#664b384d');
+     r(152,184,336,4,'#664b382b');
+
+     for(const x of [128,488]){
+       r(x,84,24,276,'#748b7d');r(x,88,24,272,'#859a8a');
+       r(x+4,96,4,256,'#a4b6a3');r(x+20,96,4,259,'#64796a');
+     }
+     r(152,186,6,166,'#7157444a');r(481,186,7,166,'#71574454');
+     r(128,80,384,8,'#a9b99f');r(128,86,384,4,'#647c6b');
+     r(128,354,384,18,'#5b6c60');r(128,354,384,5,'#98ab94');
+     r(130,372,380,4,'#435a50');
+     ctx=old;
+   }
+   ctx.drawImage(roomShell,0,0);
  }
  function indoor(t,bedtime,person,kitty,flower=null){
    const progress=bedtime===null?0:Math.min(1,bedtime/FarmCore.BEDTIME_SECONDS);
    const tucked=progress>=.72,asleep=progress===1;
    r(0,0,640,400,asleep?'#222a41':'#2d3c42');
-   r(114,65,412,328,'#192b3280');r(120,70,400,322,'#1f2e35');
-   for(let y=112;y<352;y+=32)for(let x=160;x<480;x+=32)part('floorTiles',16,16,16,16,x,y);
-   for(let x=160;x<480;x+=32){part('wallTiles',32,0,16,16,x,80);part('wallTiles',32,64,16,16,x,352);}
-   for(let y=112;y<352;y+=32){part('wallTiles',0,32,16,16,128,y);part('wallTiles',64,32,16,16,480,y);}
-   for(const [sx,sy,x,y] of [[0,0,128,80],[64,0,480,80],[0,64,128,352],[64,64,480,352]])part('wallTiles',sx,sy,16,16,x,y);
+   drawRoomShell();
    // A lit threshold makes the front door usable from the map itself.
    const door=FarmCore.ROOM.door;
    r(door.x-16,345,32,32,'#664c47');r(door.x-12,348,24,27,'#b88465');
@@ -1334,8 +1379,9 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
    if(asleep){oval(340,131,7,7,'#f8dba4');oval(343,128,6,6,'#465579');r(299,129,2,2,'#ead4a5');r(305,145,2,2,'#ead4a5');}
    else r(292,139,58,14,'#b67578');
    r(318,120,4,38,asleep?'#b48872':'#ffca91');r(282,136,76,4,asleep?'#b48872':'#ffca91');r(276,156,88,6,'#e7a873');
-   ctx.save();const light=ctx.createRadialGradient(321,170,9,321,193,98);light.addColorStop(0,asleep?'#8390cc32':'#ffc58858');light.addColorStop(1,'#ffc58800');ctx.fillStyle=light;ctx.fillRect(190,125,262,185);ctx.restore();
-   sprite('rug',335,333);sprite('bookshelf',428,180);sprite('plant',163,181);
+   ctx.save();const light=ctx.createRadialGradient(321,187,12,321,217,105);light.addColorStop(0,asleep?'#8390cc32':'#ffc58858');light.addColorStop(1,'#ffc58800');ctx.fillStyle=light;ctx.fillRect(190,178,262,137);ctx.restore();
+   shadow(428,184,32);shadow(163,185,10);
+   sprite('rug',335,333);sprite('bookshelf',428,184);sprite('plant',163,185);
    drawRoomFurniture();desk(421,263);
    bedsideLamp(!asleep);
    bedsideVase(flower);
@@ -1354,7 +1400,7 @@ window.FarmAssets={"manifest":{"scale":2,"tile":16,"atlasSize":[256,366],"frames
        const pose=hop>0?'happy':'idle';
        cat(297-47*hop,264-46*hop-Math.sin(Math.PI*hop)*13,pose,hop*.42,'left',true);
      }
-     ctx.save();ctx.globalAlpha=progress*.43;r(128,104,382,278,'#263250');ctx.restore();
+     ctx.save();ctx.globalAlpha=progress*.41;r(128,80,384,298,'#263250');ctx.restore();
      if(asleep&&Math.floor(t*2)%4!==0){
        r(266,192,6,2,'#f7e2b8');r(268,194,2,2,'#f7e2b8');r(266,196,6,2,'#f7e2b8');
      }

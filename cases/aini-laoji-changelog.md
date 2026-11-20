@@ -1,6 +1,10 @@
 # 爱你老己 · 更新历史
 
-[在线试玩](https://josephinexyy.github.io/product-portfolio/garden/) · [下载最新版 v0.24.0](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.24.0.zip) · [查看玩法](aini-laoji.md)
+[在线试玩](https://josephinexyy.github.io/product-portfolio/garden/) · [下载最新版 v0.25.0](https://josephinexyy.github.io/product-portfolio/garden/aini-laoji-v0.25.0.zip) · [查看玩法](aini-laoji.md)
+
+## v0.25.0 · 墙面和木地板
+
+- 房间后墙换成浅鼠尾草绿，增加墙裙、踢脚线和落在地板上的阴影。错缝木地板和墙面的交界在熄灯后也能看清。
 
 ## v0.24.0 · 吊床边的小猫与屋内家具
 
